@@ -26,6 +26,16 @@ public class Comment implements Serializable {
     @ManyToOne
     private Comment parentComment;
 
+    public Comment() {
+    }
+
+    public Comment(Long blog, Long id, Long author, Date time, String content) {
+        this.blogId = blog;
+        this.commentId= id;
+        this.authorId = author;
+        this.creatTime = time;
+        this.content = content;
+    }
 
     public Long getCommentId() {
         return commentId;
@@ -55,7 +65,14 @@ public class Comment implements Serializable {
         return content;
     }
 
-    public void setContent(String commentMsg) { this.content = content == null ? null : content.trim();
+    public void setContent(String content) {
+        if(content !=null){
+        if(content.trim().isEmpty()){
+            this.content =null;
+        }else{
+            this.content = content;
+        }
+    }
     }
 
     public Date getCreatTime() {
@@ -89,7 +106,6 @@ public class Comment implements Serializable {
         StringBuilder sb = new StringBuilder();
         sb.append(getClass().getSimpleName());
         sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
         sb.append(", commentId=").append(commentId);
         sb.append(", blogId=").append(blogId);
         sb.append(", authorId=").append(authorId);
