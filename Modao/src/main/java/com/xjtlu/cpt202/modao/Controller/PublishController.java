@@ -1,11 +1,11 @@
-package com.Zeng.CPT202.controller;
+package com.xjtlu.cpt202.modao.Controller;
 
-import com.Zeng.CPT202.Cache.TagCache;
-import com.Zeng.CPT202.dto.TagDto;
-import com.Zeng.CPT202.entity.Post;
-import com.Zeng.CPT202.entity.User;
-import com.Zeng.CPT202.mapper.PostMapper;
-import com.Zeng.CPT202.mapper.UserMapper;
+import com.xjtlu.cpt202.modao.Cache.TagCache;
+import com.xjtlu.cpt202.modao.dto.TagDto;
+import com.xjtlu.cpt202.modao.entity.Post;
+import com.xjtlu.cpt202.modao.entity.User;
+import com.xjtlu.cpt202.modao.mapper.PostMapper;
+import com.xjtlu.cpt202.modao.mapper.UserMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
