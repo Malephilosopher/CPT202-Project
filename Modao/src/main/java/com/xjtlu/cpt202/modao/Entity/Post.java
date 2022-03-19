@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Post {
     private int id;
-    private String title;
+    private String title; //文章标题
     private int author_id;
     private String post_time;
     private String edit_time;
@@ -13,7 +13,7 @@ public class Post {
     private int num_favorite;
     private String content;
     private int view_num;
-    private String tag;
+    private String tag;  //文章标签
 
     public String get_post_time() {
         return post_time;
