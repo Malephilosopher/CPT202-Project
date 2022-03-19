@@ -5,21 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="551a7661-9223-45b5-8858-839cf98ce6fe" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/cache/TagCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/CommentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/PublishController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/dto/TagDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Comment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/CommentMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/PostMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/service/CommentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/service/CommentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/comment.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/xjtlu/cpt202/cpt202Project/CPT202ProjectApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javax.ejb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javax.jms.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javax.resource.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javax.servlet.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javax.servlet.jsp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/javax.servlet.jsp.jstl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/PublishController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/PublishController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/dto/TagDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/dto/TagDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Blog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/PostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/BlogMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/UserRepo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/service/UserServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/service/UserServiceImp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +29,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -51,8 +60,10 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="localRepository" value="$USER_HOME$/DevTools/apache-maven-3.6.3-bin/repository" />
+        <option name="mavenHome" value="使用 Maven 包装器" />
         <option name="useMavenConfig" value="true" />
+        <option name="userSettingsFile" value="$USER_HOME$/DevTools/apache-maven-3.6.3-bin/conf/settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -68,10 +79,10 @@
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="项目" />
+    <property name="project.structure.last.edited" value="工件" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.23563218" />
-    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -104,7 +115,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647666293009</updated>
-      <workItem from="1647666296109" duration="2012000" />
+      <workItem from="1647666296109" duration="4792000" />
     </task>
     <servers />
   </component>

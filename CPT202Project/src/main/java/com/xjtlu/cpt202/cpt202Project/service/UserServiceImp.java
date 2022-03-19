@@ -1,9 +1,9 @@
-package com.cpt202.userdemo.Service;
+package com.xjtlu.cpt202.cpt202Project.service;
 
 import java.util.Optional;
 
-import com.cpt202.userdemo.Model.User;
-import com.cpt202.userdemo.Repository.UserRepo;
+import com.xjtlu.cpt202.cpt202Project.entity.User;
+import com.xjtlu.cpt202.cpt202Project.mapper.UserMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImp {
 
     @Autowired
-    private UserRepo userRepo;
+    private UserMapper userRepo;
 
     public int saveUser(User u){
         return userRepo.save(u).getId();

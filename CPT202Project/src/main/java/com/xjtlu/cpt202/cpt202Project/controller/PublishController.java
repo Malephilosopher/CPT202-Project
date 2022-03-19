@@ -2,9 +2,9 @@ package com.xjtlu.cpt202.cpt202Project.controller;
 
 import com.xjtlu.cpt202.cpt202Project.cache.TagCache;
 import com.xjtlu.cpt202.cpt202Project.dto.TagDto;
-import com.xjtlu.cpt202.cpt202Project.entity.Post;
+import com.xjtlu.cpt202.cpt202Project.entity.Blog;
 import com.xjtlu.cpt202.cpt202Project.entity.User;
-import com.xjtlu.cpt202.cpt202Project.mapper.PostMapper;
+import com.xjtlu.cpt202.cpt202Project.mapper.BlogMapper;
 import com.xjtlu.cpt202.cpt202Project.mapper.UserMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +26,7 @@ public class PublishController {
     @Resource
     private UserMapper userMapper;
     @Resource
-    private PostMapper postMapper;
+    private BlogMapper postMapper;
 
     @GetMapping("/publish")
     public String publish(Model model) {
@@ -73,7 +73,7 @@ public class PublishController {
             }
         }
         //将问题上传到数据库
-        Post post = new Post();
+        Blog post = new Blog();
         post.setTitle(title);
         post.setContent(content);
         post.setTag(tag);
@@ -92,7 +92,7 @@ public class PublishController {
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable(name = "id")int id,
                        Model model){
-        Post post= postMapper.getbyId(id);
+        Blog post= postMapper.getbyId(id);
         model.addAttribute("title", post.getTitle());
         model.addAttribute("description", post.getContent());
         model.addAttribute("tag", post.getTag());

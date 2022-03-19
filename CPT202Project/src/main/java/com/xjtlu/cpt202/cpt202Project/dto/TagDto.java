@@ -3,7 +3,9 @@ package com.xjtlu.cpt202.cpt202Project.dto;
 import java.util.List;
 
 public class TagDto {
+
     private String categoryname;
+
     private List<String> tags;
 
     public String getCategoryname() {
