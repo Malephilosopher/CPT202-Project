@@ -1,4 +1,4 @@
-package com.Zeng.CPT202.mapper;
+package com.xjtlu.cpt202.modao.mapper;
 
 public class UserMapper {
 }
