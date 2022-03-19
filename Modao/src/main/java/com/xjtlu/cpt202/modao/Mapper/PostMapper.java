@@ -1,6 +1,6 @@
-package com.Zeng.CPT202.mapper;
+package com.xjtlu.cpt202.modao.mapper;
 
-import com.Zeng.CPT202.entity.Post;
+import com.xjtlu.cpt202.modao.entity.Post;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
