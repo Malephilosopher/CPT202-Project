@@ -6,21 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="551a7661-9223-45b5-8858-839cf98ce6fe" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javax.ejb.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javax.jms.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javax.resource.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javax.servlet.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javax.servlet.jsp.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/javax.servlet.jsp.jstl.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/PublishController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/PublishController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/dto/TagDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/dto/TagDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Blog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/PostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/BlogMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/UserRepo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/service/UserServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/service/UserServiceImp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,14 +45,12 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="$USER_HOME$/DevTools/apache-maven-3.6.3-bin/repository" />
-        <option name="mavenHome" value="使用 Maven 包装器" />
         <option name="useMavenConfig" value="true" />
-        <option name="userSettingsFile" value="$USER_HOME$/DevTools/apache-maven-3.6.3-bin/conf/settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectId" id="26aenVx9ntrc38myuc3YkPaxmhB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -115,7 +98,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1647666293009</updated>
-      <workItem from="1647666296109" duration="4792000" />
+      <workItem from="1647666296109" duration="4921000" />
+      <workItem from="1647671875443" duration="22000" />
     </task>
     <servers />
   </component>
