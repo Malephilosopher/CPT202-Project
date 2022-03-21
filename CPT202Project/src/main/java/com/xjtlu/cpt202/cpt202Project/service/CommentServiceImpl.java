@@ -2,11 +2,12 @@ package com.xjtlu.cpt202.cpt202Project.service;
 import  com.xjtlu.cpt202.cpt202Project.entity.Comment;
 
 import com.xjtlu.cpt202.cpt202Project.mapper.CommentMapper;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,41 +15,66 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private CommentMapper commentMapper;
 
+    //存放迭代找出的所有子代的集合
+    private List<Comment> tempReplys = new ArrayList<>();
+
     @Override
-    public List<Comment> listCommentByBlogId(Long BlogId) {
-        //获取博客下的所有最初父评论
-        List<Comment> comments = commentMapper.findParentQuery(BlogId);
-        //返回所有配对好的父评论与子评论
-        return findChildrenComment(comments);
-    }
-    private List<Comment> commentsView = new ArrayList<>();
-    private List<Comment> findChildrenComment(List<Comment> comments){
-        for(Comment comment:comments){
-            Comment c = new Comment();
-            BeanUtils.copyProperties(comment,c);
-            c.setReplyComments(commentMapper.findChildrenQuery(c.getCommentId()));
-            //迭代寻找每一个子回复的子回复
-            recursivelyFindReplys(c);
-            commentsView.add(c);
+    //将多级嵌套转为二层嵌套结构
+    public List<Comment> listCommentByBlogId(Long blogId) {
+        //获取博客下的所有最初父评论(根节点)
+        List<Comment> comments = commentMapper.findParentQuery(blogId);
+        for(Comment comment : comments){
+            Long id = comment.getCommentId();
+            //            查询出根节点下所有子评论
+            List<Comment> childComments = commentMapper.findChildrenQuery(id);
+
+            combineChildren(blogId, childComments);
+            comment.setReplyComments(tempReplys);
+            //清空临时子评论集合
+            tempReplys = new ArrayList<>();
         }
-        return commentsView;
+        return comments;
     }
-
-    private void recursivelyFindReplys(Comment comment){
-        List<Comment> replys = comment.getReplyComments();
-        if(!replys.isEmpty()){
-            for(Comment reply:replys){
-                reply.setReplyComments(commentMapper.findChildrenQuery(reply.getCommentId()));
-                if(!reply.getReplyComments().isEmpty()) {
-                    //再次迭代寻找子回复的子回复
-                    recursivelyFindReplys(reply);
-                }
+    private void combineChildren(Long blogId, List<Comment> childComments){
+        //        判断是否有一级子评论
+        if(childComments.size() > 0) {
+//                循环找出子评论的id
+            for (Comment childComment : childComments) {
+                tempReplys.add(childComment);
+                Long childId = childComment.getCommentId();
+//                    查询出子二级评论
+                recursively(blogId, childId);
             }
+        }
+    }
 
+    private void recursively(Long blogId, Long childId){
+//        根据子一级评论的id找到子二级评论
+        List<Comment> replayComments = commentMapper.findChildrenQuery(childId);
+
+        if(replayComments.size() > 0){
+            for(Comment replayComment : replayComments){
+                Long replayId = replayComment.getCommentId();
+                tempReplys.add(replayComment);
+                recursively(blogId,replayId);
+            }
+        }
     }
-    }
+    @Transactional
     @Override
+    //创建并添加一条评论
     public int addComment(Comment comment) {
+        Long parentCommentId = comment.getParentComment().getCommentId();
+        //前端设置若父评论为空则返回默认值为-1
+        if(parentCommentId!=-1){
+            comment.setParentComment(commentMapper.findById(parentCommentId));
+//这两端语句不确定是否需要，看前端能否完成传递？
+//            comment.getParentComment().getReplyComments().add(comment);
+//            commentMapper.updateByPrimaryKey(comment.getParentComment());
+        }else{
+            comment.setParentComment(null);
+        }
+        comment.setCreatTime(new Date());
         return commentMapper.insert(comment);
     }
 
