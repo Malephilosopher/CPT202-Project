@@ -19,22 +19,24 @@ public class CommentServiceImpl implements CommentService {
     private List<Comment> tempReplys = new ArrayList<>();
 
     @Override
-    //将多级嵌套转为二层嵌套结构
+    //以二层嵌套的结构展示某blog的所有评论
     public List<Comment> listCommentByBlogId(Long blogId) {
         //获取博客下的所有最初父评论(根节点)
         List<Comment> comments = commentMapper.findParentQuery(blogId);
         for(Comment comment : comments){
             Long id = comment.getCommentId();
-            //            查询出根节点下所有子评论
+            //            查询出根评论下所有子评论
             List<Comment> childComments = commentMapper.findChildrenQuery(id);
 
             combineChildren(blogId, childComments);
+            //重新设置根节点评论的子评论
             comment.setReplyComments(tempReplys);
             //清空临时子评论集合
             tempReplys = new ArrayList<>();
         }
         return comments;
     }
+    //将多层嵌套转变为二层嵌套结构
     private void combineChildren(Long blogId, List<Comment> childComments){
         //        判断是否有一级子评论
         if(childComments.size() > 0) {
@@ -56,6 +58,7 @@ public class CommentServiceImpl implements CommentService {
             for(Comment replayComment : replayComments){
                 Long replayId = replayComment.getCommentId();
                 tempReplys.add(replayComment);
+                //递归找出所有层级的子评论
                 recursively(blogId,replayId);
             }
         }
@@ -68,7 +71,7 @@ public class CommentServiceImpl implements CommentService {
         //前端设置若父评论为空则返回默认值为-1
         if(parentCommentId!=-1){
             comment.setParentComment(commentMapper.findById(parentCommentId));
-//这两端语句不确定是否需要，看前端能否完成传递？
+//            这两端语句不确定是否需要，看前端能否完成传递？
 //            comment.getParentComment().getReplyComments().add(comment);
 //            commentMapper.updateByPrimaryKey(comment.getParentComment());
         }else{

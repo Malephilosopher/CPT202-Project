@@ -1,21 +1,31 @@
 package com.xjtlu.cpt202.cpt202Project.controller;
 import  com.xjtlu.cpt202.cpt202Project.entity.Comment;
 
+import com.xjtlu.cpt202.cpt202Project.service.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Controller
 public class CommentController {
 
-    @RequestMapping("/listComment")
-
-
-    @RequestMapping("/addComment")
-    public void addcomment(@RequestBody Comment comment){
-
+    @Autowired
+    private CommentService commentService;
+    //展示所有的评论
+    @GetMapping("/comments/{blogId}")
+    public String comments(@PathVariable("blogId") Long blogId,Model model) {
+        List<Comment> comments = commentService.listCommentByBlogId(blogId);
+        model.addAttribute("comments", comments);
+        return "blog :: commentList";
     }
-
-    @RequestMapping("/deleteComment")
-
+//添加一条评论
+    @PostMapping("/comments")
+    public String add(Comment comment) {
+        commentService.addComment(comment);
+        return "redirect:/comments"+comment.getBlogId();
+    }
 }
