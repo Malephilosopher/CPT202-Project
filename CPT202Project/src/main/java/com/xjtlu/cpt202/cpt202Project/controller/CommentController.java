@@ -24,8 +24,19 @@ public class CommentController {
     }
 //添加一条评论
     @PostMapping("/comments")
-    public String add(Comment comment) {
+    public String add(Comment comment, Model model) {
+        Long blogId = comment.getBlogId();
         commentService.addComment(comment);
-        return "redirect:/comments"+comment.getBlogId();
+        List<Comment> comments = commentService.listCommentByBlogId(blogId);
+        model.addAttribute("comments", comments);
+        return  "blog :: commentList";
+    }
+    //    删除评论
+    @GetMapping("/comment/{blogId}/delete")
+    public String delete(@PathVariable Long blogId,Comment comment,  Model model){
+        commentService.deleteComment(comment);
+        List<Comment> comments = commentService.listCommentByBlogId(blogId);
+        model.addAttribute("comments", comments);
+        return "blog";
     }
 }
