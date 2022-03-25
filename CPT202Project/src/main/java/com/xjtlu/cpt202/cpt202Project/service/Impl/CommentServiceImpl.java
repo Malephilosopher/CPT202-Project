@@ -1,7 +1,8 @@
-package com.xjtlu.cpt202.cpt202Project.service;
+package com.xjtlu.cpt202.cpt202Project.service.Impl;
 import  com.xjtlu.cpt202.cpt202Project.entity.Comment;
 
 import com.xjtlu.cpt202.cpt202Project.mapper.CommentMapper;
+import com.xjtlu.cpt202.cpt202Project.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +23,7 @@ public class CommentServiceImpl implements CommentService {
     //以二层嵌套的结构展示某blog的所有评论
     public List<Comment> listCommentByBlogId(Long blogId) {
         //获取博客下的所有最初父评论(根节点)
-        List<Comment> comments = commentMapper.findParentQuery(blogId);
+        List<Comment> comments = commentMapper.findParentQuery(blogId,null);
         for(Comment comment : comments){
             Long id = comment.getCommentId();
             //            查询出根评论下所有子评论
@@ -77,13 +78,14 @@ public class CommentServiceImpl implements CommentService {
         }else{
             comment.setParentComment(null);
         }
-        comment.setCreatTime(new Date());
+        comment.setPostTime(new Date());
         return commentMapper.insert(comment);
     }
 
     @Override
     public int deleteComment(Comment comment){
-        return commentMapper.delete(comment);
+       return  commentMapper.deleteComment(comment.getCommentId());
+
     }
 
 }

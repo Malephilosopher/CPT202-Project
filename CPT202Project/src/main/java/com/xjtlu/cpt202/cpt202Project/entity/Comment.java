@@ -2,39 +2,36 @@ package com.xjtlu.cpt202.cpt202Project.entity;
 
 import lombok.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class Comment implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
     private Long blogId;
 
     private Long authorId;
 
+    private String userName;
+
     private String content;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date creatTime;
+    private Date postTime;
 
     //replies
-    @OneToMany(mappedBy = "parentComment")
     private List<Comment> replyComments = new ArrayList<>();
 
     //parent
-    @ManyToOne
     private Comment parentComment;
+
+    private Long parentCommentId;
 
     public void setContent(String content) {
         if(content !=null){
