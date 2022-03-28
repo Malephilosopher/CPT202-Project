@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="551a7661-9223-45b5-8858-839cf98ce6fe" name="变更" comment="2022.3.25 shenenmin 1. 增加commenMapper.xml和mybatis.yml文件实现comment实体的CRUD 2.创建Result类返回json。3.修改commentController">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/PublishController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/PublishController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Comment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +67,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -138,7 +138,7 @@
       <workItem from="1648196455730" duration="1202000" />
       <workItem from="1648212584780" duration="2281000" />
       <workItem from="1648215231143" duration="5360000" />
-      <workItem from="1648449689103" duration="6888000" />
+      <workItem from="1648449689103" duration="7324000" />
     </task>
     <task id="LOCAL-00001" summary="2022.3.21 多层嵌套结构">
       <created>1647857205515</created>
