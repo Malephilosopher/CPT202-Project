@@ -124,7 +124,7 @@
 
 
     $(function () {
-        $("#comment-container").load(/*[[@{/comment}]]*/"comment/");
+        $("#comment-container").load(/*[[@{/addComment}]]*/"comment/");
     });
 
     $('#commentpost-btn').click(function () {
@@ -138,7 +138,7 @@
     });
 
     function postData() {
-        $("#comment-container").load(/*[[@{/comment}]]*/"",{
+        $("#comment-container").load(/*[[@{/addComment}]]*/"",{
             "parentComment.id" : $("[name='parentComment.id']").val(),
             "nickname": $("[name='nickname']").val(),
             "email"   : $("[name='email']").val(),

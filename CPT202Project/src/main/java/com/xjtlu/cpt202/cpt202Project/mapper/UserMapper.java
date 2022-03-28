@@ -3,10 +3,13 @@ package com.xjtlu.cpt202.cpt202Project.mapper;
 import com.xjtlu.cpt202.cpt202Project.entity.User;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 
 @Mapper
 public interface UserMapper {
-    //  public List<User> u = 
+    List<Integer> getThumbUp(int id);
+
+    void addUser(User u);
 }

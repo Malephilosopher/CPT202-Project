@@ -1,5 +1,7 @@
 package com.xjtlu.cpt202.cpt202Project.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.xjtlu.cpt202.cpt202Project.entity.Result;
 import com.xjtlu.cpt202.cpt202Project.entity.User;
 import com.xjtlu.cpt202.cpt202Project.service.UserService;
 
@@ -18,8 +20,10 @@ public class UserController {
 
     
     @GetMapping (value = "user") 
-    public User getUser(@RequestParam (name = "id") int id) {
-        return userService.getUser(id);
+    public String getUser(@RequestParam (name = "id") int id) {
+        User user = userService.getUser(id);
+        Result result = Result.create(200, "get user successful", user);
+        return JSON.toJSONString(result);
     }
 
     
@@ -34,7 +38,7 @@ public class UserController {
     }
 
     @PostMapping (value = "new_user")
-    public int newUser(@RequestBody User u) {
+    public int addUser(@RequestBody User u) {
         return userService.saveUser(u);
     }
 

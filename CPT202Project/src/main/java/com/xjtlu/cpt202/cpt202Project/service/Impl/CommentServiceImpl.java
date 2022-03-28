@@ -64,17 +64,17 @@ public class CommentServiceImpl implements CommentService {
             }
         }
     }
-    @Transactional
+
     @Override
     //创建并添加一条评论
     public int addComment(Comment comment) {
         Long parentCommentId = comment.getParentComment().getCommentId();
-        //前端设置若父评论为空则返回默认值为-1
-        if(parentCommentId!=-1){
+        //若父评论为空则返回默认值为-1
+        if(parentCommentId != -1){
             comment.setParentComment(commentMapper.findById(parentCommentId));
 //            这两端语句不确定是否需要，看前端能否完成传递？
-//            comment.getParentComment().getReplyComments().add(comment);
-//            commentMapper.updateByPrimaryKey(comment.getParentComment());
+//            addComment.getParentComment().getReplyComments().add(addComment);
+//            commentMapper.updateByPrimaryKey(addComment.getParentComment());
         }else{
             comment.setParentComment(null);
         }

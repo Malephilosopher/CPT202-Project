@@ -16,6 +16,7 @@ public class Blog {
 
     private int id;
     private String title; //文章标题
+    private String description;
     private int author_id;
     private String post_time;
     private String edit_time;

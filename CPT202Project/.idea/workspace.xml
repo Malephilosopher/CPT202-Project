@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="551a7661-9223-45b5-8858-839cf98ce6fe" name="变更" comment="2022.3.25 shenenmin 1. 增加commenMapper.xml和mybatis.yml文件实现comment实体的CRUD 2.创建Result类返回json。3.修改commentController" />
+    <list default="true" id="551a7661-9223-45b5-8858-839cf98ce6fe" name="变更" comment="2022.3.25 shenenmin 1. 增加commenMapper.xml和mybatis.yml文件实现comment实体的CRUD 2.创建Result类返回json。3.修改commentController">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Blog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Blog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/service/Impl/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/service/Impl/CommentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/service/Impl/UserServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/service/Impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/vo/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/xjtlu/cpt202/cpt202Project/entity/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/comment.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/comment.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -133,7 +144,7 @@
       <workItem from="1648196455730" duration="1202000" />
       <workItem from="1648212584780" duration="2281000" />
       <workItem from="1648215231143" duration="5360000" />
-      <workItem from="1648449689103" duration="115000" />
+      <workItem from="1648449689103" duration="5278000" />
     </task>
     <task id="LOCAL-00001" summary="2022.3.21 多层嵌套结构">
       <created>1647857205515</created>

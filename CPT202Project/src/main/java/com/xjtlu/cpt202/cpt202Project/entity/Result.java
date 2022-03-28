@@ -1,4 +1,4 @@
-package com.xjtlu.cpt202.cpt202Project.vo;
+package com.xjtlu.cpt202.cpt202Project.entity;
 import lombok.Data;
 @Data
 public class Result {
@@ -28,6 +28,10 @@ public class Result {
 
     public static Result success(String msg) {
         return new Result(200, msg);
+    }
+
+    public static Result fail(String msg) {
+        return new Result(300, msg);
     }
 
     public static Result create(Integer code, String msg, Object data) {
