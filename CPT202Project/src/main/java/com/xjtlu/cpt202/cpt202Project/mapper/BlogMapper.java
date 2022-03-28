@@ -34,13 +34,13 @@ public interface BlogMapper {
     @Update("update blog set comment_count=comment_count+1 where id=#{parent_id}")
     void updatecomment(int parent_id);
 
-    @Select("select * from blog where tag REGEXP #{result} and id!=#{id} limit 0,10")
+    @Select("select * from blog where tag REGEXP #{result} and id!=#{id} limit 0,100")
     List<Blog> getbytag(@Param("id") int id, @Param("result") String result);
 
     @Select("select title from blog where id=#{outerid}")
     String gettitlebyid(int outerid);
 
-    @Select("select * from blog order by view_count desc limit 0,10")
+    @Select("select * from blog order by view_count desc limit 0,100")
     List<Blog> gettopten();
 }
 
