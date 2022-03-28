@@ -56,11 +56,11 @@ public class PublishController {
         List<TagDto> tags = tagCache.gettags();
         model.addAttribute("tags", tags);
         //防止输入的问题为空
-        if (title == null || title == "") {
+        if (title == null || title.equals("")) {
             model.addAttribute("error", "The title cannot be empty");
             return "publish";
         }
-        if (content == null || content == "") {
+        if (content == null || content.equals("")) {
             model.addAttribute("error", "Content cannot be empty");
             return "publish";
         }

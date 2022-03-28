@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class Comment implements Serializable {
+
     private Long commentId;
 
     private Long blogId;
