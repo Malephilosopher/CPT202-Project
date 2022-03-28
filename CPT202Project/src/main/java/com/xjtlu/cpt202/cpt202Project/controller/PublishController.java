@@ -6,6 +6,7 @@ import com.xjtlu.cpt202.cpt202Project.entity.Blog;
 import com.xjtlu.cpt202.cpt202Project.entity.User;
 import com.xjtlu.cpt202.cpt202Project.mapper.BlogMapper;
 import com.xjtlu.cpt202.cpt202Project.mapper.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +24,9 @@ import java.util.List;
 @Controller
 public class PublishController {
 
-    @Resource
+    @Autowired
     private UserMapper userMapper;
-    @Resource
+    @Autowired
     private BlogMapper postMapper;
 
     @GetMapping("/publish")
