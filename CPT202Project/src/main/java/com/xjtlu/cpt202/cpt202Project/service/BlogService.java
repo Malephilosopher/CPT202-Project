@@ -1,9 +1,10 @@
-package com.Zeng.CPT202.service;
+package com.xjtlu.cpt202.cpt202Project.service;
 
-import com.Zeng.CPT202.entity.Blog;
-import com.Zeng.CPT202.mapper.BlogMapper;
+import com.xjtlu.cpt202.cpt202Project.entity.Blog;
+import com.xjtlu.cpt202.cpt202Project.mapper.BlogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.HtmlUtils;
 
 import java.util.List;
 
