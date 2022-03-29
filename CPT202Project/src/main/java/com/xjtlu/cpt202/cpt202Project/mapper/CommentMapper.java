@@ -7,6 +7,7 @@ import java.util.List;
 
 @Mapper
 public interface CommentMapper  {
+
     //按创建时间倒序返回博客下所有父评论为null的评论,即所有根节点
     List<Comment> findParentQuery(@Param("blogId") Long blogId, @Param("parentCommentId")Long parentCommentId) ;
     //返回某一父评论下的所有子评论

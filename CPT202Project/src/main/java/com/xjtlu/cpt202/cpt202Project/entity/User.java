@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Setter
@@ -15,9 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-
-    @Autowired
-    UserServiceImpl userService;
 
     private int id;
     private String username;
@@ -34,14 +31,8 @@ public class User {
 
     private List<User> likeUser;
 
-    {
-        thumbUpArticle = getThumbUp();
-    }
 
-    private List<Integer> getThumbUp(){
-        List<Integer> thumbUpArticles = userService.getThumbUp(this.id);
-        return thumbUpArticle;
-    }
+
 
 
 

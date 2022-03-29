@@ -22,9 +22,8 @@ public class UserServiceImpl {
     @Autowired
     private UserMapper userMapper;
 
-    public int saveUser(User u){
+    public void saveUser(User u){
         userMapper.addUser(u);
-        return u.getId();
     }
 
     public User getUser(int id){
@@ -48,7 +47,6 @@ public class UserServiceImpl {
     public List<Integer> getThumbUp(int id) {
         return userMapper.getThumbUp(id);
     }
-
 
     // public User fanNumber();
     

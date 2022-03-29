@@ -1,5 +1,7 @@
 package com.xjtlu.cpt202.cpt202Project.entity;
 import lombok.Data;
+
+
 @Data
 public class Result {
     public Integer code; //200表示成功

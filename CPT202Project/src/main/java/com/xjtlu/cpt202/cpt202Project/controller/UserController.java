@@ -8,20 +8,23 @@ import com.xjtlu.cpt202.cpt202Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 @RestController
 public class UserController {
 
 //    (wrong???)
     @Autowired
-    private UserService userService;
+    private static UserService userService;
 
     
-//    @GetMapping (value = "user")
-//    public String getUser(@RequestParam (name = "id") int id) {
-//        User user = userService.getUser(id);
-//        Result result = Result.create(200, "get user successful", user);
-//        return JSON.toJSONString(result);
-//    }
+    @GetMapping (value = "user")
+    public String getUser(@RequestParam (name = "id") int id) {
+        User user = userService.getUser(id);
+        Result result = Result.create(200, "get user successful", user);
+        return JSON.toJSONString(result);
+    }
 //
 //
 //    @GetMapping (value = "username/{id}")
@@ -37,25 +40,37 @@ public class UserController {
 
 //login
 
+    /**
+     * 登陆
+     * @param userid
+     * @param password
+     * @return 成功信息或失败信息
+     */
     @PostMapping (value = "/login")
-    public User login(@RequestBody int userid, String password) {
+    public String login(@RequestBody int userid, String password) {
         if (userService.getUserPassword(userid).equals(password)) {
 //            right password => get the user information
-            return userService.getUser(userid);
+            return JSON.toJSONString(userService.getUser(userid));
         } else {
 //            wrong password => still login page
-//            ???not sure the return when the password is wrong
-            return null;
+//            return 300 when the password is wrong
+            return JSON.toJSONString(Result.fail("wrong password!"));
         }
     }
 
 
+    /**
+     * 添加用户
+     * @param user
+     * @return 成功或失败信息
+     */
     @PostMapping("/addUser")
     public String addUser(@RequestBody User user) {
         userService.saveUser(user);
         Result result = Result.create(200, "add user successful", user);
         return JSON.toJSONString(result);
     }
+
 
 
 

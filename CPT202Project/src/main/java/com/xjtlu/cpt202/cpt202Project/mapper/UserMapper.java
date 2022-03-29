@@ -14,7 +14,9 @@ import java.util.List;
 public interface UserMapper {
 //    List<User> findAllFans(int id);
     List<Integer> getThumbUp(int id);
+
     void addUser(User u);
+
     User findById(@Param("id") int userId);
 
 

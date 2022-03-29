@@ -17,6 +17,7 @@ public class CommentController {
 
     @Autowired
     private CommentService commentService;
+
     //展示所有的评论
     @GetMapping("/comments/{blogId}")
     public String listComments(@PathVariable("blogId") Long blogId, Model model) {
@@ -48,6 +49,8 @@ public class CommentController {
     //       model.addAttribute("comments", comments);
         return JSON.toJSONString(Result.success("Comment added successfully"));
     }
+
+
     //    删除评论
     @GetMapping("/comment/{blogId}/delete")
     public String delete(@PathVariable Long blogId,Comment comment,  Model model){

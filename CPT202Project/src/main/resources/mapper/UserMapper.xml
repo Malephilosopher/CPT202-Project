@@ -8,9 +8,10 @@
         select * from user where id = #{id};
     </select>
 
-    <select id="getThumbUp" resultType="java.lang.Integer">
+    <select id="getThumbUp" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select u.blog_id from user_like u where u.user_id = #{id};
     </select>
+
 
 
 
