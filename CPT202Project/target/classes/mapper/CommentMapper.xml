@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xjtlu.cpt202.cpt202Project.mapper.CommentMapper">
+
+    <select id="findParentQuery" resultType="com.xjtlu.cpt202.cpt202Project.entity.Comment">
+        select *
+        from comment c
+        where c.blog_id = #{blogId} and c.parent_comment_id = #{parentCommentId}
+        order by c.post_time desc
+    </select>
+
+    <select id="findChildrenQuery" resultType="com.xjtlu.cpt202.cpt202Project.entity.Comment">
+        select *
+        from comment c where
+        c.parent_comment_id = #{commentId}
+        order by c.post_time desc
+    </select>
+
+    <select id="findById" resultType="com.xjtlu.cpt202.cpt202Project.entity.Comment">
+        select *
+        from comment c where
+            c.id = #{commentId}
+        order by c.post_time desc
+    </select>
+
+    <delete id="deleteComment" >
+        delete from comment where id = #{commentId}
+    </delete>
+
+    <insert id="insert" parameterType="com.xjtlu.cpt202.cpt202Project.entity.Comment">
+        insert into comment (id,blog_id,content,post_time,author_id,parent_comment_id)
+        values (#{id},#{blogId},#{content},#{postTime},#{authorId},#{parentCommentId});
+    </insert>
+
+</mapper>
