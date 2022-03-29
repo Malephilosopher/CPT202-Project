@@ -14,15 +14,21 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl {
 
+//    public int saveUser(User u);
+//    public User getUser(int id);
+//    public String changeUserName(int id, String newName);
+//    public String getUserName(int id);
+
     @Autowired
     private UserMapper userMapper;
 
-    public int addUser(User u){
-        return userMapper.addUser(u).getId();
+    public int saveUser(User u){
+        userMapper.addUser(u);
+        return u.getId();
     }
 
     public User getUser(int id){
-        Optional<User> u = userMapper.findById(id);
+        Optional<User> u = Optional.ofNullable(userMapper.findById(id));
         return u.isPresent()? u.get() : null;
     }
 
@@ -33,6 +39,10 @@ public class UserServiceImpl {
 
     public String getUserName(int id){
         return getUser(id).getUsername();
+    }
+
+    public String getUserPassword(int id){
+        return getUser(id).getPassword();
     }
 
     public List<Integer> getThumbUp(int id) {
