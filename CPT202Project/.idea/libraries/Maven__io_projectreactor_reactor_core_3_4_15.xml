@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: io.projectreactor:reactor-core:3.4.15">
     <CLASSES>
-      <root url="jar://$USER_HOME$/DevTools/apache-maven-3.6.3-bin/repository/io/projectreactor/reactor-core/3.4.15/reactor-core-3.4.15.jar!/" />
+      <root url="jar://F:/.m2/repository/io/projectreactor/reactor-core/3.4.15/reactor-core-3.4.15.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/DevTools/apache-maven-3.6.3-bin/repository/io/projectreactor/reactor-core/3.4.15/reactor-core-3.4.15-javadoc.jar!/" />
+      <root url="jar://F:/.m2/repository/io/projectreactor/reactor-core/3.4.15/reactor-core-3.4.15-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/DevTools/apache-maven-3.6.3-bin/repository/io/projectreactor/reactor-core/3.4.15/reactor-core-3.4.15-sources.jar!/" />
+      <root url="jar://F:/.m2/repository/io/projectreactor/reactor-core/3.4.15/reactor-core-3.4.15-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

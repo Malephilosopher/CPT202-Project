@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4eec50b0-c54f-43df-99ac-243e4f8be966" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/CPT202Project/.idea/libraries/Java_EE_6_Java_EE_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CPT202Project/.idea/libraries/Java_EE_6_Java_EE_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPT202Project/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CPT202Project/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPT202Project/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CPT202Project/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPT202Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CPT202Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CPT202Project/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/CPT202Project/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +23,8 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -39,7 +37,13 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1648464137791</updated>
+      <workItem from="1648564776116" duration="139000" />
+      <workItem from="1648564929817" duration="5000" />
+      <workItem from="1648564976734" duration="93000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

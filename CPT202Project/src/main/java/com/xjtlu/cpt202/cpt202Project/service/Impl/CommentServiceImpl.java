@@ -78,7 +78,6 @@ public class CommentServiceImpl implements CommentService {
         }else{
             comment.setParentComment(null);
         }
-        comment.setPostTime(new Date());
         return commentMapper.insert(comment);
     }
 
