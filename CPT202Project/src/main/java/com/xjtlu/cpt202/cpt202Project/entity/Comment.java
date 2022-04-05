@@ -1,10 +1,11 @@
 package com.xjtlu.cpt202.cpt202Project.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Setter
@@ -24,7 +25,8 @@ public class Comment implements Serializable {
 
     private String content;
 
-    private Date postTime;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime postTime;
 
     //replies
     private List<Comment> replyComments = new ArrayList<>();

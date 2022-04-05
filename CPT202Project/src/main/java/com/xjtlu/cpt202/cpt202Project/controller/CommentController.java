@@ -1,12 +1,11 @@
 package com.xjtlu.cpt202.cpt202Project.controller;
 import com.alibaba.fastjson.JSON;
 import  com.xjtlu.cpt202.cpt202Project.entity.Comment;
-
+import com.xjtlu.cpt202.cpt202Project.mapper.CommentMapper;
 import com.xjtlu.cpt202.cpt202Project.service.CommentService;
 import com.xjtlu.cpt202.cpt202Project.entity.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,12 +17,19 @@ public class CommentController {
     @Autowired
     private CommentService commentService;
 
-    //展示所有的评论
+    /**
+     * 展示博客下的所有评论
+     * @param blogId
+     * @return 展示成功：code:200, message:Comment list successfully, data: comments
+     * @return 展示失败：code:300, message:blogId is null
+     */
     @GetMapping("/comments/{blogId}")
-    public String listComments(@PathVariable("blogId") Long blogId, Model model) {
+    public String listComments(@PathVariable("blogId") Long blogId) {
+        if (blogId == null) {
+            return JSON.toJSONString(Result.create(300,"blogId is null"));
+        }
         List<Comment> comments = commentService.listCommentByBlogId(blogId);
-        model.addAttribute("comments", comments);
-        return "blog :: commentList";
+        return JSON.toJSONString(Result.create(200,"Comment list successfully", comments));
     }
 
 
@@ -47,16 +53,22 @@ public class CommentController {
      //这两行看后期需要
     //    List<Comment> comments = commentService.listCommentByBlogId(blogId);
     //       model.addAttribute("comments", comments);
-        return JSON.toJSONString(Result.success("Comment added successfully"));
+        return JSON.toJSONString(Result.success("Comment add successfully"));
     }
 
+    /**
+     *
+     * @param blogId
+     * @param comment
+     * @return 删除成功：code:200, message:comment delete successfully
+     */
 
-    //    删除评论
+
     @GetMapping("/comment/{blogId}/delete")
-    public String delete(@PathVariable Long blogId,Comment comment,  Model model){
-        commentService.deleteComment(comment);
+    public String delete(@PathVariable Long blogId,String comment){
+        Comment comm = JSON.parseObject(comment, Comment.class);
+        commentService.deleteComment(comm);
         List<Comment> comments = commentService.listCommentByBlogId(blogId);
-        model.addAttribute("comments", comments);
-        return "blog";
+        return JSON.toJSONString(Result.success("Comment delete successfully"));
     }
 }
