@@ -16,7 +16,7 @@ import java.util.List;
 public class Comment implements Serializable {
 
     private Long commentId;
-
+    //the id of the blog that the comment belongs to
     private Long blogId;
 
     private Long authorId;

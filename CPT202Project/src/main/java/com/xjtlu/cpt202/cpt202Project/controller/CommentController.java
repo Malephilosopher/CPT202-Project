@@ -4,6 +4,7 @@ import  com.xjtlu.cpt202.cpt202Project.entity.Comment;
 import com.xjtlu.cpt202.cpt202Project.mapper.CommentMapper;
 import com.xjtlu.cpt202.cpt202Project.service.CommentService;
 import com.xjtlu.cpt202.cpt202Project.entity.Result;
+import com.xjtlu.cpt202.cpt202Project.service.Impl.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ import java.util.List;
 public class CommentController {
 
     @Autowired
-    private CommentService commentService;
+    private CommentServiceImpl commentService;
 
     /**
      * 展示博客下的所有评论
@@ -62,7 +63,6 @@ public class CommentController {
      * @param comment
      * @return 删除成功：code:200, message:comment delete successfully
      */
-
 
     @GetMapping("/comment/{blogId}/delete")
     public String delete(@PathVariable Long blogId,String comment){

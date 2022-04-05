@@ -3,6 +3,8 @@ package com.xjtlu.cpt202.cpt202Project.service;
 import java.util.List;
 
 import com.xjtlu.cpt202.cpt202Project.entity.User;
+import org.springframework.stereotype.Service;
+
 
 public interface UserService {
 //    save new user

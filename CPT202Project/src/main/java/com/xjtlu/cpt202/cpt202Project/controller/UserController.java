@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.xjtlu.cpt202.cpt202Project.entity.Comment;
 import com.xjtlu.cpt202.cpt202Project.entity.Result;
 import com.xjtlu.cpt202.cpt202Project.entity.User;
+import com.xjtlu.cpt202.cpt202Project.service.Impl.UserServiceImpl;
 import com.xjtlu.cpt202.cpt202Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +17,10 @@ public class UserController {
 
 //    (wrong???)
     @Autowired
-    private static UserService userService;
+    private UserServiceImpl userService;
 
     
-    @GetMapping (value = "getPerson")
+    @GetMapping (value = "/getPerson")
     public String getUser(@RequestParam (name = "id") int id) {
         User user = userService.getUser(id);
         Result result = Result.create(200, "get user successful", user);
@@ -47,7 +48,7 @@ public class UserController {
      * @return 成功信息或失败信息
      */
     @PostMapping (value = "/login")
-    public String login(@RequestBody int userid, String password) {
+    public String login(@RequestParam("userid") int userid, @RequestParam("password")String password) {
         if (userService.getUserPassword(userid).equals(password)) {
 //            right password => get the user information
             return JSON.toJSONString(userService.getUser(userid));

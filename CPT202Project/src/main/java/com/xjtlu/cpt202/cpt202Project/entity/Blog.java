@@ -13,14 +13,20 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Blog {
+
     private int id;
     private String title;
     private int author_id;
+    //the time that the blog was posted
     private String post_time;
+    //the time that the blog was edited
     private String edit_time;
+    //the number of users who have liked the blog
     private int num_like;
+    //the number of users who have favorited the blog
     private int num_favorite;
     private String content;
+    //the number of users who have viewed the blog
     private int view_num;
     private String tag;
 

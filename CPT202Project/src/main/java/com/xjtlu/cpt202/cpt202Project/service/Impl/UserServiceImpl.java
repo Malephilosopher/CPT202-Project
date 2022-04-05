@@ -27,7 +27,7 @@ public class UserServiceImpl {
     }
 
     public User getUser(int id){
-        Optional<User> u = Optional.ofNullable(userMapper.findById(id));
+        Optional<User> u = Optional.ofNullable(userMapper.findUserById(id));
         return u.isPresent()? u.get() : null;
     }
 

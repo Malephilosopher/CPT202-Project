@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xjtlu.cpt202.cpt202Project.mapper.CommentMapper">
+<mapper namespace="com.xjtlu.cpt202.cpt202Project.mapper.UserMapper">
 
-    <select id="getUser" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
+    <select id="findUserById" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
         select * from user where id = #{id};
     </select>
 
