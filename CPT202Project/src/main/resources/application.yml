@@ -4,3 +4,13 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
+server:
+  port: 8081
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://124.221.214.9:3306/cpt202?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+

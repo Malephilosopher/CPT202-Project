@@ -19,7 +19,7 @@ public class UserController {
     private static UserService userService;
 
     
-    @GetMapping (value = "user")
+    @GetMapping (value = "getPerson")
     public String getUser(@RequestParam (name = "id") int id) {
         User user = userService.getUser(id);
         Result result = Result.create(200, "get user successful", user);

@@ -23,15 +23,20 @@ public class User {
     private boolean gender;
     private int grade;
     private String major;
+    //the number of blogs the user likes
     private int like_blog;
+    //the number of comments the user have commented
+    private int comment_num;
+    //the user's favorite blogs
     private int fav_blog;
+    //the time that the user registered
     private Date born_time;
+    //the number of fans of the user
     private int num_fan;
+    //the blog ids the user has liked
     private List<Integer> thumbUpArticle;
-
+    //the user ids that the user like
     private List<User> likeUser;
-
-
 
 
 
