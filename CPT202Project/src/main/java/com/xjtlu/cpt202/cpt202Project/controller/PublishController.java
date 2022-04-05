@@ -1,8 +1,11 @@
 package com.xjtlu.cpt202.cpt202Project.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.xjtlu.cpt202.cpt202Project.cache.TagCache;
 import com.xjtlu.cpt202.cpt202Project.dto.TagDto;
 import com.xjtlu.cpt202.cpt202Project.entity.Blog;
+import com.xjtlu.cpt202.cpt202Project.entity.Comment;
+import com.xjtlu.cpt202.cpt202Project.entity.Result;
 import com.xjtlu.cpt202.cpt202Project.entity.User;
 import com.xjtlu.cpt202.cpt202Project.mapper.BlogMapper;
 import com.xjtlu.cpt202.cpt202Project.mapper.UserMapper;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -28,6 +32,31 @@ public class PublishController {
     private UserMapper userMapper;
     @Autowired
     private BlogMapper postMapper;
+
+    /**
+     * 创建一条博客
+     * @param article
+     *  @return 添加成功：code:200, message:Blog create successfully
+     *  @return 添加失败：code:300, message:Please add the content of the article
+     *  @return 添加失败：code:300, message:Please add the title of the article
+     *  @return 添加失败：code:300, message:Please add at least one tag
+     */
+    @PostMapping("/create")
+    public String create(String article){
+        Blog blog = JSON.parseObject(article, Blog.class);
+        if(blog.getContent()==null||"".equals(blog.getContent())){
+            return JSON.toJSONString(Result.fail("Please add the content of the article"));
+        }
+        if(blog.getTitle()==null||"".equals(blog.getTitle())){
+            return JSON.toJSONString(Result.fail("Please add the title of the article"));
+        }
+        if(blog.getTag()==null||"".equals(blog.getTag())){
+            return JSON.toJSONString(Result.fail("Please add at least one tag"));
+        }
+        postMapper.insertBlog(blog);
+        return JSON.toJSONString(Result.success("Blog create successfully"));
+    }
+
 
     @GetMapping("/publish")
     public String publish(Model model) {
