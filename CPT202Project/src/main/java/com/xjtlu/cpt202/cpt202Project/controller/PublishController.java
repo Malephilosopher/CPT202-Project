@@ -31,7 +31,7 @@ public class PublishController {
     @Autowired
     private CommentService commentService;
 
-    @RequestMapping(path = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public String addBlog(String title,String discription, String content,String username,int like,int userid) {
         User user = userService.getUser(userid);
@@ -50,7 +50,7 @@ public class PublishController {
         return "发布成功";
     }
 
-    @RequestMapping(path = "/getPage", method = RequestMethod.GET)
+    @RequestMapping(value = "/getPage", method = RequestMethod.GET)
     public String BlogPage(@PathVariable("BlogId") int BlogId, Model model) {
         // 帖子
         Blog blog = BlogService.findBlogById(BlogId);
