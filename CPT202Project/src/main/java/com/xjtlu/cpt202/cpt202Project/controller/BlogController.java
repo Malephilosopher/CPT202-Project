@@ -1,39 +1,30 @@
 package com.xjtlu.cpt202.cpt202Project.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.xjtlu.cpt202.cpt202Project.entity.Blog;
 import com.xjtlu.cpt202.cpt202Project.entity.Comment;
-import com.xjtlu.cpt202.cpt202Project.entity.Result;
 import com.xjtlu.cpt202.cpt202Project.entity.User;
-import com.xjtlu.cpt202.cpt202Project.mapper.BlogMapper;
-import com.xjtlu.cpt202.cpt202Project.mapper.UserMapper;
+import com.xjtlu.cpt202.cpt202Project.service.Impl.BlogServiceImpl;
+import com.xjtlu.cpt202.cpt202Project.service.CommentService;
+import com.xjtlu.cpt202.cpt202Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
 import java.util.List;
 
 //帖子发布
 @RestController
-public class PublishController {
+public class BlogController {
     @Autowired
-    private BlogService blogService;
+    private BlogServiceImpl blogService;
     @Autowired
     private UserService userService;
     @Autowired
     private CommentService commentService;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    @ResponseBody
-    public String addBlog(String title,String discription, String content,String username,int like,int userid) {
+    public String addBlog(String title,String discription, String content,String username, int like, int userid) {
         User user = userService.getUser(userid);
         if (user == null) {
             return "用户未登录";
@@ -44,7 +35,7 @@ public class PublishController {
         blog.setTitle(title);
         blog.setContent(content);
         blog.setPost_time(System.currentTimeMillis());
-        BlogService.addBlog(blog);
+        BlogServiceImpl.addBlog(blog);
 
         // 报错的情况之后处理
         return "发布成功";
@@ -53,7 +44,7 @@ public class PublishController {
     @RequestMapping(value = "/getPage", method = RequestMethod.GET)
     public String BlogPage(@PathVariable("BlogId") int BlogId, Model model) {
         // 帖子
-        Blog blog = BlogService.findBlogById(BlogId);
+        Blog blog = BlogServiceImpl.findBlogById(BlogId);
         model.addAttribute("blog", blog);
         // 作者
         User user = userService.getUser(blog.getAuthor_id());

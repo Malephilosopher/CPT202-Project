@@ -33,10 +33,7 @@ public class User {
     private Date born_time;
     //the number of fans of the user
     private int num_fan;
-    //the blog ids the user has liked
-    private List<Integer> thumbUpArticle;
-    //the user ids that the user like
-    private List<User> likeUser;
+
 
 
 

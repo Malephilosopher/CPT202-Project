@@ -8,39 +8,39 @@ import org.springframework.stereotype.Service;
 
 public interface UserService {
 //    save new user
-    public int saveUser(User u);
+    int saveUser(User u);
 //    get the information of a certain user
-    public User getUser(int id);
+    User getUser(int id);
 
 //    change and get method of [username, password, email, gender, grade, major].
 //   have not finished yet
 
 //    username
-    public String changeUserName(int id, String newName);
-    public String getUserName(int id);
+    String changeUserName(int id, String newName);
+    String getUserName(int id);
 
 //    password
-    public String changeUserPassword(int id, String newPassword);
-    public String getUserPassword(int id);
+    String changeUserPassword(int id, String newPassword);
+    String getUserPassword(int id);
 
 //    email
-    public String changeUserEmail(int id, String newEmail);
-    public String getUserEmail(int id);
+    String changeUserEmail(int id, String newEmail);
+    String getUserEmail(int id);
 
 //    gender
-    public boolean changeUserGender(int id, boolean newGender);
-    public boolean getUserGender(int id);
+    boolean changeUserGender(int id, boolean newGender);
+    boolean getUserGender(int id);
 
 //    grade
-    public int changeUserGrade(int id, int newGrade);
-    public int getUserGrade(int id);
+    int changeUserGrade(int id, int newGrade);
+    int getUserGrade(int id);
 
 
 
 
 
 
-    public List<User> getFanNumber(int id);
+    List<User> getFanNumber(int id);
     
     
 }
