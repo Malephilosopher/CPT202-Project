@@ -21,112 +21,91 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
-//问题发布
-@Controller
+//帖子发布
+@RestController
 public class PublishController {
-
     @Autowired
-    private UserMapper userMapper;
+    private BlogService blogService;
     @Autowired
-    private BlogMapper postMapper;
+    private UserService userService;
+    @Autowired
+    private CommentService commentService;
 
-    /**
-     * 创建一条博客
-     * @param article
-     *  @return 添加成功：code:200, message:Blog create successfully
-     *  @return 添加失败：code:300, message:Please add the content of the article
-     *  @return 添加失败：code:300, message:Please add the title of the article
-     *  @return 添加失败：code:300, message:Please add at least one tag
-     */
-    @PostMapping("/create")
-    public String create(String article){
-        Blog blog = JSON.parseObject(article, Blog.class);
-        if(blog.getContent()==null||"".equals(blog.getContent())){
-            return JSON.toJSONString(Result.fail("Please add the content of the article"));
+    @RequestMapping(path = "/create", method = RequestMethod.POST)
+    @ResponseBody
+    public String addBlog(String title,String discription, String content,String username,int like,int userid) {
+        User user = userService.getUser(userid);
+        if (user == null) {
+            return "用户未登录";
         }
-        if(blog.getTitle()==null||"".equals(blog.getTitle())){
-            return JSON.toJSONString(Result.fail("Please add the title of the article"));
-        }
-        if(blog.getTag()==null||"".equals(blog.getTag())){
-            return JSON.toJSONString(Result.fail("Please add at least one tag"));
-        }
-        postMapper.insertBlog(blog);
-        return JSON.toJSONString(Result.success("Blog create successfully"));
+        //帖子上传数据库
+        Blog blog = new Blog();
+        blog.setId(user.getId());
+        blog.setTitle(title);
+        blog.setContent(content);
+        blog.setPost_time(System.currentTimeMillis());
+        BlogService.addBlog(blog);
+
+        // 报错的情况之后处理
+        return "发布成功";
     }
 
+    @RequestMapping(path = "/getPage", method = RequestMethod.GET)
+    public String BlogPage(@PathVariable("BlogId") int BlogId, Model model) {
+        // 帖子
+        Blog blog = BlogService.findBlogById(BlogId);
+        model.addAttribute("blog", blog);
+        // 作者
+        User user = userService.getUser(blog.getAuthor_id());
+        model.addAttribute("user", user);
 
-//    @GetMapping("/publish")
-//    public String publish(Model model) {
-//        //标签组
-//        TagCache tagCache=new TagCache();
-//        List<TagDto> tags = tagCache.gettags();
-//        model.addAttribute("tags",tags);
-//        return "publish";
-//    }
-//
-//    //发贴
-//    @PostMapping("/publish")
-//    public String publishpost(
-//            @RequestParam("title") String title,
-//            @RequestParam("content") String content,
-//            @RequestParam("tag") String tag,
-//            @RequestParam(value = "id", defaultValue = "-1") int id,
-//            HttpServletRequest request,
-//            Model model
-//    ) {
-//        model.addAttribute("title", title);
-//        model.addAttribute("content", content);
-//        model.addAttribute("tag", tag);
-//        //标签组
-//        TagCache tagCache = new TagCache();
-//        List<TagDto> tags = tagCache.gettags();
-//        model.addAttribute("tags", tags);
-//        //防止输入的问题为空
-//        if (title == null || title.equals("")) {
-//            model.addAttribute("error", "The title cannot be empty");
-//            return "publish";
-//        }
-//        if (content == null || content.equals("")) {
-//            model.addAttribute("error", "Content cannot be empty");
-//            return "publish";
-//        }
-//        //获取当前登陆用户的信息
-//        User user = null;
-//        Cookie[] cookies = request.getCookies();
-//        for (Cookie cookie : cookies) {
-//            if (cookie.getName().equals("token")) {
-//                String token = cookie.getValue();
-//                user = userMapper.findBytoken(token); //待定
-//            }
-//        }
-//        //将问题上传到数据库
-//        Blog post = new Blog();
-//        post.setTitle(title);
-//        post.setContent(content);
-//        post.setTag(tag);
-//        post.setAuthor_id(user.getId()); //待定
-//        post.set_post_time(System.currentTimeMillis());
-//        post.set_edit_time(System.currentTimeMillis());
-//        if (id == -1) {
-//            postMapper.createquestion(post);
-//        } else {
-//            post.setId(id);
-//            postMapper.updatequestion(post);
-//        }
-//        return "redirect:/index";
-//    }
+//        // 评论分页信息
+//        page.setLimit(5);
+//        page.setPath("/discuss/detail/" + BlogId);
+//        page.setRows(blog.getComment_count());
 
-//    @GetMapping("/publish/{id}")
-//    public String edit(@PathVariable(name = "id")int id,
-//                       Model model){
-//        Blog post= postMapper.getbyId(id);
-//        model.addAttribute("title", post.getTitle());
-//        model.addAttribute("description", post.getContent());
-//        model.addAttribute("tag", post.getTag());
-//        //用来标识问题是修改而不是重新创建
-//        model.addAttribute("id",post.getId());
-//        return "publish";
-//    }
+        // 评论: 给帖子的评论
+        // 回复: 给评论的评论
+        // 评论列表
+        List<Comment> commentList = commentService.listCommentByBlogId(blog.getId()); //long改int
+        // 评论VO列表
+        List<Map<String, Object>> commentVoList = new ArrayList<>();
+        if (commentList != null) {
+            for (Comment comment : commentList) {
+                // 评论VO
+                Map<String, Object> commentVo = new HashMap<>();
+                // 评论
+                commentVo.put("comment", comment);
+                // 作者
+                commentVo.put("user", userService.getUser(comment.getAuthorId())); //long改int
+
+                // 回复列表
+                List<Comment> replyList = commentService.listCommentByBlogId(comment.getCommentId());
+                // 回复VO列表
+                List<Map<String, Object>> replyVoList = new ArrayList<>();
+                if (replyList != null) {
+                    for (Comment reply_comment : replyList) {
+                        Map<String, Object> replyVo = new HashMap<>();
+                        // 回复
+                        replyVo.put("reply_comment", reply_comment);
+                        // 作者
+                        replyVo.put("user", userService.getUser(reply_comment.getAuthorId())); //long改int
+                        // 回复目标
+                        User target = reply_comment.getParentCommentId() == 0 ? null : userService.getUser(reply_comment.getParentCommentId());
+                        replyVo.put("target", target);
+
+                        replyVoList.add(replyVo);
+                    }
+                }
+                commentVo.put("replys", replyVoList);
+
+                commentVoList.add(commentVo);
+            }
+        }
+
+        model.addAttribute("comments", commentVoList);
+
+        return "get success";
+    }
 }
 
