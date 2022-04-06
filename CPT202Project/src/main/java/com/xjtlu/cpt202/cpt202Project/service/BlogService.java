@@ -14,7 +14,6 @@ public class BlogService {
     private BlogMapper blogMapper;
 
 
-
     public List<Blog> findBlogs(int userId, int offset, int limit) {
         return blogMapper.selectBlogs(userId, offset, limit);
     }
@@ -39,8 +38,9 @@ public class BlogService {
         return blogMapper.selectBlogById(id);
     }
 
-    public int updateCommentCount(int id, int commentCount) {
-        return blogMapper.updateCommentCount(id, commentCount);
+    public int deleteBlog(int blog_id){
+        return  blogMapper.deleteBlog(Blog.getId());
+
     }
 
 }
