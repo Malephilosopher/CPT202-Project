@@ -1,8 +1,6 @@
 package com.xjtlu.cpt202.cpt202Project.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.xjtlu.cpt202.cpt202Project.cache.TagCache;
-import com.xjtlu.cpt202.cpt202Project.dto.TagDto;
 import com.xjtlu.cpt202.cpt202Project.entity.Blog;
 import com.xjtlu.cpt202.cpt202Project.entity.Comment;
 import com.xjtlu.cpt202.cpt202Project.entity.Result;

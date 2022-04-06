@@ -25,8 +25,8 @@ public class CommentController {
      * @return 展示失败：code:300, message:blogId is null
      */
     @GetMapping("/comments/{blogId}")
-    public String listComments(@PathVariable("blogId") Long blogId) {
-        if (blogId == null) {
+    public String listComments(@PathVariable("blogId") int blogId) {
+        if (blogId == 0) {
             return JSON.toJSONString(Result.create(300,"blogId is null"));
         }
         List<Comment> comments = commentService.listCommentByBlogId(blogId);
@@ -43,7 +43,7 @@ public class CommentController {
      * @return 添加失败：code:300, message:comment add failed
      */
     @PostMapping("/comment")
-    public String addComment(String comment, long userId, Long id) {
+    public String addComment(String comment, int userId, Long id) {
         Comment comm = JSON.parseObject(comment, Comment.class);
    //     Long blogId = addComment.getBlogId();
         comm.setAuthorId(userId);
@@ -65,7 +65,7 @@ public class CommentController {
      */
 
     @GetMapping("/comment/{blogId}/delete")
-    public String delete(@PathVariable Long blogId,String comment){
+    public String delete(@PathVariable int blogId,String comment){
         Comment comm = JSON.parseObject(comment, Comment.class);
         commentService.deleteComment(comm);
         List<Comment> comments = commentService.listCommentByBlogId(blogId);

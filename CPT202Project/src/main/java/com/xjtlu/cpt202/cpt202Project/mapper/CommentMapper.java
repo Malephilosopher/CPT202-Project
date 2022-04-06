@@ -15,28 +15,28 @@ public interface CommentMapper  {
      * @param parentCommentId
      * @return List<Comment>
      */
-    List<Comment> findParentQuery(@Param("blogId") Long blogId, @Param("parentCommentId")Long parentCommentId) ;
+    List<Comment> findParentQuery(@Param("blogId") int blogId, @Param("parentCommentId")int parentCommentId) ;
 
     /**
      * 通过父评论id查找所有子评论 并按照时间倒序排序
      * @param commentId
      * @return List<Comment>
      */
-    List<Comment> findChildrenQuery(@Param("commentId") Long commentId);
+    List<Comment> findChildrenQuery(@Param("commentId") int commentId);
 
     /**
      * 通过父评论id查找所有子评论 并按照时间倒序排序
      * @param commentId
      * @return Comment
      */
-    Comment findById(@Param("CommentId") Long commentId);
+    Comment findById(@Param("CommentId") int commentId);
 
     /**
      * 删除评论
      * @param commentId
      * @return int：1表成功删除
      */
-    int deleteComment(Long commentId);
+    int deleteComment(int commentId);
 
     /**
      * 插入评论

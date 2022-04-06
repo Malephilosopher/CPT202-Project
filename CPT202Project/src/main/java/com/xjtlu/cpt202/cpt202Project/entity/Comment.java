@@ -15,11 +15,11 @@ import java.util.List;
 @ToString
 public class Comment implements Serializable {
 
-    private Long commentId;
+    private int commentId;
     //the id of the blog that the comment belongs to
-    private Long blogId;
+    private int blogId;
 
-    private Long authorId;
+    private int authorId;
 
     private String userName;
 
@@ -34,7 +34,7 @@ public class Comment implements Serializable {
     //parent
     private Comment parentComment;
 
-    private Long parentCommentId;
+    private int parentCommentId;
 
     public void setContent(String content) {
         if(content !=null){
