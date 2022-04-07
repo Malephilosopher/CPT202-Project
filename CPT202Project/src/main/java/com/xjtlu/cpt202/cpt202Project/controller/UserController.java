@@ -48,14 +48,17 @@ public class UserController {
      * @return 成功信息或失败信息
      */
     @PostMapping (value = "/login")
-    public String login(@RequestParam("userid") int userid, @RequestParam("password")String password) {
+    public String login(@RequestBody int userid, String password) {
         if (userService.getUserPassword(userid).equals(password)) {
 //            right password => get the user information
-            return JSON.toJSONString(userService.getUser(userid));
+            User user = userService.getUser(userid);
+            Result result = Result.create(200, "get user successful", user);
+            return JSON.toJSONString(result);
         } else {
 //            wrong password => still login page
-//            return 300 when the password is wrong
-            return JSON.toJSONString(Result.fail("wrong password!"));
+            User user = userService.getUser(userid);
+            Result result = Result.create(300, "wrong userid or password ", user);
+            return JSON.toJSONString(result);
         }
     }
 
