@@ -9,7 +9,7 @@ import org.springframework.web.util.HtmlUtils;
 import java.util.List;
 
 @Service
-public class BlogServiceImpl {
+    public class BlogServiceImpl {
     @Autowired
     private BlogMapper blogMapper;
 

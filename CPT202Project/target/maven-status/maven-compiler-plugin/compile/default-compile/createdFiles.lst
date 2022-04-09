@@ -1,3 +1,4 @@
 com/xjtlu/cpt202/cpt202Project/controller/CommentController.class
 com/xjtlu/cpt202/cpt202Project/service/BlogService.class
-com/xjtlu/cpt202/cpt202Project/controller/PublishController.class
+com/xjtlu/cpt202/cpt202Project/controller/BlogController.class
+com/xjtlu/cpt202/cpt202Project/service/Impl/BlogServiceImpl.class

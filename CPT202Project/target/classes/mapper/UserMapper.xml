@@ -2,18 +2,53 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定一个固定的Mapper接口-->
 <mapper namespace="com.xjtlu.cpt202.cpt202Project.mapper.UserMapper">
 
-    <select id="findUserById" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
-        select * from user where id = #{id};
+    <!--查询语句-->
+    <!--    parameterType 参数类-->
+    <!--    resultType  返回类-->
+
+    <!--    数据库未知 暂用mysql.User-->
+
+
+    <!--    返回所有用户的信息-->
+    <select id="getUser" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
+        select * from CPT202.user where ;
     </select>
 
-    <select id="getThumbUp" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+    <!--    User findById(int userId);-->
+    <!--    按照userid查找用户-->
+    <select id="findUserById" parameterType="int" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
+        select * from CPT202.user where id = #{id};
+    </select>
+
+    <!--    void addUser(User u);-->
+    <!--    在数据库增加新用户-->
+    <insert id="addUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
+        insert into mysql.User (id, username, password, email, gender, grade, major, born_time)
+        values (#{id}, #{username}, #{password}, #{email}, #{gender}, #{grade}, #{major}, #{born_time});
+    </insert>
+
+    <!--    void changeUsername(User u)-->
+    <!--    在数据库改用户名-->
+    <update id="updateUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
+        update mysql.User set username=#{username}, password=#{password}, email=#{email}, gender=#{gender},
+        grade=#{grade}, major=#{major}, born_time=#{born_time} where id = #{id};
+    </update>
+
+
+    <!--    void changeUsername(User u)-->
+    <!--    在数据库删除用户-->
+    <delete id="deleteUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
+        delete from mysql.User where id = #{id};
+    </delete>
+
+
+
+    <select id="getThumbUp" resultType="java.lang.Integer">
         select u.blog_id from user_like u where u.user_id = #{id};
     </select>
-
-
-
 
 
 

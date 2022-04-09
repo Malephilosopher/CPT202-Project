@@ -1,5 +1,4 @@
 
-
 server:
   port: 8081
 
@@ -10,8 +9,8 @@ spring:
       max-request-size: 500MB
   datasource:
     username: root
-    password: xyh200144
-    url: jdbc:mysql://127.0.0.1:3306/CPT202?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    password: 123456
+    url: jdbc:mysql://124.221.214.9:3306/CPT202?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:

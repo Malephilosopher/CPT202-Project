@@ -5,6 +5,7 @@ import com.xjtlu.cpt202.cpt202Project.entity.User;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public interface UserMapper {
 
     //    根据id在数据库里查询用户
     //    两种连接mysql的方法：
+
     User findUserById(int id);
 //    User findById(@Param("id") int userId);
 

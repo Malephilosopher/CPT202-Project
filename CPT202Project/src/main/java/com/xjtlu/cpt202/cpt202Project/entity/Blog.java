@@ -29,30 +29,8 @@ public class Blog {
     //the number of users who have viewed the blog
     private int view_num;
     private String tag;
+    private String description;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getAuthor_id() {
-        return author_id;
-    }
-
-    public void setAuthor_id(int author_id) {
-        this.author_id = author_id;
-    }
 
     public void setPost_time(long post_time) {
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
@@ -60,60 +38,12 @@ public class Blog {
         this.post_time = formatter.format(date);
     }
 
-    public String getPost_time() {
-        return post_time;
-    }
 
 
     public void setEdit_time(long edit_time) {
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
         Date date = new Date(edit_time);
         this.edit_time = formatter.format(date);
-    }
-
-    public String getEdit_time() {
-        return edit_time;
-    }
-
-    public int getNum_like() {
-        return num_like;
-    }
-
-
-    public void setNum_like(int num_like) {
-        this.num_like = num_like;
-    }
-
-    public int getNum_favorite() {
-        return num_favorite;
-    }
-
-    public void setNum_favorite(int num_favorite) {
-        this.num_favorite = num_favorite;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public int getView_num() {
-        return view_num;
-    }
-
-    public void setView_num(int view_num) {
-        this.view_num = view_num;
-    }
-
-    public String getTag() {
-        return tag;
-    }
-
-    public void setTag(String tag) {
-        this.tag = tag;
     }
 
     @Override

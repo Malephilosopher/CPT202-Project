@@ -5,13 +5,20 @@ import com.xjtlu.cpt202.cpt202Project.entity.Comment;
 import com.xjtlu.cpt202.cpt202Project.entity.User;
 import com.xjtlu.cpt202.cpt202Project.service.Impl.BlogServiceImpl;
 import com.xjtlu.cpt202.cpt202Project.service.CommentService;
+import com.xjtlu.cpt202.cpt202Project.service.Impl.CommentServiceImpl;
+import com.xjtlu.cpt202.cpt202Project.service.Impl.UserServiceImpl;
 import com.xjtlu.cpt202.cpt202Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //帖子发布
 @RestController
@@ -19,12 +26,12 @@ public class BlogController {
     @Autowired
     private BlogServiceImpl blogService;
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
     @Autowired
-    private CommentService commentService;
+    private CommentServiceImpl commentService;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String addBlog(String title,String discription, String content,String username, int like, int userid) {
+    public String addBlog(String title,String description, String content,String username, int like, int userid) {
         User user = userService.getUser(userid);
         if (user == null) {
             return "用户未登录";
@@ -35,7 +42,7 @@ public class BlogController {
         blog.setTitle(title);
         blog.setContent(content);
         blog.setPost_time(System.currentTimeMillis());
-        BlogServiceImpl.addBlog(blog);
+        blogService.addBlog(blog);
 
         // 报错的情况之后处理
         return "发布成功";
@@ -44,7 +51,7 @@ public class BlogController {
     @RequestMapping(value = "/getPage", method = RequestMethod.GET)
     public String BlogPage(@PathVariable("BlogId") int BlogId, Model model) {
         // 帖子
-        Blog blog = BlogServiceImpl.findBlogById(BlogId);
+        Blog blog = blogService.findBlogById(BlogId);
         model.addAttribute("blog", blog);
         // 作者
         User user = userService.getUser(blog.getAuthor_id());
