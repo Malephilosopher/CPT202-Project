@@ -14,13 +14,13 @@
 
     <!--    返回所有用户的信息-->
     <select id="getUser" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
-        select * from mysql.User;
+        select * from CPT202.user where ;
     </select>
 
     <!--    User findById(int userId);-->
     <!--    按照userid查找用户-->
     <select id="findUserById" parameterType="int" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
-        select * from mysql.User where id = #{id};
+        select * from CPT202.user where id = #{id};
     </select>
 
     <!--    void addUser(User u);-->

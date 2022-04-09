@@ -48,8 +48,8 @@ public class UserController {
      * @return 成功信息或失败信息
      */
     @PostMapping (value = "/login")
-    public String login(@RequestBody int userid, String password) {
-        if (userService.getUserPassword(userid).equals(password)) {
+    public String login(@RequestParam("userid") int userid, @RequestParam("password") String password) {
+        if (userService.getUserPassword(userid) != "null" && userService.getUserPassword(userid).equals(password)) {
 //            right password => get the user information
             User user = userService.getUser(userid);
             Result result = Result.create(200, "get user successful", user);

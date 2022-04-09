@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,8 +20,6 @@ public class User {
 
     @Autowired
     UserServiceImpl userService;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
 //    注册的时候要用到的
     private int id;
     private String username;

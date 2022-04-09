@@ -56,6 +56,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String getUserPassword(int id){
+        if(getUser(id) == null){
+            return "null";
+        }
         return getUser(id).getPassword();
     }
 

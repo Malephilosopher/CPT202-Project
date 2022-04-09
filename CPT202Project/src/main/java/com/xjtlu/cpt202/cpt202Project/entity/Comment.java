@@ -31,15 +31,12 @@ public class Comment implements Serializable {
     //replies
     private List<Comment> replyComments = new ArrayList<>();
 
-    //parent
-    private Comment parentComment;
-
     private int parentCommentId;
 
     public void setContent(String content) {
-        if(content !=null){
+        if(content != null){
         if(content.trim().isEmpty()){
-            this.content =null;
+            this.content = null;
         }else{
             this.content = content;
         }
