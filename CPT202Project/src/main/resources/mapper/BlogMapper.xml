@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--绑定一个固定的Mapper接口-->
+<mapper namespace="com.xjtlu.cpt202.cpt202Project.mapper.BlogMapper">
+
+    <!--查询语句-->
+    <!--    parameterType 参数类-->
+    <!--    resultType  返回类-->
+
+    <!--    void thumbUpOne(int a_key);-->
+    <!--    获取点赞数-->
+    <select id="thumbUpOne" parameterType="int" resultType="int">
+        select num_like from CPT202.Blog where id = #{a_key};
+    </select>
+
+    <!--    void add_fav(int user_id, int blog_id);-->
+    <!--    添加user_fav关系表记录-->
+    <insert id="add_fav" parameterType="int">
+        insert into CPT202.user_fav (user_id, blog_id)
+        values (#{user_id}, #{blog_id});
+    </insert>
+
+    <!--    void update_blog_fav(int blog_id);-->
+    <!--    blog内收藏记录加1-->
+    <update id="update_blog_fav" parameterType="int">
+        update CPT202.blog set num_favorite = num_favorite + 1 where id = #{blog_id};
+    </update>
+
+
+
+</mapper>
