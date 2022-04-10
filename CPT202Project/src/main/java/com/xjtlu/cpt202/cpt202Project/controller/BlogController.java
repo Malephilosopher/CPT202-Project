@@ -78,7 +78,7 @@ public class BlogController {
                 commentVo.put("user", userService.getUser(comment.getAuthorId())); //long改int
 
                 // 回复列表
-                List<Comment> replyList = commentService.listCommentByBlogId(comment.getCommentId());
+                List<Comment> replyList = commentService.listCommentByBlogId(comment.getId());
                 // 回复VO列表
                 List<Map<String, Object>> replyVoList = new ArrayList<>();
                 if (replyList != null) {

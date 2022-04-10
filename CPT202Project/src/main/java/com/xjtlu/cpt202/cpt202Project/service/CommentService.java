@@ -9,7 +9,7 @@ public interface CommentService {
 
     List<Comment> listCommentByBlogId(int BlogId);
     int addComment(Comment comment);
-    int deleteComment(Comment comment);
+    int deleteComment(int commentId);
 
 }
 

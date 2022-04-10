@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@Controller
+@RestController
 public class CommentController {
 
     @Autowired
@@ -24,8 +24,8 @@ public class CommentController {
      * @return 展示成功：code:200, message:Comment list successfully, data: comments
      * @return 展示失败：code:300, message:blogId is null
      */
-    @GetMapping("/comments/{blogId}")
-    public String listComments(@PathVariable("blogId") int blogId) {
+    @GetMapping("/comments")
+    public String listComments(@RequestParam (name = "blogId") int blogId) {
         if (blogId == 0) {
             return JSON.toJSONString(Result.create(300,"blogId is null"));
         }
@@ -37,17 +37,17 @@ public class CommentController {
     /**
      * 添加一条评论
      * @param comment
-     * @param userId
-     * @param id
+     * \\@param userId
+     * \\@param id
      * @return 添加成功：code:200, message:comment added successfully
      * @return 添加失败：code:300, message:comment add failed
      */
     @PostMapping("/comment")
-    public String addComment(String comment, int userId, Long id) {
+    public String addComment(@RequestBody String comment) {
         Comment comm = JSON.parseObject(comment, Comment.class);
-   //     Long blogId = addComment.getBlogId();
-        comm.setAuthorId(userId);
-        if("".equals(comm.getContent())){
+   //     Long blogId = addComment.getBlogId()
+        //     comm.setAuthorId(userId);
+        if("".equals(comm.getContent())||comm.getContent()==null){
             return JSON.toJSONString(Result.fail("Comment add failed"));
         }
         commentService.addComment(comm);
@@ -60,14 +60,13 @@ public class CommentController {
     /**
      *
      * @param blogId
-     * @param comment
+     * @param commentId
      * @return 删除成功：code:200, message:comment delete successfully
      */
 
     @GetMapping("/comment/{blogId}/delete")
-    public String delete(@PathVariable int blogId,String comment){
-        Comment comm = JSON.parseObject(comment, Comment.class);
-        commentService.deleteComment(comm);
+    public String delete(@PathVariable int blogId,@RequestParam(value = "id") int commentId){
+        commentService.deleteComment(commentId);
         List<Comment> comments = commentService.listCommentByBlogId(blogId);
         return JSON.toJSONString(Result.success("Comment delete successfully"));
     }

@@ -6,21 +6,21 @@
 
     <select id="findParentQuery" resultType="com.xjtlu.cpt202.cpt202Project.entity.Comment">
         select *
-        from comment c
+        from CPT202.comment c
         where c.blog_id = #{blogId} and c.parent_comment_id = #{parentCommentId}
         order by c.post_time desc
     </select>
 
     <select id="findChildrenQuery" resultType="com.xjtlu.cpt202.cpt202Project.entity.Comment">
         select *
-        from comment c where
+        from CPT202.comment c where
         c.parent_comment_id = #{commentId}
         order by c.post_time desc
     </select>
 
     <select id="findById" resultType="com.xjtlu.cpt202.cpt202Project.entity.Comment">
         select *
-        from comment c where
+        from CPT202.comment c where
             c.id = #{commentId}
         order by c.post_time desc
     </select>
@@ -30,8 +30,8 @@
     </delete>
 
     <insert id="insert" parameterType="com.xjtlu.cpt202.cpt202Project.entity.Comment">
-        insert into comment (id,blog_id,content,post_time,author_id,parent_comment_id)
-        values (#{id},#{blogId},#{content},#{postTime},#{authorId},#{parentCommentId});
+        insert into CPT202.comment (blog_id,content,post_time,author_id,parent_comment_id)
+        values (#{blogId},#{content},#{postTime},#{authorId},#{parentCommentId});
     </insert>
 
 </mapper>

@@ -23,7 +23,7 @@ public class CommentServiceImpl implements CommentService {
         //获取博客下的所有最初父评论(根节点)
         List<Comment> comments = commentMapper.findParentQuery(blogId,0);
         for(Comment comment : comments){
-            int id = comment.getCommentId();
+            int id = comment.getId();
             //            查询出根评论下所有子评论
             List<Comment> childComments = commentMapper.findChildrenQuery(id);
 
@@ -42,7 +42,7 @@ public class CommentServiceImpl implements CommentService {
 //                循环找出子评论的id
             for (Comment childComment : childComments) {
                 tempReplys.add(childComment);
-                int childId = childComment.getCommentId();
+                int childId = childComment.getId();
 //                    查询出子二级评论
                 recursively(blogId, childId);
             }
@@ -55,7 +55,7 @@ public class CommentServiceImpl implements CommentService {
 
         if(replayComments.size() > 0){
             for(Comment replayComment : replayComments){
-                int replayId = replayComment.getCommentId();
+                int replayId = replayComment.getId();
                 tempReplys.add(replayComment);
                 //递归找出所有层级的子评论
                 recursively(blogId,replayId);
@@ -66,23 +66,17 @@ public class CommentServiceImpl implements CommentService {
     @Override
     //创建并添加一条评论
     public int addComment(Comment comment) {
-//        int parentCommentId = comment.getParentComment().getCommentId();
+//        int parentCommentId = comment.getParentCommentId();
 //        //若父评论为空则返回默认值为-1
-//        if(parentCommentId != -1){
-//            comment.setParentComment(commentMapper.findById(parentCommentId));
-////            这两端语句不确定是否需要，看前端能否完成传递？
-////            addComment.getParentComment().getReplyComments().add(addComment);
-////            commentMapper.updateByPrimaryKey(addComment.getParentComment());
-//        }else{
-//            comment.setParentComment(null);
+//        if(parentCommentId != 0){
+//
 //        }
-//        return commentMapper.insert(comment);
-        return 0;
+        return commentMapper.insert(comment);
     }
 
     @Override
-    public int deleteComment(Comment comment){
-       return  commentMapper.deleteComment(comment.getCommentId());
+    public int deleteComment(int commentId){
+       return  commentMapper.deleteComment(commentId);
 
     }
 

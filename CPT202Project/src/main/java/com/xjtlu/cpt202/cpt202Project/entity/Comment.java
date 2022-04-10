@@ -15,7 +15,7 @@ import java.util.List;
 @ToString
 public class Comment implements Serializable {
 
-    private int commentId;
+    private int Id;
     //the id of the blog that the comment belongs to
     private int blogId;
 
