@@ -22,6 +22,7 @@ public class BlogServiceImpl implements BlogService {
     public int findBlogRows(int userId) {
         return blogMapper.selectBlogRows(userId);
     }
+
     @Override
     public  int addBlog(Blog blog) {
         if (blog == null) {

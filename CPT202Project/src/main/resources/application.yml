@@ -1,6 +1,6 @@
 
 server:
-  port: 8081
+  port: 8082
 
 spring:
   servlet:
@@ -26,6 +26,6 @@ audience:
   # 密钥, 经过Base64加密, 可自行替换。Base64加解密工具：http://tool.chinaz.com/Tools/Base64.aspx
   base64Secret: Z3VveGl1emhpRXJiYWRhZ2FuZ1dpbnNwYWNlVjMuMA==
   # JWT的签发主体，存入issuer
-  iss: issued by 郭秀志
+  iss: issued by ***
   # 过期时间毫秒
   expiresSecond: 172800
