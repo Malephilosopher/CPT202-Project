@@ -27,6 +27,33 @@
     <update id="update_blog_fav" parameterType="int">
         update CPT202.blog set num_favorite = num_favorite + 1 where id = #{blog_id};
     </update>
+    
+    <insert id="insertBlog" parameterType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
+        insert into CPT202.blog(author_id,title,description, content,post_time, num_like,view_num)
+        values(#{author_id},#{title},#{description},#{content},#{post_time},#{num_like},view_num)
+    </insert>
+
+    <delete id="deleteBlog" >
+        delete from CPT202.blog where id = #{blog_id}
+    </delete>
+
+    <select id="selectBlogById" resultType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
+        select *
+        from CPT202.blog
+        where id = #{id}
+    </select>
+
+    <select id="selectBlogs" resultType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
+        select *
+        from CPT202.blog where author_id!=0
+        order by post_time desc
+        limit #{offset}, #{limit}
+    </select>
+
+    <select id="selectBlogRows" resultType="int">
+        select count(id) from CPT202.blog where author_id!=0
+        
+    </select>
 
 
 
