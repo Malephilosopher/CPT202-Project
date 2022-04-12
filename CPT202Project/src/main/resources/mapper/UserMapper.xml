@@ -18,8 +18,12 @@
     </select>
 
 <!--    List<Integer> getUserIdList();-->
-    <select id="getUserIdList()" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
-        select id from CPT202.user ;
+    <select id="getUserIdList" resultType="java.lang.Integer">
+        select id from CPT202.user;
+    </select>
+
+    <select id="getUserId" resultType="java.lang.Object">
+        select id from CPT202.user where username = #{username};
     </select>
 
     <!--    User findById(int userId);-->

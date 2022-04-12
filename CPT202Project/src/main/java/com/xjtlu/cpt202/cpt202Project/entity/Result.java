@@ -1,12 +1,15 @@
 package com.xjtlu.cpt202.cpt202Project.entity;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 
 @Data
+@AllArgsConstructor
 public class Result {
     public Integer code; //200表示成功
     public String msg;  //message
     public Object data;
+    public String token;
 
     private Result(){
     }
@@ -26,6 +29,9 @@ public class Result {
 
     public static Result success(String msg, Object data) {
         return new Result(200, msg, data);
+    }
+    public static Result success(String msg, Object data, String token) {
+        return new Result(200, msg, data, token);
     }
 
     public static Result success(String msg) {

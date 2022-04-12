@@ -27,12 +27,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(int id) {
-        if (userMapper.getUserIdList().contains(id)){
+        List<Integer> idList = userMapper.getUserIdList();
+        if (idList.contains(id)){
             return userMapper.findUserById(id);
         } else {
             return null;
         }
 
+    }
+
+    @Override
+    public int getUserId(String username) {
+        Object o = userMapper.getUserId(username);
+        if(o == null){
+            return -1;
+        }else {
+            return (int) o;
+        }
     }
 
     @Override

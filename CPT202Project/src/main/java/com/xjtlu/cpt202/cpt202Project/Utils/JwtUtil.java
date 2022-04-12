@@ -8,6 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 
+import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import java.util.Date;
 import com.xjtlu.cpt202.cpt202Project.Exception.UserException.ResultCode;
@@ -36,9 +37,9 @@ public class JwtUtil {
             Date now = new Date(nowMillis);
 
             //生成签名密钥
-            byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(audience.getBase64Secret());
-            Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
-
+//            byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(audience.getBase64Secret());
+//            Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+            Key signingKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
             //添加构成JWT的参数
             JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT")
                     // 可以将基本不重要的对象信息放到claims

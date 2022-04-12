@@ -38,6 +38,8 @@ public interface UserMapper {
     //    删除用户
     void deleteUser(User u);
 
+    Object getUserId(String username);
+
 
 //    List<User> findAllFans(int id);
 
