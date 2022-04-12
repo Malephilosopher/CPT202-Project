@@ -18,7 +18,7 @@
     </select>
 
 <!--    List<Integer> getUserIdList();-->
-    <select id="getUserIdList()" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
+    <select id="getUserIdList" resultType="Integer">
         select id from CPT202.user ;
     </select>
 
