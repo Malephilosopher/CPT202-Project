@@ -26,10 +26,10 @@ public class CommentController {
      */
     @GetMapping("/comments")
     public String listComments(@RequestParam (name = "blogId") int blogId) {
-        if (blogId == 0) {
-            return JSON.toJSONString(Result.create(300,"blogId is null"));
-        }
         List<Comment> comments = commentService.listCommentByBlogId(blogId);
+        if (comments.isEmpty()||comments== null) {
+            return JSON.toJSONString(Result.create(300,"blogId is not found"));
+        }
         return JSON.toJSONString(Result.create(200,"Comment list successfully", comments));
     }
 
@@ -47,14 +47,21 @@ public class CommentController {
         Comment comm = JSON.parseObject(comment, Comment.class);
    //     Long blogId = addComment.getBlogId()
         //     comm.setAuthorId(userId);
+        int result = commentService.addComment(comm);
         if("".equals(comm.getContent())||comm.getContent()==null){
             return JSON.toJSONString(Result.fail("Comment add failed"));
         }
-        commentService.addComment(comm);
+        if(result ==1){
+            return JSON.toJSONString(Result.success("Comment add successfully"));
+        }
+        else{
+            return JSON.toJSONString(Result.fail("Comment add failed"));
+        }
+
      //这两行看后期需要
     //    List<Comment> comments = commentService.listCommentByBlogId(blogId);
     //       model.addAttribute("comments", comments);
-        return JSON.toJSONString(Result.success("Comment add successfully"));
+
     }
 
     /**
@@ -65,9 +72,13 @@ public class CommentController {
      */
 
     @GetMapping("/comment/{blogId}/delete")
-    public String delete(@PathVariable int blogId,@RequestParam(value = "id") int commentId){
-        commentService.deleteComment(commentId);
+    public String delete(@PathVariable int blogId,@RequestParam(value = "id") int commentId) {
+        int result = commentService.deleteComment(commentId);
         List<Comment> comments = commentService.listCommentByBlogId(blogId);
-        return JSON.toJSONString(Result.success("Comment delete successfully"));
+        if (result == 1) {
+            return JSON.toJSONString(Result.success("Comment delete successfully"));
+        } else {
+            return JSON.toJSONString(Result.fail("Comment delete fail"));
+        }
     }
 }

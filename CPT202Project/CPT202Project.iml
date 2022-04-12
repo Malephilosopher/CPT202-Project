@@ -21,6 +21,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/${project.build.directory}/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/${project.build.directory}/test-classes" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -44,8 +46,6 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-el:9.0.58" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.58" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.16" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.16" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.16" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-redis:2.6.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-redis:2.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.data:spring-data-keyvalue:2.6.2" level="project" />
@@ -112,7 +112,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.16" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:5.3.16" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.6.4" level="project" />
-    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.16" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.geronimo.specs:geronimo-servlet_2.4_spec:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: commons-net:commons-net:3.3" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.80" level="project" />
@@ -123,5 +122,8 @@
     <orderEntry type="library" name="Maven: jakarta.xml.bind:jakarta.xml.bind-api:2.3.3" level="project" />
     <orderEntry type="library" name="Maven: jakarta.activation:jakarta.activation-api:1.2.2" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context:5.3.16" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-aop:5.3.16" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-expression:5.3.16" level="project" />
   </component>
 </module>

@@ -29,8 +29,8 @@
     </update>
     
     <insert id="insertBlog" parameterType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
-        insert into CPT202.blog(author_id,title,description, content,post_time, num_like,view_num)
-        values(#{author_id},#{title},#{description},#{content},#{post_time},#{num_like},view_num)
+        insert into CPT202.blog(author_id,title,description,content,post_time,num_like,num_view)
+        values(#{author_id},#{title},#{description},#{content},#{post_time},#{num_like},#{num_view})
     </insert>
 
     <delete id="deleteBlog" >
