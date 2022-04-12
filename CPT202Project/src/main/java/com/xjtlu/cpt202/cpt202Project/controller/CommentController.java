@@ -27,8 +27,8 @@ public class CommentController {
     @GetMapping("/comments")
     public String listComments(@RequestParam (name = "blogId") int blogId) {
         List<Comment> comments = commentService.listCommentByBlogId(blogId);
-        if (comments  == null) {
-            return JSON.toJSONString(Result.create(300,"blogId is null"));
+        if (comments.isEmpty()||comments== null) {
+            return JSON.toJSONString(Result.create(300,"blogId is not found"));
         }
         return JSON.toJSONString(Result.create(200,"Comment list successfully", comments));
     }
