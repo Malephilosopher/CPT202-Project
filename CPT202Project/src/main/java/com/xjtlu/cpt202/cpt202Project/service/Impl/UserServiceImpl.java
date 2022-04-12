@@ -27,8 +27,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(int id) {
-        Optional<User> u = Optional.ofNullable(userMapper.findUserById(id));
-        return u.isPresent()? u.get() : null;
+        if (userMapper.getUserIdList().contains(id)){
+            return userMapper.findUserById(id);
+        } else {
+            return null;
+        }
+
     }
 
     @Override

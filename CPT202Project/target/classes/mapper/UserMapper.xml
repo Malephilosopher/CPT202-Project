@@ -17,6 +17,11 @@
         select * from CPT202.user where ;
     </select>
 
+<!--    List<Integer> getUserIdList();-->
+    <select id="getUserIdList()" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
+        select id from CPT202.user ;
+    </select>
+
     <!--    User findById(int userId);-->
     <!--    按照userid查找用户-->
     <select id="findUserById" parameterType="int" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">

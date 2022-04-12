@@ -17,6 +17,9 @@ public interface UserMapper {
     //    查询全部用户
     List<User> getUserList();
 
+    //    查询全部用户id
+    List<Integer> getUserIdList();
+
     //    用户点赞的文章
     List<Integer> getThumbUp(int id);
 
