@@ -16,14 +16,12 @@ import java.util.Date;
 import java.util.UUID;
 
 @RestController
-
+@RequestMapping("/user")
 public class UserController {
 
 //    (wrong???)
     @Autowired
     private UserServiceImpl userService;
-
-
 
     
     @GetMapping (value = "/getPerson")

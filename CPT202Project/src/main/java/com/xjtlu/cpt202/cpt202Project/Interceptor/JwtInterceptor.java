@@ -23,7 +23,7 @@ public class JwtInterceptor  extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        // 忽略带JwtIgnore注解的请求, 不做后续token认证校验
+//         忽略带JwtIgnore注解的请求, 不做后续token认证校验
 //        if (handler instanceof HandlerMethod) {
 //            HandlerMethod handlerMethod = (HandlerMethod) handler;
 //            JwtIgnore jwtIgnore = handlerMethod.getMethodAnnotation(JwtIgnore.class);
