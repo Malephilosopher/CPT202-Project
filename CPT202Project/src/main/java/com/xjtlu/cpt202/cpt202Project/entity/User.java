@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 import java.util.List;
@@ -30,7 +29,7 @@ public class User {
     private String grade;
     private String major;
 //    the time that the user registered
-//    private Date born_time;
+//    private String born_time;
 
     //the number of blogs the user likes
     private int like_blog;

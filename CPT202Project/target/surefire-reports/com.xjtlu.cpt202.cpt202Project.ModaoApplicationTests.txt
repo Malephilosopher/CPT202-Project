@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.xjtlu.cpt202.cpt202Project.ModaoApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.125 s <<< FAILURE! - in com.xjtlu.cpt202.cpt202Project.ModaoApplicationTests
-contextLoads  Time elapsed: 0.004 s  <<< ERROR!
-java.lang.NoClassDefFoundError: javax/servlet/SessionCookieConfig
-Caused by: java.lang.ClassNotFoundException: javax.servlet.SessionCookieConfig
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.259 s - in com.xjtlu.cpt202.cpt202Project.ModaoApplicationTests
