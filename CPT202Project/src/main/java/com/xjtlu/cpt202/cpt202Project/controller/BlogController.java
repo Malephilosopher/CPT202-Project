@@ -33,10 +33,12 @@ public class BlogController {
         //帖子上传数据库
         Blog blog = new Blog();
         blog.setAuthor_id(user.getId());
-        blog.setTitle(info.getTitle());
+        //blog.setTitle(info.getTitle());  //数据库里没看见
         blog.setDescription(info.getDescription());
         blog.setContent(info.getContent());
         blog.setPost_time(System.currentTimeMillis());
+        blog.setEdit_time(System.currentTimeMillis());
+        blog.setNum_like(info.getNum_like());
         blogService.addBlog(blog);
 
         // 无错返回
