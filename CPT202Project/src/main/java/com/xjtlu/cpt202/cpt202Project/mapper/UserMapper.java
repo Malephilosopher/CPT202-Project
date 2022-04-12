@@ -21,7 +21,7 @@ public interface UserMapper {
     List<Integer> getThumbUp(int id);
 
     //    增加新用户
-    void addUser(User u);
+    int addUser(User u);
 
     //    根据id在数据库里查询用户
     //    两种连接mysql的方法：

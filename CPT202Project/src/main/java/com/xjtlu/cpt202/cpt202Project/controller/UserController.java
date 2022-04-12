@@ -69,10 +69,15 @@ public class UserController {
      * @return 成功或失败信息
      */
     @PostMapping("/addUser")
-    public String addUser(@RequestBody User user) {
-        userService.saveUser(user);
-        Result result = Result.create(200, "add user successful", user);
-        return JSON.toJSONString(result);
+    public String addUser(@RequestBody String user) {
+        User u = JSON.parseObject(user, User.class);
+        int id = userService.saveUser(u);
+        User newUser = userService.getUser(id);
+        if(newUser == null ){
+            return JSON.toJSONString(Result.create(300, "failed to add user "));
+        } else {
+            return JSON.toJSONString(Result.create(200, "add user successfully", newUser));
+        }
     }
 
 

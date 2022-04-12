@@ -28,12 +28,12 @@ public interface UserService {
     String getUserEmail(int id);
 
     //    gender
-    boolean changeUserGender(int id, boolean newGender);
-    boolean getUserGender(int id);
+    String changeUserGender(int id, String newGender);
+    String getUserGender(int id);
 
     //    grade
-    int changeUserGrade(int id, int newGrade);
-    int getUserGrade(int id);
+    String changeUserGrade(int id, String newGrade);
+    String getUserGrade(int id);
 
 
 //    List<Integer> getThumbUp(int id);

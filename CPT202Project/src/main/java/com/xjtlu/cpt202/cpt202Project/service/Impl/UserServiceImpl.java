@@ -3,6 +3,7 @@ package com.xjtlu.cpt202.cpt202Project.service.Impl;
 import java.util.List;
 import java.util.Optional;
 
+import com.xjtlu.cpt202.cpt202Project.entity.Comment;
 import com.xjtlu.cpt202.cpt202Project.entity.User;
 import com.xjtlu.cpt202.cpt202Project.mapper.UserMapper;
 
@@ -20,9 +21,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int saveUser(User u) {
-        userMapper.addUser(u);
-        return u.getId();
+        return userMapper.addUser(u);
     }
+
 
     @Override
     public User getUser(int id) {
@@ -76,20 +77,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean changeUserGender(int id, boolean newGender) {
+    public String changeUserGender(int id, String newGender) {
         User u = userMapper.findUserById(id);
         u.setGender(newGender);
         userMapper.updateUser(u);
-        return u.isGender();
+        return u.getGender();
     }
 
     @Override
-    public boolean getUserGender(int id) {
-        return getUser(id).isGender();
+    public String getUserGender(int id) {
+        return getUser(id).getGender();
     }
 
     @Override
-    public int changeUserGrade(int id, int newGrade) {
+    public String changeUserGrade(int id, String newGrade) {
         User u = userMapper.findUserById(id);
         u.setGrade(newGrade);
         userMapper.updateUser(u);
@@ -97,7 +98,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int getUserGrade(int id) {
+    public String getUserGrade(int id) {
         return getUser(id).getGrade();
     }
 

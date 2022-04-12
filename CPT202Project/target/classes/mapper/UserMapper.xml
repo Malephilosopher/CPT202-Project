@@ -26,14 +26,14 @@
     <!--    void addUser(User u);-->
     <!--    在数据库增加新用户-->
     <insert id="addUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
-        insert into mysql.User (id, username, password, email, gender, grade, major, born_time)
-        values (#{id}, #{username}, #{password}, #{email}, #{gender}, #{grade}, #{major}, #{born_time});
+        insert into CPT202.user (id, username, password, email, gender, grade, major, like_blog, comment_num, fav_blog, num_fan)
+        values (#{id}, #{username}, #{password}, #{email}, #{gender}, #{grade}, #{major}, #{like_blog}, #{comment_num}, #{fav_blog}, #{num_fan});
     </insert>
 
     <!--    void changeUsername(User u)-->
     <!--    在数据库改用户名-->
     <update id="updateUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
-        update mysql.User set username=#{username}, password=#{password}, email=#{email}, gender=#{gender},
+        update CPT202.user set username=#{username}, password=#{password}, email=#{email}, gender=#{gender},
         grade=#{grade}, major=#{major}, born_time=#{born_time} where id = #{id};
     </update>
 
@@ -41,7 +41,7 @@
     <!--    void changeUsername(User u)-->
     <!--    在数据库删除用户-->
     <delete id="deleteUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
-        delete from mysql.User where id = #{id};
+        delete from CPT202.user where id = #{id};
     </delete>
 
 
