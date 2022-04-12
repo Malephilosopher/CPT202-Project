@@ -45,19 +45,14 @@
 
     <select id="selectBlogs" resultType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
         select *
-        from CPT202.blog where status != 2
-        <if test="author_id!=0">
-            and author_id = #{author_id}
-        </if>
+        from CPT202.blog where author_id!=0
         order by post_time desc
         limit #{offset}, #{limit}
     </select>
 
     <select id="selectBlogRows" resultType="int">
-        select count(id) from blog where status != 2
-        <if test="author_id!=0">
-            and author_id = #{author_id}
-        </if>
+        select count(id) from CPT202.blog where author_id!=0
+        
     </select>
 
 
