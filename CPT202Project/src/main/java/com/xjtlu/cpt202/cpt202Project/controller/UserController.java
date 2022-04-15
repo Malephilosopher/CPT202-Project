@@ -61,17 +61,16 @@ public class UserController {
      */
     @PostMapping (value = "/login")
     public String login(String username, String password) {
-        long userid = userService.getUserId(username);
+        int userid = userService.getUserId(username);
         if(userid == -1){
             Result result = Result.create(300, "user do not exist");
             return JSON.toJSONString(result);
         }
-        int uid = (int)userid;
-        if (!Objects.equals(userService.getUserPassword(uid), "null") && userService.getUserPassword(uid).equals(password)) {
+        if (!Objects.equals(userService.getUserPassword(userid), "null") && userService.getUserPassword(userid).equals(password)) {
 //            right password => get the user information
             String token = "";
             try {
-                token = JwtUtil.createToken(String.valueOf(uid), username, "user", audience);
+                token = JwtUtil.createToken(String.valueOf(userid), username, "user", audience);
                 log.info("### 登录成功, token={} ###", token);
             }catch (UserException e) {
                 e.printStackTrace();
@@ -79,13 +78,13 @@ public class UserController {
                 return JSON.toJSONString(res);
             }
 
-            User user = userService.getUser(uid);
+            User user = userService.getUser(userid);
             Result result = Result.success("get user successful", user, token);
             return JSON.toJSONString(result);
         } else {
 //            wrong password => still login page
-            User user = userService.getUser(uid);
-            Result result = Result.create(300, "wrong userid or password ", user);
+            User user = userService.getUser(userid);
+            Result result = Result.create(300, "wrong userid or password ");
             return JSON.toJSONString(result);
         }
     }
@@ -99,9 +98,12 @@ public class UserController {
     @PostMapping("/addUser")
     public String addUser(@RequestBody String user) {
         User u = JSON.parseObject(user, User.class);
+        if(userService.getUserId(u.getUsername()) != -1){
+            return JSON.toJSONString(Result.create(300, "username already exists, change another name"));
+        }
         int id = userService.saveUser(u);
         User newUser = userService.getUser(id);
-        if(newUser == null ){
+        if(id == -1){
             return JSON.toJSONString(Result.create(300, "failed to add user "));
         } else {
             return JSON.toJSONString(Result.create(200, "add user successfully", newUser));

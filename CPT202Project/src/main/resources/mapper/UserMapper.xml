@@ -17,12 +17,14 @@
         select * from CPT202.user where ;
     </select>
 
-<!--    List<Integer> getUserIdList();-->
 
+<!--    List<Integer> getUserIdList();-->
     <select id="getUserIdList" resultType="java.lang.Integer">
         select id from CPT202.user;
     </select>
 
+
+<!--    Object getUserId(String username);-->
     <select id="getUserId" resultType="java.lang.Object">
         select id from CPT202.user where username = #{username};
     </select>
@@ -34,7 +36,7 @@
         select * from CPT202.user where id = #{id};
     </select>
 
-    <!--    void addUser(User u);-->
+    <!--    int addUser(User u);-->
     <!--    在数据库增加新用户-->
     <insert id="addUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
         insert into CPT202.user (id, username, password, email, gender, grade, major, like_blog, comment_num, fav_blog, num_fan)
