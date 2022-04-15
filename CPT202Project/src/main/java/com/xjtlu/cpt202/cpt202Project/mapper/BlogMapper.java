@@ -14,7 +14,7 @@ public interface BlogMapper {
      * @param limit
      * @return
      */
-    List<Blog> selectBlogs(int userId, int offset, int limit);
+    List<Blog> selectBlogs(int offset, int limit);
 
     /**
      * 根据用户id查找帖子
