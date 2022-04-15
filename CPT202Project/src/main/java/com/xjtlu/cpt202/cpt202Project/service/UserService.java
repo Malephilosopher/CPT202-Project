@@ -12,7 +12,7 @@ public interface UserService {
     //    get the information of a certain user
     User getUser(int id);
 
-    long getUserId(String username);
+    int getUserId(String username);
 
 //    change and get method of [username, password, email, gender, grade, major].
 //   have not finished yet

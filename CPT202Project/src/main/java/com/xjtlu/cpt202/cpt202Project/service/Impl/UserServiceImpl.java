@@ -22,7 +22,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int saveUser(User u) {
-        return userMapper.addUser(u);
+        userMapper.addUser(u);
+        User newUser = userMapper.findUserById(u.getId());
+        if(newUser.getId() == u.getId()){
+            return u.getId();
+        } else {
+            return -1;
+        }
+
     }
 
 
@@ -39,13 +46,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public long getUserId(String username) {
+    public int getUserId(String username) {
         Object o = userMapper.getUserId(username);
         System.out.println(o == null ? "null" : o);
         if(o == null){
             return -1;
         }else {
-            return (long) o;
+            return (int) o;
         }
     }
 
