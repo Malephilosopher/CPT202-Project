@@ -6,6 +6,7 @@ import io.jsonwebtoken.*;
 
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 
 import io.jsonwebtoken.security.Keys;
@@ -18,6 +19,7 @@ public class JwtUtil {
 
     public static final String AUTH_HEADER_KEY = "Authorization";
 
+    public static final Key signingKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     /**
      * 构建jwt
@@ -39,7 +41,6 @@ public class JwtUtil {
             //生成签名密钥
 //            byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(audience.getBase64Secret());
 //            Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
-            Key signingKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
             //添加构成JWT的参数
             JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT")
                     // 可以将基本不重要的对象信息放到claims
@@ -76,10 +77,10 @@ public class JwtUtil {
      * @param base64Security
      * @return
      */
-    public static Claims parseJWT(String jsonWebToken, String base64Security) throws UserException {
+    public static Claims parseJWT(String jsonWebToken, Key key) throws UserException {
         try {
             Claims claims = Jwts.parser()
-                    .setSigningKey(DatatypeConverter.parseBase64Binary(base64Security))
+                    .setSigningKey(key)
                     .parseClaimsJws(jsonWebToken).getBody();
             return claims;
         } catch (ExpiredJwtException eje) {
@@ -98,7 +99,7 @@ public class JwtUtil {
      * @param base64Security
      * @return
      */
-    public static String getUsername(String token, String base64Security) throws UserException {
+    public static String getUsername(String token, Key base64Security) throws UserException {
         return parseJWT(token, base64Security).getSubject();
     }
 
@@ -109,7 +110,7 @@ public class JwtUtil {
      * @param base64Security
      * @return
      */
-    public static String getUserId(String token, String base64Security) throws UserException {
+    public static String getUserId(String token, Key base64Security) throws UserException {
         String userId = parseJWT(token, base64Security).get("userId", String.class);
         return Base64Util.decode(userId);
     }
@@ -121,7 +122,7 @@ public class JwtUtil {
      * @param base64Security
      * @return
      */
-    public static boolean isExpiration(String token, String base64Security) throws UserException {
+    public static boolean isExpiration(String token, Key base64Security) throws UserException {
         return parseJWT(token, base64Security).getExpiration().before(new Date());
     }
 

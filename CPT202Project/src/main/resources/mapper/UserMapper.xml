@@ -18,18 +18,15 @@
     </select>
 
 <!--    List<Integer> getUserIdList();-->
-<<<<<<< HEAD
+
     <select id="getUserIdList" resultType="java.lang.Integer">
         select id from CPT202.user;
     </select>
 
     <select id="getUserId" resultType="java.lang.Object">
         select id from CPT202.user where username = #{username};
-=======
-    <select id="getUserIdList" resultType="Integer">
-        select id from CPT202.user ;
->>>>>>> ea31cd304c7dbbf8ba26e16130748b524043b81d
     </select>
+
 
     <!--    User findById(int userId);-->
     <!--    按照userid查找用户-->

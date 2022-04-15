@@ -34,7 +34,7 @@ public class UserController {
 
     
     @GetMapping (value = "/getPerson")
-    public String getUser(@RequestParam (name = "id") int id, HttpResponse response) {
+    public String getUser(@RequestParam (name = "id") int id) {
         User user = userService.getUser(id);
         Result result = Result.create(200, "get user successful", user);
         return JSON.toJSONString(result);
@@ -61,16 +61,17 @@ public class UserController {
      */
     @PostMapping (value = "/login")
     public String login(String username, String password) {
-        int userid = userService.getUserId(username);
+        long userid = userService.getUserId(username);
         if(userid == -1){
             Result result = Result.create(300, "user do not exist");
             return JSON.toJSONString(result);
         }
-        if (!Objects.equals(userService.getUserPassword(userid), "null") && userService.getUserPassword(userid).equals(password)) {
+        int uid = (int)userid;
+        if (!Objects.equals(userService.getUserPassword(uid), "null") && userService.getUserPassword(uid).equals(password)) {
 //            right password => get the user information
             String token = "";
             try {
-                token = JwtUtil.createToken(String.valueOf(userid), username, "user", audience);
+                token = JwtUtil.createToken(String.valueOf(uid), username, "user", audience);
                 log.info("### 登录成功, token={} ###", token);
             }catch (UserException e) {
                 e.printStackTrace();
@@ -78,12 +79,12 @@ public class UserController {
                 return JSON.toJSONString(res);
             }
 
-            User user = userService.getUser(userid);
+            User user = userService.getUser(uid);
             Result result = Result.success("get user successful", user, token);
             return JSON.toJSONString(result);
         } else {
 //            wrong password => still login page
-            User user = userService.getUser(userid);
+            User user = userService.getUser(uid);
             Result result = Result.create(300, "wrong userid or password ", user);
             return JSON.toJSONString(result);
         }

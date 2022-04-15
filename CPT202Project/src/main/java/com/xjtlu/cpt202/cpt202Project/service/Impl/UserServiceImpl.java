@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUser(int id) {
         List<Integer> idList = userMapper.getUserIdList();
+        System.out.println(idList);
         if (idList.contains(id)){
             return userMapper.findUserById(id);
         } else {
@@ -37,12 +38,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int getUserId(String username) {
+    public long getUserId(String username) {
         Object o = userMapper.getUserId(username);
         if(o == null){
             return -1;
         }else {
-            return (int) o;
+            return (long) o;
         }
     }
 

@@ -14,11 +14,16 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private  BlogMapper blogMapper;
 
+//    @Override
+//    public List<Blog> findBlogs(int offset, int limit) {
+//        return blogMapper.selectBlogs(offset, limit);
+//    }
+
     @Override
-    public List<Blog> findBlogs(int offset, int limit) {
-        return blogMapper.selectBlogs(offset, limit);
+    public List<Blog> findBlogs(int userId, int offset, int limit) {
+        return null;
     }
-    
+
     @Override
     public int findBlogRows(int userId) {
         return blogMapper.selectBlogRows(userId);

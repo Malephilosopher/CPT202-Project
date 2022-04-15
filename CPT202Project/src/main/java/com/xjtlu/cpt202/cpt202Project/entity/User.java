@@ -18,8 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 public class User {
 
-    @Autowired
-    UserServiceImpl userService;
 //    注册的时候要用到的
     private int id;
     private String username;

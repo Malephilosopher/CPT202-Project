@@ -47,7 +47,7 @@ public class JwtInterceptor  extends HandlerInterceptorAdapter {
         }
 
         // 获取token
-        final String token = authHeader.substring(7);
+        final String token = authHeader;
 
         if (audience == null) {
             BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
@@ -55,7 +55,7 @@ public class JwtInterceptor  extends HandlerInterceptorAdapter {
         }
 
         // 验证token是否有效--无效已做异常抛出，由全局异常处理后返回对应信息
-        JwtUtil.parseJWT(token, audience.getBase64Secret());
+        JwtUtil.parseJWT(token, JwtUtil.signingKey);
 
         return true;
     }
