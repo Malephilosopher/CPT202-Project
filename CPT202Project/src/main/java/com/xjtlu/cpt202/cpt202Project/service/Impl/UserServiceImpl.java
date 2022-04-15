@@ -8,6 +8,7 @@ import com.xjtlu.cpt202.cpt202Project.entity.User;
 import com.xjtlu.cpt202.cpt202Project.mapper.UserMapper;
 
 import com.xjtlu.cpt202.cpt202Project.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +41,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public long getUserId(String username) {
         Object o = userMapper.getUserId(username);
+        System.out.println(o == null ? "null" : o);
         if(o == null){
             return -1;
         }else {

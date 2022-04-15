@@ -60,7 +60,13 @@ public class UserController {
      * @return 成功信息或失败信息
      */
     @PostMapping (value = "/login")
-    public String login(String username, String password) {
+    public String login(@RequestBody String json) {
+        User u = JSON.parseObject(json, User.class);
+        String username = u.getUsername();
+        String password = u.getPassword();
+        log.info("username: " + username);
+        log.info("password: " + password);
+
         long userid = userService.getUserId(username);
         if(userid == -1){
             Result result = Result.create(300, "user do not exist");
@@ -98,7 +104,9 @@ public class UserController {
      */
     @PostMapping("/addUser")
     public String addUser(@RequestBody String user) {
+        System.out.println(user);
         User u = JSON.parseObject(user, User.class);
+        System.out.println(u.getUsername());
         int id = userService.saveUser(u);
         User newUser = userService.getUser(id);
         if(newUser == null ){

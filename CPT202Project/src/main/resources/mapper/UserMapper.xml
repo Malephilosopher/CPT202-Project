@@ -24,7 +24,7 @@
     </select>
 
     <select id="getUserId" resultType="java.lang.Object">
-        select id from CPT202.user where username = #{username};
+        select u.id from CPT202.user u where username = #{username};
     </select>
 
 
