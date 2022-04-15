@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BlogService {
 
-    List<Blog> findBlogs(int userId, int offset, int limit);
+    List<Blog> findBlogs(int offset, int limit);
 
     int findBlogRows(int userId);
 

@@ -46,13 +46,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int getUserId(String username) {
+    public long getUserId(String username) {
         Object o = userMapper.getUserId(username);
         System.out.println(o == null ? "null" : o);
         if(o == null){
             return -1;
         }else {
-            return (int) o;
+            return (long) o;
         }
     }
 

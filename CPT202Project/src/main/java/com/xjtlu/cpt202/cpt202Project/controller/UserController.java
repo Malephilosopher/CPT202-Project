@@ -67,7 +67,7 @@ public class UserController {
         log.info("username: " + username);
         log.info("password: " + password);
 
-        long userid = userService.getUserId(username);
+        int userid = (int)userService.getUserId(username);
         if(userid == -1){
             Result result = Result.create(300, "user do not exist");
             return JSON.toJSONString(result);
