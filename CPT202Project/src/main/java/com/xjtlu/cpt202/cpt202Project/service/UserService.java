@@ -38,8 +38,13 @@ public interface UserService {
     String getUserGrade(int id);
 
 
-//    List<Integer> getThumbUp(int id);
+    List<Integer> getThumbUp(int id);
 
+    //点赞功能
+    int thumbUp(int user_id, int blog_id);
+
+    //取消点赞
+    int notThumbUp(int user_id, int blog_id);
 
 //    List<User> getFanNumber(int id);
     

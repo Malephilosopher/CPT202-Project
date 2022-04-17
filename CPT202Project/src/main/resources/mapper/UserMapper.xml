@@ -32,15 +32,17 @@
 
     <!--    User findById(int userId);-->
     <!--    按照userid查找用户-->
-    <select id="findUserById" parameterType="int" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
+    <select id="findUserById" parameterType="java.lang.Integer" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
         select * from CPT202.user where id = #{id};
     </select>
 
     <!--    int addUser(User u);-->
     <!--    在数据库增加新用户-->
     <insert id="addUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
-        insert into CPT202.user (id, username, password, email, gender, grade, major, like_blog, comment_num, fav_blog, num_fan)
-        values (#{id}, #{username}, #{password}, #{email}, #{gender}, #{grade}, #{major}, #{like_blog}, #{comment_num}, #{fav_blog}, #{num_fan});
+        insert into CPT202.user (id, username, password, email, gender,
+            grade, major, like_blog, comment_num, fav_blog, num_fan)
+        values (#{id}, #{username}, #{password}, #{email}, #{gender},
+            #{grade}, #{major}, #{like_blog}, #{comment_num}, #{fav_blog}, #{num_fan});
     </insert>
 
     <!--    void changeUsername(User u)-->
@@ -51,18 +53,30 @@
     </update>
 
 
-    <!--    void changeUsername(User u)-->
     <!--    在数据库删除用户-->
     <delete id="deleteUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
         delete from CPT202.user where id = #{id};
     </delete>
 
 
-
-    <select id="getThumbUp" resultType="java.lang.Integer">
-        select u.blog_id from user_like u where u.user_id = #{id};
+<!--    List<Integer> getThumbUp(int id);-->
+    <select id="getThumbUp" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select blog_id from user_like where user_id = #{id};
     </select>
 
+<!--    int addLike(int user_id, int blog_id);-->
+<!--    增加点赞记录-->
+    <insert id="addLike" >
+        insert into CPT202.user_like (user_id, blog_id)
+        values ( #{user_id}, #{blog_id});
+    </insert>
+
+
+<!--    int cancelLike(int user_id, int blog_id);-->
+    <!--    在数据库删除用户-->
+    <delete id="cancelLike" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
+        delete from CPT202.user_like where user_id = #{user_id} and blog_id = #{blog_id};
+    </delete>
 
 
 </mapper>

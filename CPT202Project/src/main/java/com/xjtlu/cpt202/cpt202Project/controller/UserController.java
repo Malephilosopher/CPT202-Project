@@ -2,6 +2,7 @@ package com.xjtlu.cpt202.cpt202Project.controller;
 
 import cn.hutool.http.HttpResponse;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.xjtlu.cpt202.cpt202Project.Exception.UserException;
 import com.xjtlu.cpt202.cpt202Project.Utils.JwtUtil;
 import com.xjtlu.cpt202.cpt202Project.entity.Audience;
@@ -15,10 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Key;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/user")
@@ -39,6 +37,8 @@ public class UserController {
         Result result = Result.create(200, "get user successful", user);
         return JSON.toJSONString(result);
     }
+
+
 //
 //
 //    @GetMapping (value = "username/{id}")
@@ -56,7 +56,7 @@ public class UserController {
 
     /**
      * 登陆
-     * @param password
+     * @param json :username + password
      * @return 成功信息或失败信息
      */
     @PostMapping (value = "/login")
@@ -108,16 +108,45 @@ public class UserController {
         if(userService.getUserId(u.getUsername()) != -1){
             return JSON.toJSONString(Result.create(300, "username already exists, change another name"));
         }
-        int id = userService.saveUser(u);
-        User newUser = userService.getUser(id);
-        if(id == -1){
-            return JSON.toJSONString(Result.create(300, "failed to add user "));
+        int success = userService.saveUser(u);
+        if (success == 1) {
+            return JSON.toJSONString(Result.create(200, "add user successfully", u));
         } else {
-            return JSON.toJSONString(Result.create(200, "add user successfully", newUser));
+            return JSON.toJSONString(Result.create(300, "failed to add user "));
         }
+
     }
 
+    /**
+     * 获取用户点赞文章
+     * @param id
+     * @return
+     */
+    @GetMapping (value = "/getLikeBlogs")
+    public String like(@RequestParam (name = "userid") int id) {
+        List<Integer> userLike = userService.getThumbUp(id);
+            return JSON.toJSONString(Result.create(200, "get user thumb up blog successfully", userLike));
+        }
 
+
+    @PostMapping("/like")
+    public String like(@RequestBody String user_like) {
+        JSONObject object = JSONObject.parseObject(user_like);
+        int user_id = object.getIntValue("user_id");
+        int blog_id = object.getIntValue("blog_id");
+        int success = userService.thumbUp(user_id, blog_id);
+        List<Integer> userLike = userService.getThumbUp(user_id);
+        if (userLike.contains(blog_id)) {
+            userService.notThumbUp(user_id, blog_id);
+            return JSON.toJSONString(Result.create(200, "not thumb up"));
+        } else {
+            if (success == 1) {
+                return JSON.toJSONString(Result.create(200, "thumb up successfully"));
+            } else {
+                return JSON.toJSONString(Result.create(300, "failed to thumb up"));
+            }
+        }
+    }
 
 
 

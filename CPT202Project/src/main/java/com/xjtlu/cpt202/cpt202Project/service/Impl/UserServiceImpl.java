@@ -22,21 +22,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int saveUser(User u) {
-        userMapper.addUser(u);
-        User newUser = userMapper.findUserById(u.getId());
-        if(newUser.getId() == u.getId()){
-            return u.getId();
-        } else {
-            return -1;
-        }
-
+        return userMapper.addUser(u);
     }
 
 
     @Override
     public User getUser(int id) {
         List<Integer> idList = userMapper.getUserIdList();
-        System.out.println(idList);
+//        System.out.println(idList);
         if (idList.contains(id)){
             return userMapper.findUserById(id);
         } else {
@@ -127,11 +120,21 @@ public class UserServiceImpl implements UserService {
         return getUser(id).getGrade();
     }
 
-//    @Override
-//    public List<Integer> getThumbUp(int id) {
-//        return userMapper.getThumbUp(id);
-//    }
+    @Override
+    public List<Integer> getThumbUp(int id) {
+        return userMapper.getThumbUp(id);
+    }
 
+    @Override
+    public int thumbUp(int user_id, int blog_id) {
+
+        return userMapper.addLike(user_id, blog_id);
+    }
+
+    @Override
+    public int notThumbUp(int user_id, int blog_id) {
+        return userMapper.cancelLike(user_id, blog_id);
+    }
 
 
 //    @Override
