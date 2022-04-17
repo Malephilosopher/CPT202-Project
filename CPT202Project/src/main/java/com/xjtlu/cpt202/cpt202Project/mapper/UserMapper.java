@@ -27,6 +27,7 @@ public interface UserMapper {
     int addUser(User u);
 
     //    根据id在数据库里查询用户
+    //    两种连接mysql的方法：
 
     User findUserById(int id);
 //    User findById(@Param("id") int userId);
@@ -37,15 +38,13 @@ public interface UserMapper {
     //    删除用户
     int deleteUser(User u);
 
-//    根据用户名查询用户id
+    //    根据用户名查询用户id
     Object getUserId(String username);
 
     //    插入点赞记录
     int addLike(int user_id, int blog_id);
 
     int cancelLike(int user_id, int blog_id);
-
-
 
 //    List<User> findAllFans(int id);
 

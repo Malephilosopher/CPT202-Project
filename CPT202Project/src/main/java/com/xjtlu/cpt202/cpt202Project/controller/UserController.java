@@ -1,22 +1,19 @@
 package com.xjtlu.cpt202.cpt202Project.controller;
 
-import cn.hutool.http.HttpResponse;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xjtlu.cpt202.cpt202Project.Exception.UserException;
-import com.xjtlu.cpt202.cpt202Project.Utils.JwtUtil;
+import com.xjtlu.cpt202.cpt202Project.exceptions.UserException;
+import com.xjtlu.cpt202.cpt202Project.util.JwtUtil;
 import com.xjtlu.cpt202.cpt202Project.entity.Audience;
-import com.xjtlu.cpt202.cpt202Project.entity.Comment;
 import com.xjtlu.cpt202.cpt202Project.entity.Result;
 import com.xjtlu.cpt202.cpt202Project.entity.User;
 import com.xjtlu.cpt202.cpt202Project.service.Impl.UserServiceImpl;
-import com.xjtlu.cpt202.cpt202Project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Key;
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/user")
@@ -37,8 +34,6 @@ public class UserController {
         Result result = Result.create(200, "get user successful", user);
         return JSON.toJSONString(result);
     }
-
-
 //
 //
 //    @GetMapping (value = "username/{id}")
@@ -56,7 +51,7 @@ public class UserController {
 
     /**
      * 登陆
-     * @param json :username + password
+     * @param json
      * @return 成功信息或失败信息
      */
     @PostMapping (value = "/login")
@@ -125,8 +120,8 @@ public class UserController {
     @GetMapping (value = "/getLikeBlogs")
     public String like(@RequestParam (name = "userid") int id) {
         List<Integer> userLike = userService.getThumbUp(id);
-            return JSON.toJSONString(Result.create(200, "get user thumb up blog successfully", userLike));
-        }
+        return JSON.toJSONString(Result.create(200, "get user thumb up blog successfully", userLike));
+    }
 
 
     @PostMapping("/like")
@@ -147,6 +142,8 @@ public class UserController {
             }
         }
     }
+
+
 
 
 

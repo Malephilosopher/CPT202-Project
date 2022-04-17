@@ -53,6 +53,7 @@ public class BlogController {
     public String BlogPage(@RequestParam(value = "postId") int id) {
         // 帖子信息
         Blog blog = blogService.findBlogById(id);
+        System.out.println(blog);
         if (blog == null) {
             return JSON.toJSONString(Result.create(300,"Can't find blog"));
         }
