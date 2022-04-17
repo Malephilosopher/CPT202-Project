@@ -38,8 +38,8 @@ public class BlogController {
         //blog.setTitle(info.getTitle());
         blog.setDescription(info.getDescription());
         blog.setContent(info.getContent());
-        blog.setPost_time(System.currentTimeMillis());
-        blog.setEdit_time(System.currentTimeMillis());
+        blog.setPost_time(new Date());
+        blog.setEdit_time(new Date());
         blog.setNum_like(info.getNum_like());
         blog.setNum_view(info.getNum_view());
         blogService.addBlog(blog);
