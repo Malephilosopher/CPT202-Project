@@ -15,16 +15,8 @@ public class BlogServiceImpl implements BlogService {
     private  BlogMapper blogMapper;
 
     @Override
-    public List<Blog> findBlogs(int offset, int limit) {
-        return blogMapper.selectBlogs(offset, limit);
-    }
-
-
-
-
-    @Override
-    public int findBlogRows(int userId) {
-        return blogMapper.selectBlogRows(userId);
+    public List<Blog> findBlogs( int limit) {
+        return blogMapper.selectBlogs(limit);
     }
 
     @Override
@@ -32,14 +24,18 @@ public class BlogServiceImpl implements BlogService {
         if (blog == null) {
             throw new IllegalArgumentException("参数不能为空!");
         }
+//        // 转义HTML标记
+//        blog.setTitle(HtmlUtils.htmlEscape(blog.getTitle()));
+//        blog.setDescription(HtmlUtils.htmlEscape(blog.getDescription()));
+//        blog.setContent(HtmlUtils.htmlEscape(blog.getContent()));
         return blogMapper.insertBlog(blog);
     }
-    
+
     @Override
     public  Blog findBlogById(int id) {
         return blogMapper.selectBlogById(id);
     }
-    
+
     @Override
     public int deleteBlog(int blog_id){
         return blogMapper.deleteBlog(blog_id);
