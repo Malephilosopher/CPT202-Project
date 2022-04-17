@@ -60,8 +60,8 @@ public class BlogController {
 
         // 作者信息
         User user = userService.getUser(blog.getAuthor_id());
-        return JSON.toJSONString(Result.create(200,"Get Blog information success", blog))+
-        JSON.toJSONString(Result.create(200,"Get author information success", user));
+        return JSON.toJSONString(Result.create(200,"Get Blog information success", List.of(blog, user)));
+
     }
 
     /**
