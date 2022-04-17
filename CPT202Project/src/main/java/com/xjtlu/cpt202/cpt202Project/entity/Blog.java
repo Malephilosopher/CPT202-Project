@@ -45,3 +45,4 @@ public class Blog {
                 ", view_num=" + num_view +
                 '}';
     }
+}
