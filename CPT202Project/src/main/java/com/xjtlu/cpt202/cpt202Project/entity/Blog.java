@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -14,21 +15,21 @@ import java.util.Date;
 @NoArgsConstructor
 public class Blog {
 
-    private int id;
+    private Integer id;
     private String title;
-    private int author_id;
+    private Integer author_id;
     //the time that the blog was posted
-    private Date post_time;
+    private Timestamp post_time;
     //the time that the blog was edited
-    private Date edit_time;
+    private Timestamp edit_time;
     //the number of users who have liked the blog
-    private int num_like;
+    private Integer num_like;
     //the number of users who have favorited the blog
-    private int num_fav;
+    private Integer num_fav;
     private String content;
     private String description;
     //the number of users who have viewed the blog
-    private int num_view;
+    private Integer num_view;
 
 
     @Override

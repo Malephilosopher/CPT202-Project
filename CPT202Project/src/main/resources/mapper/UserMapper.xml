@@ -32,7 +32,7 @@
 
     <!--    User findById(int userId);-->
     <!--    按照userid查找用户-->
-    <select id="findUserById" parameterType="int" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
+    <select id="findUserById" parameterType="java.lang.Integer" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
         select * from CPT202.user where id = #{id};
     </select>
 
