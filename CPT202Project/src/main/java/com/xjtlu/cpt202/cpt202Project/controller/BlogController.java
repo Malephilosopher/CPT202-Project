@@ -62,6 +62,22 @@ public class BlogController {
         JSON.toJSONString(Result.create(200,"Get author information success", user));
     }
 
+    /**
+     * 获取主页面
+     * @param amount
+     * @return
+     */
+    @GetMapping("/getContent")
+    public String getHomePage(@RequestParam(value = "amount") int amount){
+        if (amount==0){
+            return JSON.toJSONString(Result.create(300,"amount can't be null"));
+        }
+        List<Blog> blog_list = blogService.findBlogs(amount);
+        if (blog_list==null){
+            JSON.toJSONString(Result.fail("Get blog_list failed"));
+        }
+        return JSON.toJSONString(Result.create(200,"Get Blog_list information success", blog_list));
+    }
 
 
 
