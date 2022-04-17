@@ -124,8 +124,8 @@ public class UserController {
     }
 
 
-    @PostMapping("/like")
-    public String like(@RequestBody String user_like) {
+    @PostMapping("/thumbArticleOne")
+    public String thumbup(@RequestBody String user_like) {
         JSONObject object = JSONObject.parseObject(user_like);
         int user_id = object.getIntValue("user_id");
         int blog_id = object.getIntValue("blog_id");

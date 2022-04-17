@@ -57,7 +57,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int thumbUp(int user_id, int blog_id) {
-
         return userMapper.addLike(user_id, blog_id);
     }
 
