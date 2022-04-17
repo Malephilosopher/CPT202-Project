@@ -14,6 +14,14 @@ public interface UserService {
 
     long getUserId(String username);
 
+    List<Integer> getThumbUp(int id);
+
+    //点赞功能
+    int thumbUp(int user_id, int blog_id);
+
+    //取消点赞
+    int notThumbUp(int user_id, int blog_id);
+
 //    change and get method of [username, password, email, gender, grade, major].
 //   have not finished yet
 

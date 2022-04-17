@@ -1,10 +1,7 @@
 package com.xjtlu.cpt202.cpt202Project.entity;
 
 import com.xjtlu.cpt202.cpt202Project.service.Impl.UserServiceImpl;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
@@ -16,6 +13,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class User {
 
 //    注册的时候要用到的
