@@ -19,7 +19,7 @@ import java.util.List;
 public class User {
 
 //    注册的时候要用到的
-    private int id;
+    private Integer id;
     private String username;
     private String password;
     private String email;
@@ -30,13 +30,13 @@ public class User {
 //    private String born_time;
 
     //the number of blogs the user likes
-    private int like_blog;
+    private Integer like_blog;
     //the number of comments the user have commented
-    private int comment_num;
+    private Integer comment_num;
     //the user's favorite blogs
-    private int fav_blog;
+    private Integer fav_blog;
     //the number of fans of the user
-    private int num_fan;
+    private Integer num_fan;
 
 //    private List<Integer> thumbUpArticle;
 

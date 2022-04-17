@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.Clock;
+import java.util.*;
 
 
 @RestController
@@ -35,11 +35,11 @@ public class BlogController {
         //帖子上传数据库
         Blog blog = new Blog();
         blog.setAuthor_id(user.getId());
-        //blog.setTitle(info.getTitle());
+        blog.setTitle(info.getTitle());
         blog.setDescription(info.getDescription());
         blog.setContent(info.getContent());
-        blog.setPost_time(new Date());
-        blog.setEdit_time(new Date());
+        blog.setPost_time(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+        blog.setEdit_time(new Timestamp(Calendar.getInstance().getTimeInMillis()));
         blog.setNum_like(info.getNum_like());
         blog.setNum_view(info.getNum_view());
         blogService.addBlog(blog);
@@ -49,13 +49,14 @@ public class BlogController {
     }
 
     //文章详情
-    @GetMapping("/getPage")
-    public String BlogPage(@RequestParam(value = "id") int id) {
-        if (id == 0) {
-            return JSON.toJSONString(Result.create(300,"Can't find blog"));
-        }
+    @GetMapping("/getArticle")
+    public String BlogPage(@RequestParam(value = "postId") int id) {
         // 帖子信息
         Blog blog = blogService.findBlogById(id);
+        if (blog == null) {
+            return JSON.toJSONString(Result.create(300,"Can't find blog"));
+        }
+
         // 作者信息
         User user = userService.getUser(blog.getAuthor_id());
         return JSON.toJSONString(Result.create(200,"Get Blog information success", blog))+
@@ -69,7 +70,7 @@ public class BlogController {
      */
     @GetMapping("/getContent")
     public String getHomePage(@RequestParam(value = "amount") int amount){
-        if (amount==0){
+        if (amount == 0){
             return JSON.toJSONString(Result.create(300,"amount can't be null"));
         }
         List<Blog> blog_list = blogService.findBlogs(amount);

@@ -1,6 +1,7 @@
 package com.xjtlu.cpt202.cpt202Project.service.Impl;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import com.xjtlu.cpt202.cpt202Project.entity.Comment;
@@ -9,6 +10,7 @@ import com.xjtlu.cpt202.cpt202Project.mapper.UserMapper;
 
 import com.xjtlu.cpt202.cpt202Project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.jni.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +24,32 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int saveUser(User u) {
-        return userMapper.addUser(u);
+        userMapper.addUser(u);
+        try {
+            Thread.sleep(1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+        User newUser = userMapper.findUserById(u.getId());
+        if(Objects.equals(newUser.getId(), u.getId())){
+            return u.getId();
+        } else {
+            return -1;
+        }
+
     }
+//原始版
+//    @Override
+//    public int saveUser(User u) {
+//        return userMapper.addUser(u);
+//    }
 
 
     @Override
     public User getUser(int id) {
         List<Integer> idList = userMapper.getUserIdList();
-//        System.out.println(idList);
+        System.out.println(idList);
         if (idList.contains(id)){
             return userMapper.findUserById(id);
         } else {

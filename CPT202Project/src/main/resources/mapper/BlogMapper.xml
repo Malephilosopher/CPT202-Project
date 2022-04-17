@@ -17,19 +17,19 @@
 
     <!--    void add_fav(int user_id, int blog_id);-->
     <!--    添加user_fav关系表记录-->
-    <insert id="add_fav" parameterType="int">
+    <insert id="add_fav" parameterType="java.lang.Integer">
         insert into CPT202.user_fav (user_id, blog_id)
         values (#{user_id}, #{blog_id});
     </insert>
 
     <!--    void update_blog_fav(int blog_id);-->
     <!--    blog内收藏记录加1-->
-    <update id="update_blog_fav" parameterType="int">
+    <update id="update_blog_fav" parameterType="java.lang.Integer">
         update CPT202.blog set num_favorite = num_favorite + 1 where id = #{blog_id};
     </update>
     
     <insert id="insertBlog" parameterType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
-        insert into CPT202.blog(author_id,title,description, content,post_time, num_like,num_view)
+        insert into CPT202.blog(author_id,title, description, content,post_time, num_like,num_view)
         values(#{author_id},#{title},#{description},#{content},#{post_time},#{num_like},#{num_view})
     </insert>
 
@@ -45,8 +45,8 @@
 
     <select id="selectBlogs" resultType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
         select *
-        from ( select * from CPT202.blog order by CPT202.blog.post_time desc limit #{limit} ) as temp
-        order by CPT202.blog.post_time
+        from ( select * from CPT202.blog b order by post_time desc limit #{limit} ) as temp
+        order by post_time
     </select>
 
 
