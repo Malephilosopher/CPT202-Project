@@ -1,15 +1,14 @@
-package com.xjtlu.cpt202.cpt202Project.Interceptor;
+package com.xjtlu.cpt202.cpt202Project.interceptor;
 
 
-import com.xjtlu.cpt202.cpt202Project.Exception.UserException;
-import com.xjtlu.cpt202.cpt202Project.Utils.JwtUtil;
+import com.xjtlu.cpt202.cpt202Project.exceptions.UserException;
+import com.xjtlu.cpt202.cpt202Project.util.JwtUtil;
 import com.xjtlu.cpt202.cpt202Project.entity.Audience;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.apache.commons.lang3.StringUtils;
 import javax.servlet.http.HttpServletRequest;

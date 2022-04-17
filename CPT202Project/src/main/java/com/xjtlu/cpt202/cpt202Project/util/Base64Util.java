@@ -1,4 +1,4 @@
-package com.xjtlu.cpt202.cpt202Project.Utils;
+package com.xjtlu.cpt202.cpt202Project.util;
 
 import org.apache.commons.net.util.Base64;
 import org.springframework.util.StringUtils;

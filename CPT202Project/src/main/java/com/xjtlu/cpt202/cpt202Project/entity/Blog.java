@@ -18,9 +18,9 @@ public class Blog {
     private String title;
     private int author_id;
     //the time that the blog was posted
-    private String post_time;
+    private Date post_time;
     //the time that the blog was edited
-    private String edit_time;
+    private Date edit_time;
     //the number of users who have liked the blog
     private int num_like;
     //the number of users who have favorited the blog
@@ -29,28 +29,7 @@ public class Blog {
     private String description;
     //the number of users who have viewed the blog
     private int num_view;
-    private String tag;
 
-
-    public void setPost_time(long post_time) {
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date(post_time);
-        this.post_time = formatter.format(date);
-    }
-
-    public String getPost_time() {
-        return post_time;
-    }
-
-    public void setEdit_time(long edit_time) {
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date(edit_time);
-        this.edit_time = formatter.format(date);
-    }
-
-    public String getEdit_time() {
-        return edit_time;
-    }
 
     @Override
     public String toString() {
@@ -64,7 +43,6 @@ public class Blog {
                 ", num_favorite=" + num_fav +
                 ", content='" + content + '\'' +
                 ", view_num=" + num_view +
-                ", tag='" + tag + '\'' +
                 '}';
     }
 }

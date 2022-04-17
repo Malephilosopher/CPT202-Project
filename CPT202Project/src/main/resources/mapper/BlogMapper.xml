@@ -29,7 +29,7 @@
     </update>
     
     <insert id="insertBlog" parameterType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
-        insert into CPT202.blog(author_id,title,description,content,post_time,num_like,num_view)
+        insert into CPT202.blog(author_id,title,description, content,post_time, num_like,num_view)
         values(#{author_id},#{title},#{description},#{content},#{post_time},#{num_like},#{num_view})
     </insert>
 
@@ -45,14 +45,8 @@
 
     <select id="selectBlogs" resultType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
         select *
-        from CPT202.blog where author_id!=0
-        order by post_time desc
-        limit #{offset}, #{limit}
-    </select>
-
-    <select id="selectBlogRows" resultType="int">
-        select count(id) from CPT202.blog where author_id!=0
-        
+        from ( select * from CPT202.blog order by CPT202.blog.post_time desc limit #{limit} ) as temp
+        order by CPT202.blog.post_time
     </select>
 
 
