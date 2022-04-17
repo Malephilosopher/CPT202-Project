@@ -1,4 +1,4 @@
-package com.xjtlu.cpt202.cpt202Project.Exception;
+package com.xjtlu.cpt202.cpt202Project.exceptions;
 
 public class UserException extends Exception {
 

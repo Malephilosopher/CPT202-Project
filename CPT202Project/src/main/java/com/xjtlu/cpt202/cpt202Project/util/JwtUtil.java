@@ -1,18 +1,15 @@
-package com.xjtlu.cpt202.cpt202Project.Utils;
+package com.xjtlu.cpt202.cpt202Project.util;
 
-import com.xjtlu.cpt202.cpt202Project.Exception.UserException;
+import com.xjtlu.cpt202.cpt202Project.exceptions.UserException;
 import com.xjtlu.cpt202.cpt202Project.entity.Audience;
 import io.jsonwebtoken.*;
 
-import javax.crypto.spec.SecretKeySpec;
-import javax.xml.bind.DatatypeConverter;
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import java.util.Date;
-import com.xjtlu.cpt202.cpt202Project.Exception.UserException.ResultCode;
+import com.xjtlu.cpt202.cpt202Project.exceptions.UserException.ResultCode;
 
 @Slf4j
 public class JwtUtil {

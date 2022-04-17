@@ -1,7 +1,7 @@
-package com.xjtlu.cpt202.cpt202Project.Config;
+package com.xjtlu.cpt202.cpt202Project.config;
 
 
-import com.xjtlu.cpt202.cpt202Project.Interceptor.JwtInterceptor;
+import com.xjtlu.cpt202.cpt202Project.interceptor.JwtInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

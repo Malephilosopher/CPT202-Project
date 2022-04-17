@@ -1,24 +1,17 @@
 package com.xjtlu.cpt202.cpt202Project.controller;
 
-import cn.hutool.http.HttpResponse;
 import com.alibaba.fastjson.JSON;
-import com.xjtlu.cpt202.cpt202Project.Exception.UserException;
-import com.xjtlu.cpt202.cpt202Project.Utils.JwtUtil;
+import com.xjtlu.cpt202.cpt202Project.exceptions.UserException;
+import com.xjtlu.cpt202.cpt202Project.util.JwtUtil;
 import com.xjtlu.cpt202.cpt202Project.entity.Audience;
-import com.xjtlu.cpt202.cpt202Project.entity.Comment;
 import com.xjtlu.cpt202.cpt202Project.entity.Result;
 import com.xjtlu.cpt202.cpt202Project.entity.User;
 import com.xjtlu.cpt202.cpt202Project.service.Impl.UserServiceImpl;
-import com.xjtlu.cpt202.cpt202Project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Key;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Objects;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
