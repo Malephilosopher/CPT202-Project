@@ -4,6 +4,7 @@ import com.xjtlu.cpt202.cpt202Project.service.Impl.UserServiceImpl;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class User {
+public class User implements Serializable {
 
 //    注册的时候要用到的
     private Integer id;

@@ -24,7 +24,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int saveUser(User u) {
-        return userMapper.addUser(u);
+        User user = userMapper.addUser(u);
+        return user == null ? -1 : 1;
     }
 
 
@@ -42,7 +43,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public long getUserId(String username) {
         Object o = userMapper.getUserId(username);
-        System.out.println(o == null ? "null" : o);
         if(o == null){
             return -1;
         }else {
@@ -153,6 +153,10 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
+    public int getThumbNum(int blog_id) {
+        return userMapper.getThumbNum(blog_id);
+    }
 
 }
 

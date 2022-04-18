@@ -35,7 +35,7 @@ public class UserController {
      *
      */
     @GetMapping (value = "/getPerson")
-    public String getUser(@RequestParam (name = "id") int id) {
+    public String getUser(@RequestParam (name = "author_id") int id) {
         User user = userService.getUser(id);
         //点赞过的文章
         List<Integer> userLike = userService.getThumbUpId(id);
@@ -164,6 +164,13 @@ public class UserController {
                 return JSON.toJSONString(Result.create(300, "fail to thumb up"));
             }
         }
+    }
+
+    @PostMapping("/thumbArticleTwo")
+    public String thumbUp2(@RequestBody String blog) {
+        JSONObject object = JSONObject.parseObject(blog);
+        int blog_id = object.getIntValue("blog_id");
+        return JSON.toJSONString(Result.create(200, "get thumb up number", userService.getThumbNum(blog_id)));
     }
 
 
