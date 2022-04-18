@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,11 +28,24 @@ public class UserController {
     @Autowired
     private Audience audience;
 
-    
+    /**
+     * 个人详情页获取用户信息+点赞/收藏/创作过的文章
+     * @param id 用户id
+     * @return 用户信息+点赞/收藏/创作过的文章
+     *
+     */
     @GetMapping (value = "/getPerson")
     public String getUser(@RequestParam (name = "id") int id) {
         User user = userService.getUser(id);
-        Result result = Result.create(200, "get user successful", user);
+        //点赞过的文章
+        List<Integer> userLike = userService.getThumbUpId(id);
+        //收藏的文章
+        List<Integer> userCollect = userService.getCollectId(id);
+        //创作的文章
+        List<Integer> userCreate = userService.getCreateId(id);
+
+        Result result = Result.create(200, "get user successful", List.of(user, userLike, userCollect, userCreate));
+        log.info("获取" + user.getUsername() + "用户信息成功");
         return JSON.toJSONString(result);
     }
 //
@@ -119,7 +133,7 @@ public class UserController {
      */
     @GetMapping (value = "/getLikeBlogs")
     public String like(@RequestParam (name = "userid") int id) {
-        List<Integer> userLike = userService.getThumbUp(id);
+        List<Integer> userLike = userService.getThumbUpId(id);
         return JSON.toJSONString(Result.create(200, "get user thumb up blog successfully", userLike));
     }
 
@@ -130,7 +144,7 @@ public class UserController {
         int user_id = object.getIntValue("user_id");
         int blog_id = object.getIntValue("blog_id");
         int success = userService.thumbUp(user_id, blog_id);
-        List<Integer> userLike = userService.getThumbUp(user_id);
+        List<Integer> userLike = userService.getThumbUpId(user_id);
         if (userLike.contains(blog_id)) {
             userService.notThumbUp(user_id, blog_id);
             return JSON.toJSONString(Result.create(200, "not thumb up"));

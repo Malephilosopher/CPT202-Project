@@ -14,7 +14,7 @@ public interface UserService {
 
     long getUserId(String username);
 
-    List<Integer> getThumbUp(int id);
+    List<Integer> getThumbUpId(int id);
 
     //点赞功能
     int thumbUp(int user_id, int blog_id);
@@ -22,6 +22,7 @@ public interface UserService {
     //取消点赞
     int notThumbUp(int user_id, int blog_id);
 
+    List<Integer> getCollectId(int user_id);
 //    change and get method of [username, password, email, gender, grade, major].
 //   have not finished yet
 
@@ -45,8 +46,10 @@ public interface UserService {
     String changeUserGrade(int id, String newGrade);
     String getUserGrade(int id);
 
+    List<Integer> getCreateId(int id);
 
-//    List<Integer> getThumbUp(int id);
+
+//    List<Integer> getThumbUpId(int id);
 
 
 //    List<User> getFanNumber(int id);
