@@ -43,9 +43,9 @@ public class CommentController {
     @PostMapping("/sendComment")
     public String addComment(@RequestBody String comment) {
         Comment comm = JSON.parseObject(comment, Comment.class);
-        comm.setPostTime(LocalDateTime.now());
+        comm.setPost_time(LocalDateTime.now());
         //暂时只做一级评论
-        comm.setParentCommentId(0);
+        comm.setParent_comment_id(0);
         int result = commentService.addComment(comm);
         if("".equals(comm.getContent())||comm.getContent()==null){
             return JSON.toJSONString(Result.fail("Comment add failed"));

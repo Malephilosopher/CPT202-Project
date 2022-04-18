@@ -17,21 +17,21 @@ public class Comment implements Serializable {
 
     private int Id;
     //the id of the blog that the comment belongs to
-    private int blogId;
+    private int blog_id;
 
-    private int authorId;
+    private int author_id;
 
     private String userName;
 
     private String content;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime postTime;
+    private LocalDateTime post_time;
 
     //replies
     private List<Comment> replyComments = new ArrayList<>();
 
-    private int parentCommentId;
+    private int parent_comment_id;
 
     public void setContent(String content) {
         if(content != null){

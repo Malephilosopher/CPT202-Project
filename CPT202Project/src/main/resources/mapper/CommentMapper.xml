@@ -31,7 +31,7 @@
 
     <insert id="insert" parameterType="com.xjtlu.cpt202.cpt202Project.entity.Comment">
         insert into CPT202.comment (blog_id,content,post_time,author_id,parent_comment_id)
-        values (#{blogId},#{content},#{postTime},#{authorId},#{parentCommentId});
+        values (#{blog_id},#{content},#{post_time},#{author_id},#{parent_comment_id});
     </insert>
 
 </mapper>
