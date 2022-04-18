@@ -53,6 +53,6 @@ public interface UserService {
 
 
 //    List<User> getFanNumber(int id);
-    
-    
+
+    int getThumbNum(int blog_id);
 }

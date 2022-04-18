@@ -84,7 +84,8 @@
     <insert id="addLike" >
         insert into CPT202.user_like (user_id, blog_id)
         values ( #{user_id}, #{blog_id});
-        update CPT202.user set like_num = (select like_num from CPT202.user where id = #{id}) + 1 where id = #{id};
+        update CPT202.user set like_blog = (select like_num from CPT202.user where id = #{user_id}) + 1 where id = #{user_id};
+        update CPT202.blog set num_like = (select like_num from CPT202.blog where id = #{blog_id}) + 1 where id = #{blog_id};
     </insert>
 
 
@@ -94,6 +95,10 @@
         delete from CPT202.user_like where user_id = #{user_id} and blog_id = #{blog_id};
     </delete>
 
+    <!--    List<Integer> getThumbUser(int blog_id);-->
+    <select id="getThumbNum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select num_like from CPT202.blog where id = #{blog_id};
+    </select>
 
 
 </mapper>

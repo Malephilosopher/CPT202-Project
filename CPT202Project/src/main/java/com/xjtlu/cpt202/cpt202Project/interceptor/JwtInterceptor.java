@@ -31,7 +31,8 @@ public class JwtInterceptor  extends HandlerInterceptorAdapter {
 //            }
 //        }
 
-        if (HttpMethod.OPTIONS.equals(request.getMethod())) {
+        //放行OPTIONS请求
+        if (HttpMethod.OPTIONS.toString().equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
             return true;
         }
