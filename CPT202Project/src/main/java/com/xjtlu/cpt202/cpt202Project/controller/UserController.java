@@ -61,10 +61,9 @@ public class UserController {
 //    }
 
 
-//login
 
     /**
-     * 登陆
+     * 登陆 login
      * @param json
      * @return 成功信息或失败信息
      */
@@ -106,7 +105,7 @@ public class UserController {
 
 
     /**
-     * 添加用户
+     * 注册 registration
      * @param user
      * @return 成功或失败信息
      */
@@ -129,30 +128,40 @@ public class UserController {
     /**
      * 获取用户点赞文章
      * @param id
-     * @return
+     * @return 用户点赞过的所有文章id
      */
     @GetMapping (value = "/getLikeBlogs")
     public String like(@RequestParam (name = "userid") int id) {
         List<Integer> userLike = userService.getThumbUpId(id);
+        log.info("获取user (" + id +") 点赞过的文章");
         return JSON.toJSONString(Result.create(200, "get user thumb up blog successfully", userLike));
     }
 
 
+    /**
+     * 点赞功能
+     * @param user_like（user_id + blog_id）
+     * @return code + message(thumb up or not thumb up)
+     * 若无点赞记录时在user_like表中加入一条点赞记录；
+     * 若点赞记录已存在则取消点赞。
+     */
     @PostMapping("/thumbArticleOne")
-    public String thumbup(@RequestBody String user_like) {
+    public String thumbUp(@RequestBody String user_like) {
         JSONObject object = JSONObject.parseObject(user_like);
         int user_id = object.getIntValue("user_id");
         int blog_id = object.getIntValue("blog_id");
-        int success = userService.thumbUp(user_id, blog_id);
         List<Integer> userLike = userService.getThumbUpId(user_id);
         if (userLike.contains(blog_id)) {
+            log.info("点赞记录已存在， 取消点赞");
             userService.notThumbUp(user_id, blog_id);
             return JSON.toJSONString(Result.create(200, "not thumb up"));
         } else {
+            int success = userService.thumbUp(user_id, blog_id);
             if (success == 1) {
+                log.info("点赞成功");
                 return JSON.toJSONString(Result.create(200, "thumb up successfully"));
             } else {
-                return JSON.toJSONString(Result.create(300, "failed to thumb up"));
+                return JSON.toJSONString(Result.create(300, "fail to thumb up"));
             }
         }
     }

@@ -6,25 +6,33 @@ import com.xjtlu.cpt202.cpt202Project.entity.User;
 
 public interface UserService {
 
-    //    save new user
+//    储存新用户
     int saveUser(User u);
 
-    //    get the information of a certain user
+//    获取用户信息
     User getUser(int id);
 
+//    通过用户名获得用户id
     long getUserId(String username);
 
+//    获取用户点赞过的所有点赞信息
     List<Integer> getThumbUpId(int id);
 
-    //点赞功能
+//    点赞功能
     int thumbUp(int user_id, int blog_id);
 
-    //取消点赞
+//    取消点赞
     int notThumbUp(int user_id, int blog_id);
 
+//    获取收藏额信息
     List<Integer> getCollectId(int user_id);
+
+//    获取用户创作的文章id
+    List<Integer> getCreateId(int id);
+
+//    获取和修改用户具体信息
 //    change and get method of [username, password, email, gender, grade, major].
-//   have not finished yet
+
 
     //    username
     String changeUserName(int id, String newName);
@@ -46,12 +54,11 @@ public interface UserService {
     String changeUserGrade(int id, String newGrade);
     String getUserGrade(int id);
 
-    List<Integer> getCreateId(int id);
 
 
-//    List<Integer> getThumbUpId(int id);
 
 
+//    获取用户粉丝id
 //    List<User> getFanNumber(int id);
     
     

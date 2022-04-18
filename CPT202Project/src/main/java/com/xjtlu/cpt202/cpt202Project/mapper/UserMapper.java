@@ -20,34 +20,33 @@ public interface UserMapper {
     //    查询全部用户id
     List<Integer> getUserIdList();
 
-    //    用户点赞的文章
-    List<Integer> getThumbUpId(int id);
-
-    //    增加新用户
-    int addUser(User u);
-
     //    根据id在数据库里查询用户
-    //    两种连接mysql的方法：
-
     User findUserById(int id);
-//    User findById(@Param("id") int userId);
-
-    void updateUser(User u);
-
-
-    //    删除用户
-    int deleteUser(User u);
 
     //    根据用户名查询用户id
     Object getUserId(String username);
 
+    //    增加新用户
+    int addUser(User u);
+    //    更新用户信息
+    int updateUser(User u);
+
+    //    删除用户
+    int deleteUser(User u);
+
+    //    获取用户点赞过的所有文章
+    List<Integer> getThumbUpId(int id);
+
     //    插入点赞记录
     int addLike(int user_id, int blog_id);
 
+    //    取消点赞记录
     int cancelLike(int user_id, int blog_id);
 
+    //    获取用户点赞过的文章id
     List<Integer> getCollectId(int user_id);
 
+    //    获取用户创作的文章id
     List<Integer> getCreateId(int id);
 
 //    List<User> findAllFans(int id);
