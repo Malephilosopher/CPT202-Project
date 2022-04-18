@@ -51,8 +51,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Integer> getThumbUp(int id) {
-        return userMapper.getThumbUp(id);
+    public List<Integer> getThumbUpId(int id) {
+        return userMapper.getThumbUpId(id);
     }
 
     @Override
@@ -63,6 +63,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public int notThumbUp(int user_id, int blog_id) {
         return userMapper.cancelLike(user_id, blog_id);
+    }
+
+    @Override
+    public List<Integer> getCollectId(int user_id){
+        return userMapper.getCollectId(user_id);
     }
 
     @Override
@@ -136,7 +141,10 @@ public class UserServiceImpl implements UserService {
         return getUser(id).getGrade();
     }
 
-
+    @Override
+    public List<Integer> getCreateId(int id) {
+        return userMapper.getCreateId(id);
+    }
 
 
 }

@@ -21,7 +21,7 @@ public interface UserMapper {
     List<Integer> getUserIdList();
 
     //    用户点赞的文章
-    List<Integer> getThumbUp(int id);
+    List<Integer> getThumbUpId(int id);
 
     //    增加新用户
     int addUser(User u);
@@ -45,6 +45,10 @@ public interface UserMapper {
     int addLike(int user_id, int blog_id);
 
     int cancelLike(int user_id, int blog_id);
+
+    List<Integer> getCollectId(int user_id);
+
+    List<Integer> getCreateId(int id);
 
 //    List<User> findAllFans(int id);
 

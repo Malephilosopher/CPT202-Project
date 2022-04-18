@@ -60,16 +60,31 @@
     </delete>
 
 
-
-    <select id="getThumbUp" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-        select blog_id from user_like where user_id = #{id};
+    <!--List<Integer> getThumbUpId(int id);-->
+    <!--获取用户点赞过的文章id-->
+    <select id="getThumbUpId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select blog_id from CPT202.user_like where user_id = #{id};
     </select>
+
+    <!--List<Integer> getCollectId(int id);-->
+    <!--获取用户收藏的文章id-->
+    <select id="getCollectId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select blog_id from CPT202.user_fav where user_id = #{id};
+    </select>
+
+    <!--List<Integer> getCreateId(int id);-->
+    <!--获取用户创作的文章id-->
+    <select id="getCreateId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select id from CPT202.blog where author_id = #{id};
+    </select>
+
 
     <!--    int addLike(int user_id, int blog_id);-->
     <!--    增加点赞记录-->
     <insert id="addLike" >
         insert into CPT202.user_like (user_id, blog_id)
         values ( #{user_id}, #{blog_id});
+        update CPT202.user set like_num = (select like_num from CPT202.user where id = #{id}) + 1 where id = #{id};
     </insert>
 
 
