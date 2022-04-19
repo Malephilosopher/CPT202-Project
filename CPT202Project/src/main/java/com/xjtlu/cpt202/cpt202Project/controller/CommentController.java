@@ -46,10 +46,10 @@ public class CommentController {
         comm.setPost_time(LocalDateTime.now());
         //暂时只做一级评论
         comm.setParent_comment_id(0);
-        int result = commentService.addComment(comm);
         if("".equals(comm.getContent())||comm.getContent()==null){
             return JSON.toJSONString(Result.fail("Comment add failed"));
         }
+        int result = commentService.addComment(comm);
         if(result ==1){
             log.info("添加"+comm.getContent() +"添加评论成功");
             return JSON.toJSONString(Result.success("Comment add successfully"));
