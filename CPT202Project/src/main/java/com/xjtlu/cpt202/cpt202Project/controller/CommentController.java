@@ -1,8 +1,10 @@
 package com.xjtlu.cpt202.cpt202Project.controller;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import  com.xjtlu.cpt202.cpt202Project.entity.Comment;
 import com.xjtlu.cpt202.cpt202Project.entity.Result;
 import com.xjtlu.cpt202.cpt202Project.service.Impl.CommentServiceImpl;
+import com.xjtlu.cpt202.cpt202Project.service.Impl.UserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +18,8 @@ public class CommentController {
 
     @Autowired
     private CommentServiceImpl commentService;
-
+    @Autowired
+    private UserServiceImpl userService;
     /**
      * 展示博客下的所有评论
      * @param blogId
@@ -42,7 +45,13 @@ public class CommentController {
      */
     @PostMapping("/sendComment")
     public String addComment(@RequestBody String comment) {
-        Comment comm = JSON.parseObject(comment, Comment.class);
+        JSONObject js =  JSONObject.parseObject(comment);
+
+        Comment comm = new Comment();
+        comm.setBlog_id(js.getIntValue("blogId"));
+        comm.setAuthor_id(js.getIntValue("authorId"));
+        comm.setContent(js.getString("comment"));
+        comm.setUserName(userService.getUserName(js.getIntValue("authorId")));
         comm.setPost_time(LocalDateTime.now());
         //暂时只做一级评论
         comm.setParent_comment_id(0);

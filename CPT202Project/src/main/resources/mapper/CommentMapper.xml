@@ -39,8 +39,8 @@
         <selectKey keyProperty="id" resultType="int" order="AFTER">
             select LAST_INSERT_ID();
         </selectKey>
-        insert into CPT202.comment (blog_id,content,post_time,author_id,parent_comment_id)
-        values (#{blog_id},#{content},#{post_time},#{author_id},#{parent_comment_id});
+        insert into CPT202.comment (blog_id,content,post_time,author_id,parent_comment_id,username)
+        values (#{blog_id},#{content},#{post_time},#{author_id},#{parent_comment_id},#{userName});
     </insert>
 
 </mapper>
