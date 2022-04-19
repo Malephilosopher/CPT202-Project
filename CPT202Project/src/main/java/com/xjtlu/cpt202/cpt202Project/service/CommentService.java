@@ -13,5 +13,7 @@ public interface CommentService {
 
     int deleteComment(int commentId);
 
+    int getCommentNumber(int blogId);
+
 }
 

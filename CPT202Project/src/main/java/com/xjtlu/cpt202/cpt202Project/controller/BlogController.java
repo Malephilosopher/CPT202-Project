@@ -120,7 +120,20 @@ public class BlogController {
         }
     }
 
-
+    @PostMapping("/keyWords")
+    public String QueryBlogs(@RequestBody String information){
+        JSONObject jsonObject = JSONObject.parseObject(information);
+        // 获取到key为shoppingCartItemList的值
+        String keyword = jsonObject.getString("keyword");
+        if(keyword==null){
+            return JSON.toJSONString(Result.create(300,"keyword can't be null"));
+        }
+        List<Blog> blog_list = blogService.searchBlogs(keyword);
+        if (blog_list==null){
+            JSON.toJSONString(Result.fail("Get blog_list failed"));
+        }
+        return JSON.toJSONString(Result.create(200,"Get Blog_list information success", blog_list));
+    }
 
 
 }

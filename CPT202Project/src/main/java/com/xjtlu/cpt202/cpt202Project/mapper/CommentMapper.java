@@ -32,6 +32,13 @@ public interface CommentMapper  {
     Comment findById(@Param("CommentId") int commentId);
 
     /**
+     *
+     * @param blogId
+     * @return int 文章下评论数
+     */
+    Integer getCommentCount(@Param("blogId") int blogId);
+
+    /**
      * 删除评论
      * @param commentId
      * @return int：1表成功删除

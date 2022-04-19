@@ -34,7 +34,12 @@ public interface BlogMapper {
      * @return
      */
     int deleteBlog(int blog_id);
+
+
+/**
+     * 根据关键字找到blog列表
+     * @param keyword
+     * @return
+     */
+    List<Blog> selectBlogByKeywords(String keyword);
 }
-
-
-
