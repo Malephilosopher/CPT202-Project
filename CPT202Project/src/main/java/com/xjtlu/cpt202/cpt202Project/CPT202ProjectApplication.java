@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication
 @CrossOrigin
-//@EnableCaching
+@EnableCaching
 public class CPT202ProjectApplication {
     public static void main(String[] args) {
         SpringApplication.run(CPT202ProjectApplication.class, args);

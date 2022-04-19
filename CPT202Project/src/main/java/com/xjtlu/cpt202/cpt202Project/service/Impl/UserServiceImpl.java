@@ -24,8 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int saveUser(User u) {
-        User user = userMapper.addUser(u);
-        return user == null ? -1 : 1;
+         return userMapper.addUser(u);
     }
 
 
@@ -57,12 +56,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int thumbUp(int user_id, int blog_id) {
-        return userMapper.addLike(user_id, blog_id);
+        int success = userMapper.addLike(user_id, blog_id);
+        User u = userMapper.findUserById(user_id);
+        u.setLike_blog(u.getLike_blog()+1);
+        userMapper.updateUser(u);
+        return success;
     }
 
     @Override
     public int notThumbUp(int user_id, int blog_id) {
-        return userMapper.cancelLike(user_id, blog_id);
+        int success = userMapper.cancelLike(user_id, blog_id);
+        User u = userMapper.findUserById(user_id);
+        u.setLike_blog(u.getLike_blog()-1);
+        userMapper.updateUser(u);
+        return success;
     }
 
     @Override

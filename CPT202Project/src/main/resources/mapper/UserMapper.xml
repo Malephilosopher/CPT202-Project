@@ -12,21 +12,17 @@
     <!--    数据库未知 暂用mysql.User-->
 
 
-    <!--    返回所有用户的信息-->
-    <select id="getUser" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
-        select * from CPT202.user where ;
+    <!--    List<User> getUserList();-->
+    <!--    获取所有用户-->
+    <select id="getUserList" resultType="com.xjtlu.cpt202.cpt202Project.entity.User">
+        select * from CPT202.user;
     </select>
 
 
 <!--    List<Integer> getUserIdList();-->
+    <!--    获取所有用户id列表-->
     <select id="getUserIdList" resultType="java.lang.Integer">
         select id from CPT202.user;
-    </select>
-
-
-<!--    Object getUserId(String username);-->
-    <select id="getUserId" resultType="java.lang.Object">
-        select u.id from CPT202.user u where username = #{username};
     </select>
 
 
@@ -36,9 +32,14 @@
         select * from CPT202.user where id = #{id};
     </select>
 
+    <!--    Object getUserId(String username);-->
+    <select id="getUserId" resultType="java.lang.Object">
+        select u.id from CPT202.user u where username = #{username};
+    </select>
+
     <!--    int addUser(User u);-->
     <!--    在数据库增加新用户-->
-    <insert id="addUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
+    <insert id="addUser"  parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
         insert into CPT202.user (id, username, password, email, gender,
                                  grade, major, like_blog, comment_num, fav_blog, num_fan)
         values (#{id}, #{username}, #{password}, #{email}, #{gender},
@@ -49,11 +50,11 @@
     <!--    在数据库改用户名-->
     <update id="updateUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
         update CPT202.user set username=#{username}, password=#{password}, email=#{email}, gender=#{gender},
-        grade=#{grade}, major=#{major}, born_time=#{born_time} where id = #{id};
+                               grade=#{grade}, major=#{major}, like_blog=#{like_blog}, comment_num=#{comment_num}, fav_blog=#{fav_blog}, num_fan=#{num_fan} where id = #{id};
     </update>
 
 
-    <!--    void changeUsername(User u)-->
+    <!--    int deleteUser(User u);-->
     <!--    在数据库删除用户-->
     <delete id="deleteUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
         delete from CPT202.user where id = #{id};
@@ -81,17 +82,15 @@
 
     <!--    int addLike(int user_id, int blog_id);-->
     <!--    增加点赞记录-->
-    <insert id="addLike" >
+    <insert id="addLike" parameterType="java.lang.Integer">
         insert into CPT202.user_like (user_id, blog_id)
         values ( #{user_id}, #{blog_id});
-        update CPT202.user set like_blog = (select like_num from CPT202.user where id = #{user_id}) + 1 where id = #{user_id};
-        update CPT202.blog set num_like = (select like_num from CPT202.blog where id = #{blog_id}) + 1 where id = #{blog_id};
     </insert>
 
 
     <!--    int cancelLike(int user_id, int blog_id);-->
     <!--    在数据库删除用户-->
-    <delete id="cancelLike" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
+    <delete id="cancelLike" parameterType="java.lang.Integer">
         delete from CPT202.user_like where user_id = #{user_id} and blog_id = #{blog_id};
     </delete>
 

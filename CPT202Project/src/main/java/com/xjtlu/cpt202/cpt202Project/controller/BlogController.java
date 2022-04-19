@@ -1,10 +1,12 @@
 package com.xjtlu.cpt202.cpt202Project.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.xjtlu.cpt202.cpt202Project.entity.*;
 import com.xjtlu.cpt202.cpt202Project.service.BlogService;
 import com.xjtlu.cpt202.cpt202Project.service.CommentService;
 import com.xjtlu.cpt202.cpt202Project.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +18,9 @@ import java.util.*;
 
 
 @RestController
+@Slf4j
 public class BlogController {
+
     @Autowired
     private BlogService blogService;
     @Autowired
@@ -80,6 +84,42 @@ public class BlogController {
         }
         return JSON.toJSONString(Result.create(200,"Get Blog_list information success", blog_list));
     }
+
+    @PostMapping("/thumbArticleTwo")
+    public String thumbUp2(@RequestBody String blog) {
+        JSONObject object = JSONObject.parseObject(blog);
+        int blog_id = object.getIntValue("blog_id");
+        return JSON.toJSONString(Result.create(200, "get thumb up number", userService.getThumbNum(blog_id)));
+    }
+
+    /**
+     * 点赞功能
+     * @param user_like（user_id + blog_id）
+     * @return code + message(thumb up or not thumb up)
+     * 若无点赞记录时在user_like表中加入一条点赞记录；
+     * 若点赞记录已存在则取消点赞。
+     */
+    @PostMapping("/thumbArticleOne")
+    public String thumbup(@RequestBody String user_like) {
+        JSONObject object = JSONObject.parseObject(user_like);
+        int user_id = object.getIntValue("user_id");
+        int blog_id = object.getIntValue("blog_id");
+        List<Integer> userLike = userService.getThumbUpId(user_id);
+        if (userLike.contains(blog_id)) {
+            log.info("点赞记录已存在， 取消点赞");
+            userService.notThumbUp(user_id, blog_id);
+            return JSON.toJSONString(Result.create(200, "not thumb up"));
+        } else {
+            int success = userService.thumbUp(user_id, blog_id);
+            if (success == 1) {
+                log.info("点赞成功");
+                return JSON.toJSONString(Result.create(200, "thumb up successfully"));
+            } else {
+                return JSON.toJSONString(Result.create(300, "fail to thumb up"));
+            }
+        }
+    }
+
 
 
 
