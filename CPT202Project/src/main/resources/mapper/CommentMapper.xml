@@ -25,11 +25,20 @@
         order by c.post_time desc
     </select>
 
+    <select id="getCommentCount" resultType="Integer">
+        select count(id)
+        from CPT202.comment c where
+            c.blog_id = #{blogId}
+    </select>
+
     <delete id="deleteComment" >
         delete from comment where id = #{commentId}
     </delete>
 
     <insert id="insert" parameterType="com.xjtlu.cpt202.cpt202Project.entity.Comment">
+        <selectKey keyProperty="id" resultType="int" order="AFTER">
+            select LAST_INSERT_ID();
+        </selectKey>
         insert into CPT202.comment (blog_id,content,post_time,author_id,parent_comment_id)
         values (#{blog_id},#{content},#{post_time},#{author_id},#{parent_comment_id});
     </insert>

@@ -79,5 +79,9 @@ public class CommentServiceImpl implements CommentService {
        return  commentMapper.deleteComment(commentId);
 
     }
+    @Override
+    public  int getCommentNumber(int blogId){
+        return commentMapper.getCommentCount(blogId);
+    }
 
 }

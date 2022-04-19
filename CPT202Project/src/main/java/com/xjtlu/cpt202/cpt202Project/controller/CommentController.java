@@ -50,9 +50,10 @@ public class CommentController {
             return JSON.toJSONString(Result.fail("Comment add failed"));
         }
         int result = commentService.addComment(comm);
+        int id = comm.getId();
         if(result ==1){
             log.info("添加"+comm.getContent() +"添加评论成功");
-            return JSON.toJSONString(Result.success("Comment add successfully"));
+            return JSON.toJSONString(Result.success("Comment add successfully",id));
         }
         else{
             return JSON.toJSONString(Result.fail("Comment add failed"));
@@ -80,5 +81,16 @@ public class CommentController {
         } else {
             return JSON.toJSONString(Result.fail("Comment delete fail"));
         }
+    }
+
+    /**
+     *
+     * @param blogId
+     * @return 获取成功：Result code:200, message:Get comment count data: comment num
+     */
+    @GetMapping("/getCommentNum/{blogId}")
+    public String getNum(@PathVariable int blogId) {
+        int num  =commentService.getCommentNumber(blogId);
+        return  JSON.toJSONString(Result.create(200,"Get comment count",num));
     }
 }
