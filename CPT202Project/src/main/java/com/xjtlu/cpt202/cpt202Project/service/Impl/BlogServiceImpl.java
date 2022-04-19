@@ -41,5 +41,6 @@ public class BlogServiceImpl implements BlogService {
         return blogMapper.deleteBlog(blog_id);
 
     }
-
+    @Override
+    public List<Blog> searchBlogs(String keyword){return blogMapper.selectBlogByKeywords(keyword); }
 }
