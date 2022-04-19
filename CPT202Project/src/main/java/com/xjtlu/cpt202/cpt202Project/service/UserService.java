@@ -61,5 +61,5 @@ public interface UserService {
 //    获取用户粉丝id
 //    List<User> getFanNumber(int id);
 
-    int getThumbNum(int blog_id);
+    Integer getThumbNum(int blog_id);
 }

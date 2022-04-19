@@ -39,7 +39,7 @@ public interface UserMapper {
     //    更新用户信息
     int updateUser(User u);
 
-    int getThumbNum(int blog_id);
+    Integer getThumbNum(int blog_id);
 
     //    获取用户点赞过的所有文章
     List<Integer> getThumbUpId(int id);

@@ -154,7 +154,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int getThumbNum(int blog_id) {
+    public Integer getThumbNum(int blog_id) {
         return userMapper.getThumbNum(blog_id);
     }
 
