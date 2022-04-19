@@ -24,8 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int saveUser(User u) {
-        User user = userMapper.addUser(u);
-        return user == null ? -1 : 1;
+         return userMapper.addUser(u);
     }
 
 
@@ -60,6 +59,7 @@ public class UserServiceImpl implements UserService {
         int success = userMapper.addLike(user_id, blog_id);
         User u = userMapper.findUserById(user_id);
         u.setLike_blog(u.getLike_blog()+1);
+        userMapper.updateUser(u);
         return success;
     }
 
@@ -68,6 +68,7 @@ public class UserServiceImpl implements UserService {
         int success = userMapper.cancelLike(user_id, blog_id);
         User u = userMapper.findUserById(user_id);
         u.setLike_blog(u.getLike_blog()-1);
+        userMapper.updateUser(u);
         return success;
     }
 
@@ -75,12 +76,6 @@ public class UserServiceImpl implements UserService {
     public List<Integer> getCollectId(int user_id){
         return userMapper.getCollectId(user_id);
     }
-
-    @Override
-    public List<Integer> getCreateId(int id) {
-        return userMapper.getCreateId(id);
-    }
-
 
     @Override
     public String changeUserName(int id, String newName) {
@@ -97,6 +92,7 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    //    to be finished
     @Override
     public String changeUserPassword(int id, String newPassword) {
         User u = userMapper.findUserById(id);
@@ -152,6 +148,10 @@ public class UserServiceImpl implements UserService {
         return getUser(id).getGrade();
     }
 
+    @Override
+    public List<Integer> getCreateId(int id) {
+        return userMapper.getCreateId(id);
+    }
 
     @Override
     public int getThumbNum(int blog_id) {
