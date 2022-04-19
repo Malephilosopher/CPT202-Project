@@ -42,5 +42,4 @@ public interface BlogMapper {
      * @return
      */
     List<Blog> selectBlogByKeywords(String keyword);
-
 }
