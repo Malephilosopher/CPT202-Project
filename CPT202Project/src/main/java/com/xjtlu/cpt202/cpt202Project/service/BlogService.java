@@ -18,4 +18,5 @@ public interface BlogService {
     public  Blog findBlogById(int id);
 
     public int deleteBlog(int blog_id);
+    List<Blog> searchBlogs(String keyword);
 }

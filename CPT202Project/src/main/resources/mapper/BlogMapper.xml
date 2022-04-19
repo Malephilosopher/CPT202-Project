@@ -49,6 +49,15 @@
         order by post_time
     </select>
 
-
+    <select id="selectBlogByKeywords" resultType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
+        select *
+        from CPT202.blog
+        <where>
+            <if test="keyword != null">
+                and title regexp #{keyword}
+            </if>
+        </where>
+        order by CPT202.blog.post_time desc
+    </select>
 
 </mapper>
