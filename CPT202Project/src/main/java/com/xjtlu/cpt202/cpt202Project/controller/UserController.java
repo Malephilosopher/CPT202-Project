@@ -139,6 +139,36 @@ public class UserController {
     }
 
 
+    @PostMapping("/collectNum")
+    public String getCollectNum(@RequestBody String blog) {
+        JSONObject object = JSONObject.parseObject(blog);
+        int blog_id = object.getIntValue("blog_id");
+        return JSON.toJSONString(Result.create(200, "get the number of collect", userService.getCollectNum(blog_id)));
+    }
+
+
+    @PostMapping("/collect")
+    public String collectBlog(@RequestBody String user_fav) {
+        JSONObject object = JSONObject.parseObject(user_fav);
+        int user_id = object.getIntValue("user_id");
+        int blog_id = object.getIntValue("blog_id");
+        List<Integer> userCollect = userService.getCollectId(user_id);
+        if (userCollect.contains(blog_id)) {
+            log.info("已收藏， 取消收藏");
+            userService.notCollect(user_id, blog_id);
+            return JSON.toJSONString(Result.create(200, "cancel collection"));
+        } else {
+            int success = userService.Collect(user_id, blog_id);
+            if (success == 1) {
+                log.info("收藏成功");
+                return JSON.toJSONString(Result.create(200, "collect successfully"));
+            } else {
+                return JSON.toJSONString(Result.create(300, "fail to collect"));
+            }
+        }
+    }
+
+
 
 
 

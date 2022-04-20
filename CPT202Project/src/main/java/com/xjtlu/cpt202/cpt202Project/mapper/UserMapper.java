@@ -62,6 +62,28 @@ public interface UserMapper {
     //    获取用户创作的文章id
     List<Integer> getCreateId(int id);
 
+    //    增加文章点赞数量
+    int addLikeNum(int blog_id);
+
+    //    减少文章点赞数量
+    int reduceLikeNum(int blog_id);
+
+    //    插入收藏记录
+    int addCollect(int user_id, int blog_id);
+
+    //    取消收藏记录
+    int cancelCollect(int user_id, int blog_id);
+
+    //    增加文章收藏数量
+    int addCollectNum(int blog_id);
+
+    //    减少文章收藏数量
+    int reduceCollectNum(int blog_id);
+
+    //    获取收藏数量
+    Integer getCollectNum(int blog_id);
+
+
 //    List<User> findAllFans(int id);
 
 

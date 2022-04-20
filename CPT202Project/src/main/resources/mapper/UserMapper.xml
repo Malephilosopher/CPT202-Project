@@ -94,10 +94,62 @@
         delete from CPT202.user_like where user_id = #{user_id} and blog_id = #{blog_id};
     </delete>
 
-    <!--    List<Integer> getThumbUser(int blog_id);-->
+
     <select id="getThumbNum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         select num_like from CPT202.blog where id = #{blog_id};
     </select>
+
+
+    <!--    int addLikeNum(int blog_id);-->
+    <!--    增加文章的点赞数量-->
+    <update id="addLikeNum" parameterType="java.lang.Integer">
+        update CPT202.blog set num_like = num_like + 1 where id = #{blog_id};
+    </update>
+
+    <!--    int reduceLikeNum(int blog_id);-->
+    <!--    减少文章的点赞数量-->
+    <update id="reduceLikeNum" parameterType="java.lang.Integer">
+        update CPT202.blog set num_like = num_like - 1 where id = #{blog_id};
+    </update>
+
+
+
+
+
+
+
+
+    <!--    int addCollect(int user_id, int blog_id);-->
+    <!--    增加收藏记录-->
+    <insert id="addCollect" parameterType="java.lang.Integer">
+        insert into CPT202.user_fav (user_id, blog_id)
+        values ( #{user_id}, #{blog_id});
+    </insert>
+
+
+    <!--    int cancelCollect(int user_id, int blog_id);-->
+    <!--    删除收藏记录-->
+    <delete id="cancelCollect" parameterType="java.lang.Integer">
+        delete from CPT202.user_fav where user_id = #{user_id} and blog_id = #{blog_id};
+    </delete>
+
+
+
+    <select id="getCollectNum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select num_fav from CPT202.blog where id = #{blog_id};
+    </select>
+
+    <!--    int addCollectNum(int blog_id);-->
+    <!--    增加文章的收藏数量-->
+    <update id="addCollectNum" parameterType="java.lang.Integer">
+        update CPT202.blog set num_fav = num_fav + 1 where id = #{blog_id};
+    </update>
+
+    <!--    int reduceCollectNum(int blog_id);-->
+    <!--    减少文章的收藏数量-->
+    <update id="reduceCollectNum" parameterType="java.lang.Integer">
+        update CPT202.blog set num_fav = num_fav - 1 where id = #{blog_id};
+    </update>
 
 
 </mapper>

@@ -24,8 +24,20 @@ public interface UserService {
 //    取消点赞
     int notThumbUp(int user_id, int blog_id);
 
+//    获取点赞数量
+    Integer getThumbNum(int blog_id);
+
 //    获取收藏额信息
     List<Integer> getCollectId(int user_id);
+
+//    收藏功能
+    int Collect(int user_id, int blog_id);
+
+//    取消收藏
+    int notCollect(int user_id, int blog_id);
+
+//    获取收藏数量
+    Integer getCollectNum(int blog_id);
 
 //    获取用户创作的文章id
     List<Integer> getCreateId(int id);
@@ -61,5 +73,5 @@ public interface UserService {
 //    获取用户粉丝id
 //    List<User> getFanNumber(int id);
 
-    Integer getThumbNum(int blog_id);
+
 }

@@ -60,6 +60,7 @@ public class UserServiceImpl implements UserService {
         User u = userMapper.findUserById(user_id);
         u.setLike_blog(u.getLike_blog()+1);
         userMapper.updateUser(u);
+        userMapper.addLikeNum(blog_id);
         return success;
     }
 
@@ -69,12 +70,38 @@ public class UserServiceImpl implements UserService {
         User u = userMapper.findUserById(user_id);
         u.setLike_blog(u.getLike_blog()-1);
         userMapper.updateUser(u);
+        userMapper.reduceLikeNum(blog_id);
         return success;
     }
 
     @Override
     public List<Integer> getCollectId(int user_id){
         return userMapper.getCollectId(user_id);
+    }
+
+    @Override
+    public int Collect(int user_id, int blog_id) {
+        int success = userMapper.addCollect(user_id, blog_id);
+        User u = userMapper.findUserById(user_id);
+        u.setFav_blog(u.getLike_blog()+1);
+        userMapper.updateUser(u);
+        userMapper.addCollectNum(blog_id);
+        return success;
+    }
+
+    @Override
+    public int notCollect(int user_id, int blog_id) {
+        int success = userMapper.cancelCollect(user_id, blog_id);
+        User u = userMapper.findUserById(user_id);
+        u.setFav_blog(u.getLike_blog()-1);
+        userMapper.updateUser(u);
+        userMapper.reduceCollectNum(blog_id);
+        return success;
+    }
+
+    @Override
+    public Integer getCollectNum(int blog_id) {
+        return userMapper.getCollectNum(blog_id);
     }
 
     @Override
