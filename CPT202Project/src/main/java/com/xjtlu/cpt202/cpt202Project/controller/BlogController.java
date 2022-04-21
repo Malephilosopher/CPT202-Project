@@ -49,9 +49,12 @@ public class BlogController {
         blog.setContent(info.getContent());
         blog.setPost_time(new Timestamp(Calendar.getInstance().getTimeInMillis()));
         blog.setEdit_time(new Timestamp(Calendar.getInstance().getTimeInMillis()));
-        blog.setNum_like(info.getNum_like());
-        blog.setNum_view(info.getNum_view());
+        blog.setNum_like(0);
+        blog.setNum_view(0);
         blogService.addBlog(blog);
+        if(blog.getTitle()==null||blog.getDescription()==null||blog.getContent()==null){
+            return JSON.toJSONString(Result.create(300,"Please complete title,description and content"));
+        }
 
         // 无错返回
         return JSON.toJSONString(Result.create(200,"create blog successfully"));
