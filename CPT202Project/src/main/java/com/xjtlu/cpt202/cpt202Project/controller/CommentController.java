@@ -21,7 +21,7 @@ public class CommentController {
     @Autowired
     private UserServiceImpl userService;
     /**
-     * 展示博客下的所有评论
+     * list comments of a blog
      * @param blogId
      * @return 展示成功：code:200, message:Comment list successfully, data: comments
      * @return 展示失败：code:300, message:Comments are not found
@@ -38,7 +38,7 @@ public class CommentController {
 
 
     /**
-     * 添加一条评论
+     * add a comment
      * @param comment
      * @return 添加成功：code:200, message:comment added successfully
      * @return 添加失败：code:300, message:comment add failed
@@ -75,7 +75,7 @@ public class CommentController {
     }
 
     /**
-     *
+     *delete a comment
      * @param blogId
      * @param commentId
      * @return 删除成功：code:200, message:comment delete successfully
