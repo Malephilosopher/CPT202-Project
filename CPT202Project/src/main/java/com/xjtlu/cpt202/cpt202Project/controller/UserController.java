@@ -105,6 +105,10 @@ public class UserController {
     public String addUser(@RequestBody String user) {
         User u = JSON.parseObject(user, User.class);
         log.info("user to be added: " + u.getUsername());
+        u.setLike_blog(0);
+        u.setFav_blog(0);
+        u.setComment_num(0);
+        u.setNum_fan(0);
         if(userService.getUserId(u.getUsername()) != -1){
             return JSON.toJSONString(Result.create(300, "username already exists, change another name"));
         }

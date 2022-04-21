@@ -50,6 +50,7 @@ public class BlogController {
         blog.setPost_time(new Timestamp(Calendar.getInstance().getTimeInMillis()));
         blog.setEdit_time(new Timestamp(Calendar.getInstance().getTimeInMillis()));
         blog.setNum_like(0);
+        blog.setNum_fav(0);
         blog.setNum_view(0);
         blogService.addBlog(blog);
         if(blog.getTitle()==null||blog.getDescription()==null||blog.getContent()==null){
