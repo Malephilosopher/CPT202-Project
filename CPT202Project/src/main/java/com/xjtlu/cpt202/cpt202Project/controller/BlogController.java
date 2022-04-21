@@ -28,9 +28,9 @@ public class BlogController {
     @Autowired
     private CommentService commentService;
 
-    //帖子创作
+    //create blog
     /**
-     * 帖子创作
+     * create blog
      * @param information
      * @return code + message
      */
@@ -39,9 +39,9 @@ public class BlogController {
         Blog info = JSON.parseObject(information, Blog.class);
         User user = userService.getUser(info.getAuthor_id());
         if (user == null) {
-            return JSON.toJSONString(Result.create(300,"User not logged in"));
+            return JSON.toJSONString(Result.create(300,"User not found"));
         }
-        //帖子上传数据库
+        //Upload blog to the database
         Blog blog = new Blog();
         blog.setAuthor_id(user.getId());
         blog.setTitle(info.getTitle());
@@ -56,35 +56,32 @@ public class BlogController {
         if(blog.getTitle()==null||blog.getDescription()==null||blog.getContent()==null){
             return JSON.toJSONString(Result.create(300,"Please complete title,description and content"));
         }
-
-        // 无错返回
+        // publish success
         return JSON.toJSONString(Result.create(200,"create blog successfully"));
     }
 
-    //文章详情
-
+    //get article details
     /**
-     * 文章详情
+     * article details
      * @param id
      * @return code + message + information of blog and user
      */
     @GetMapping("/getArticle")
     public String BlogPage(@RequestParam(value = "postId") int id) {
-        // 帖子信息
+        // blog information
         Blog blog = blogService.findBlogById(id);
         System.out.println(blog);
         if (blog == null) {
             return JSON.toJSONString(Result.create(300,"Can't find blog"));
         }
-
-        // 作者信息
+        //author information
         User user = userService.getUser(blog.getAuthor_id());
         return JSON.toJSONString(Result.create(200,"Get Blog information success", List.of(blog, user)));
 
     }
 
     /**
-     * 获取主页面
+     * get homepage
      * @param amount
      * @return code + message + blog list
      */
@@ -100,18 +97,15 @@ public class BlogController {
         return JSON.toJSONString(Result.create(200,"Get Blog_list information success", blog_list));
     }
 
-
-
-
     /**
-     * 搜索功能
+     * searching function
      * @param information
      * @return code + message + data : blog_list
      */
     @PostMapping("/keyWords")
     public String QueryBlogs(@RequestBody String information){
+        //unpack and get keyword
         JSONObject jsonObject = JSONObject.parseObject(information);
-        // 获取到key为shoppingCartItemList的值
         String keyword = jsonObject.getString("keyword");
         if(keyword==null){
             return JSON.toJSONString(Result.create(300,"keyword can't be null"));
@@ -123,10 +117,5 @@ public class BlogController {
         return JSON.toJSONString(Result.create(200,"Get Blog_list information success", blog_list));
     }
 
-
-
-
-
-
-
 }
+
