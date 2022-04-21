@@ -29,6 +29,11 @@ public class BlogController {
     private CommentService commentService;
 
     //帖子创作
+    /**
+     * 帖子创作
+     * @param information
+     * @return code + message
+     */
     @PostMapping("/create")
     public String addBlog(@RequestBody String information) {
         Blog info = JSON.parseObject(information, Blog.class);
@@ -53,6 +58,12 @@ public class BlogController {
     }
 
     //文章详情
+
+    /**
+     * 文章详情
+     * @param id
+     * @return code + message + information of blog and user
+     */
     @GetMapping("/getArticle")
     public String BlogPage(@RequestParam(value = "postId") int id) {
         // 帖子信息
@@ -71,7 +82,7 @@ public class BlogController {
     /**
      * 获取主页面
      * @param amount
-     * @return
+     * @return code + message + blog list
      */
     @GetMapping("/getContent")
     public String getHomePage(@RequestParam(value = "amount") int amount){
@@ -85,41 +96,14 @@ public class BlogController {
         return JSON.toJSONString(Result.create(200,"Get Blog_list information success", blog_list));
     }
 
-    @PostMapping("/thumbArticleTwo")
-    public String thumbUp2(@RequestBody String blog) {
-        JSONObject object = JSONObject.parseObject(blog);
-        int blog_id = object.getIntValue("blog_id");
-        return JSON.toJSONString(Result.create(200, "get thumb up number", userService.getThumbNum(blog_id)));
-    }
+
+
 
     /**
-     * 点赞功能
-     * @param user_like（user_id + blog_id）
-     * @return code + message(thumb up or not thumb up)
-     * 若无点赞记录时在user_like表中加入一条点赞记录；
-     * 若点赞记录已存在则取消点赞。
+     * 搜索功能
+     * @param information
+     * @return code + message + data : blog_list
      */
-    @PostMapping("/thumbArticleOne")
-    public String thumbup(@RequestBody String user_like) {
-        JSONObject object = JSONObject.parseObject(user_like);
-        int user_id = object.getIntValue("user_id");
-        int blog_id = object.getIntValue("blog_id");
-        List<Integer> userLike = userService.getThumbUpId(user_id);
-        if (userLike.contains(blog_id)) {
-            log.info("点赞记录已存在， 取消点赞");
-            userService.notThumbUp(user_id, blog_id);
-            return JSON.toJSONString(Result.create(200, "not thumb up"));
-        } else {
-            int success = userService.thumbUp(user_id, blog_id);
-            if (success == 1) {
-                log.info("点赞成功");
-                return JSON.toJSONString(Result.create(200, "thumb up successfully"));
-            } else {
-                return JSON.toJSONString(Result.create(300, "fail to thumb up"));
-            }
-        }
-    }
-
     @PostMapping("/keyWords")
     public String QueryBlogs(@RequestBody String information){
         JSONObject jsonObject = JSONObject.parseObject(information);
@@ -134,6 +118,11 @@ public class BlogController {
         }
         return JSON.toJSONString(Result.create(200,"Get Blog_list information success", blog_list));
     }
+
+
+
+
+
 
 
 }

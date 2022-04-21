@@ -28,6 +28,8 @@ public class UserController {
     @Autowired
     private Audience audience;
 
+
+
     /**
      * 个人详情页获取用户信息+点赞/收藏/创作过的文章
      * @param id 用户id
@@ -48,24 +50,13 @@ public class UserController {
         log.info("获取" + user.getUsername() + "用户信息成功");
         return JSON.toJSONString(result);
     }
-//
-//
-//    @GetMapping (value = "username/{id}")
-//    public String getUserName(@PathVariable (name = "id") int id) {
-//        return userService.getUserName(id);
-//    }
-//
-//    @PostMapping (value = "change_username")
-//    public String changeUserName(@RequestBody int id, String newName) {
-//        return userService.changeUserName(id, newName);
-//    }
 
 
 //login
 
     /**
      * 登陆 login
-     * @param json
+     * @param json (user)
      * @return 成功信息或失败信息
      */
     @PostMapping (value = "/login")
@@ -126,28 +117,58 @@ public class UserController {
 
     }
 
+
+
+
     /**
-     * 获取用户点赞文章
-     * @param id
-     * @return 用户点赞过的所有文章id
+     *返回点赞数量
+     * @param blog（blog_id）
+     * @return code + message + data:收藏数量
      */
-    @GetMapping (value = "/getLikeBlogs")
-    public String like(@RequestParam (name = "userid") int id) {
-        List<Integer> userLike = userService.getThumbUpId(id);
-        log.info("获取user (" + id +") 点赞过的文章");
-        return JSON.toJSONString(Result.create(200, "get user thumb up blog successfully", userLike));
-    }
-
-
-    @PostMapping("/collectNum")
-    public String getCollectNum(@RequestBody String blog) {
+    @PostMapping("/thumbArticleTwo")
+    public String thumbUp2(@RequestBody String blog) {
         JSONObject object = JSONObject.parseObject(blog);
         int blog_id = object.getIntValue("blog_id");
-        return JSON.toJSONString(Result.create(200, "get the number of collect", userService.getCollectNum(blog_id)));
+        return JSON.toJSONString(Result.create(200, "get thumb up number", userService.getThumbNum(blog_id)));
+    }
+
+    /**
+     * 点赞功能
+     * @param user_like（user_id + blog_id）
+     * @return code + message(thumb up or not thumb up)
+     * 若无点赞记录时在user_like表中加入一条点赞记录；
+     * 若点赞记录已存在则取消点赞。
+     */
+    @PostMapping("/thumbArticleOne")
+    public String thumbup(@RequestBody String user_like) {
+        JSONObject object = JSONObject.parseObject(user_like);
+        int user_id = object.getIntValue("user_id");
+        int blog_id = object.getIntValue("blog_id");
+        List<Integer> userLike = userService.getThumbUpId(user_id);
+        if (userLike.contains(blog_id)) {
+            log.info("点赞记录已存在， 取消点赞");
+            userService.notThumbUp(user_id, blog_id);
+            return JSON.toJSONString(Result.create(200, "not thumb up"));
+        } else {
+            int success = userService.thumbUp(user_id, blog_id);
+            if (success == 1) {
+                log.info("点赞成功");
+                return JSON.toJSONString(Result.create(200, "thumb up successfully"));
+            } else {
+                return JSON.toJSONString(Result.create(300, "fail to thumb up"));
+            }
+        }
     }
 
 
-    @PostMapping("/collect")
+    /**
+     * 收藏行为
+     * @param user_fav（user_id + blog_id）
+     * @return code + message(collect or not collect)
+     * 若无收藏记录时在user_like表中加入一条收藏记录；
+     * 若收藏记录已存在则取消收藏。
+     */
+    @PostMapping("/collectOne")
     public String collectBlog(@RequestBody String user_fav) {
         JSONObject object = JSONObject.parseObject(user_fav);
         int user_id = object.getIntValue("user_id");
@@ -168,13 +189,40 @@ public class UserController {
         }
     }
 
+    /**
+     *返回收藏数量
+     * @param blog（blog_id）
+     * @return code + message + data:收藏数量
+     */
+    @PostMapping("/collectTwo")
+    public String getCollectNum(@RequestBody String blog) {
+        JSONObject object = JSONObject.parseObject(blog);
+        int blog_id = object.getIntValue("blog_id");
+        return JSON.toJSONString(Result.create(200, "get the number of collect", userService.getCollectNum(blog_id)));
+    }
 
+    //
+//
+//    @GetMapping (value = "username/{id}")
+//    public String getUserName(@PathVariable (name = "id") int id) {
+//        return userService.getUserName(id);
+//    }
+//
+//    @PostMapping (value = "change_username")
+//    public String changeUserName(@RequestBody int id, String newName) {
+//        return userService.changeUserName(id, newName);
+//    }
 
-
-
-
-
-
-
+    //    /**
+//     * 获取用户点赞文章
+//     * @param id
+//     * @return 用户点赞过的所有文章id
+//     */
+//    @GetMapping (value = "/getLikeBlogs")
+//    public String like(@RequestParam (name = "userid") int id) {
+//        List<Integer> userLike = userService.getThumbUpId(id);
+//        log.info("获取user (" + id +") 点赞过的文章");
+//        return JSON.toJSONString(Result.create(200, "get user thumb up blog successfully", userLike));
+//    }
 
 }
