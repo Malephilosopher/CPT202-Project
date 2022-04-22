@@ -3,7 +3,7 @@ XJTLU Online Learning Resource Sharing Website
 
 **Project Structure:**
 
-
+```json
 CPT202Project
 |---src  //source codes folder
 |   |---main
@@ -50,7 +50,7 @@ CPT202Project
 |   |---test  //folder for test functions
 |---target  //folder for compiled class files and jar packages
 |---pom.xml  //maven configuration file for managing dependencies
-
+```
 
 **Deployment Instruction:**
 
