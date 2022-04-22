@@ -1,0 +1,33 @@
+{
+  "groups": [
+    {
+      "name": "audience",
+      "type": "com.xjtlu.cpt202.cpt202Project.entity.Audience",
+      "sourceType": "com.xjtlu.cpt202.cpt202Project.entity.Audience"
+    }
+  ],
+  "properties": [
+    {
+      "name": "audience.aud",
+      "type": "java.lang.String",
+      "sourceType": "com.xjtlu.cpt202.cpt202Project.entity.Audience"
+    },
+    {
+      "name": "audience.base64-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.xjtlu.cpt202.cpt202Project.entity.Audience"
+    },
+    {
+      "name": "audience.expires-second",
+      "type": "java.lang.Integer",
+      "sourceType": "com.xjtlu.cpt202.cpt202Project.entity.Audience",
+      "defaultValue": 0
+    },
+    {
+      "name": "audience.iss",
+      "type": "java.lang.String",
+      "sourceType": "com.xjtlu.cpt202.cpt202Project.entity.Audience"
+    }
+  ],
+  "hints": []
+}
