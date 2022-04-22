@@ -64,7 +64,7 @@
         from CPT202.blog
         <where>
             <if test="keyword != null">
-                and title regexp #{keyword}
+                and CPT202.blog.title regexp #{keyword}
             </if>
         </where>
         order by CPT202.blog.post_time desc
