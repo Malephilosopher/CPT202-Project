@@ -49,8 +49,9 @@
     <!--    void updateUser(User u)-->
     <!--    更新用户信息-->
     <update id="updateUser" parameterType="com.xjtlu.cpt202.cpt202Project.entity.User">
-        update CPT202.user set username=#{username}, password=#{password}, email=#{email}, gender=#{gender},
-                               grade=#{grade}, major=#{major}, like_blog=#{like_blog}, comment_num=#{comment_num}, fav_blog=#{fav_blog}, num_fan=#{num_fan} where id = #{id};
+        update CPT202.user set username=#{username}, password=#{password}, email=#{email},
+        gender=#{gender}, grade=#{grade}, major=#{major}, like_blog=#{like_blog}, comment_num=#{comment_num}, fav_blog=#{fav_blog}, num_fan=#{num_fan}
+        where id = #{id};
     </update>
 
 

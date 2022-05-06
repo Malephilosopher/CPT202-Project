@@ -197,7 +197,52 @@ public class UserController {
         return JSON.toJSONString(Result.create(200, "get the number of collect", userService.getCollectNum(blog_id)));
     }
 
-    //
+    /**
+     * 编辑用户个人信息
+     * @param userInfo
+     * @return code + message + data:用户完整信息
+     */
+    @PostMapping("editProfile")
+    public String editUser(@RequestBody String userInfo){
+        User u = JSON.parseObject(userInfo, User.class);
+        User former = userService.getUser(u.getId());
+        u.setPassword(former.getPassword());
+        u.setLike_blog(former.getLike_blog());
+        u.setFav_blog(former.getFav_blog());
+        u.setComment_num(former.getComment_num());
+        u.setNum_fan(former.getNum_fan());
+        if(!u.getUsername().equals(former.getUsername())){
+            if(userService.getUserId(u.getUsername()) != -1){
+                return JSON.toJSONString(Result.create(300, "username already exists, change another name"));
+            }
+        }
+        int success = userService.editUser(u);
+        if(success == 1) {
+            log.info("用户信息修改成功");
+            return JSON.toJSONString(Result.create(200, "edit user information successfully", u));
+        } else {
+            log.info("用户信息修改失败");
+            return JSON.toJSONString(Result.create(300, "fail to edit user information"));
+        }
+
+    }
+
+    @PostMapping (value = "changePassword")
+    public String changePassword(@RequestBody String userInfo) {
+        JSONObject object = JSONObject.parseObject(userInfo);
+        String newPassword = object.getString("password");
+        int id = object.getIntValue("user_id");
+        int success = userService.changeUserPassword(id, newPassword);
+        if(success == 1) {
+            log.info("用户密码修改成功");
+            return JSON.toJSONString(Result.create(200, "change password successfully"));
+        } else {
+            log.info("用户密码修改失败");
+            return JSON.toJSONString(Result.create(300, "fail to change password"));
+        }
+    }
+
+
 //
 //    @GetMapping (value = "username/{id}")
 //    public String getUserName(@PathVariable (name = "id") int id) {
@@ -209,16 +254,6 @@ public class UserController {
 //        return userService.changeUserName(id, newName);
 //    }
 
-    //    /**
-//     * 获取用户点赞文章
-//     * @param id
-//     * @return 用户点赞过的所有文章id
-//     */
-//    @GetMapping (value = "/getLikeBlogs")
-//    public String like(@RequestParam (name = "userid") int id) {
-//        List<Integer> userLike = userService.getThumbUpId(id);
-//        log.info("获取user (" + id +") 点赞过的文章");
-//        return JSON.toJSONString(Result.create(200, "get user thumb up blog successfully", userLike));
-//    }
+
 
 }

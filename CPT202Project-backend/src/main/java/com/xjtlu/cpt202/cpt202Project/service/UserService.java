@@ -39,13 +39,15 @@ public interface UserService {
 //    获取和修改用户具体信息
 //    change and get method of [username, password, email, gender, grade, major].
 
+//    编辑用户信息
+    int editUser(User u);
 
     //    username
     String changeUserName(int id, String newName);
     String getUserName(int id);
 
     //    password
-    String changeUserPassword(int id, String newPassword);
+    int changeUserPassword(int id, String newPassword);
     String getUserPassword(int id);
 
     //    email

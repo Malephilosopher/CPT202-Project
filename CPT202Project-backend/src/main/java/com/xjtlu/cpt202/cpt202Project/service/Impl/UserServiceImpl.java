@@ -155,11 +155,10 @@ public class UserServiceImpl implements UserService {
 
     //    to be finished
     @Override
-    public String changeUserPassword(int id, String newPassword) {
+    public int changeUserPassword(int id, String newPassword) {
         User u = userMapper.findUserById(id);
         u.setPassword(newPassword);
-        userMapper.updateUser(u);
-        return u.getPassword();
+        return userMapper.updateUser(u);
     }
 
     @Override
@@ -212,6 +211,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Integer> getCreateId(int id) {
         return userMapper.getCreateId(id);
+    }
+
+    @Override
+    public int editUser(User u) {
+        return userMapper.updateUser(u);
     }
 
     @Override
