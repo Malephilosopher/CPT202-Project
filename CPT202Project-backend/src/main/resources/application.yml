@@ -8,14 +8,14 @@ spring:
       max-file-size: 500MB
       max-request-size: 500MB
   datasource:
-    username: root
-    password: 123456
-    url: jdbc:mysql://124.221.214.9:3306/CPT202?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    username: yourusername
+    password: yourpassword
+    url: jdbc:mysql://yourIp/CPT202?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
   #redis配置
   redis:
     #Redis服务器地址
-    host: 124.221.214.9
+    host: yourIp
     #Redis服务器连接端口
     port: 6379
     #Redis数据库索引（默认为0）
