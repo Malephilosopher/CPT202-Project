@@ -28,12 +28,19 @@
         update CPT202.blog set num_favorite = num_favorite + 1 where id = #{blog_id};
     </update>
 
-    <!--    int insertBlog(Blog blog);-->
+     <!--    int insertBlog(Blog blog);-->
     <!--    blog information is inserted into the database and get a blog_id-->
     <insert id="insertBlog" parameterType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
-        insert into CPT202.blog(author_id,title, description, content,post_time, num_like,num_view)
-        values(#{author_id},#{title},#{description},#{content},#{post_time},#{num_like},#{num_view})
+        insert into CPT202.blog(author_id,title, description, content,post_time,edit_time,num_like,num_view)
+        values(#{author_id},#{title},#{description},#{content},#{post_time},#{edit_time},#{num_like},#{num_view})
     </insert>
+
+    <!--    void updateBlog(Blog blog)-->
+    <!--    update or edit blog-->
+    <update id="updateBlog" parameterType="com.xjtlu.cpt202.cpt202Project.entity.Blog">
+        update CPT202.blog set title=#{title}, description=#{description}, content=#{content},edit_time=#{edit_time}
+        where id = #{id};
+    </update>
 
     <!--    int deleteBlog(int blog_id);-->
     <!--    delete blog in database-->
