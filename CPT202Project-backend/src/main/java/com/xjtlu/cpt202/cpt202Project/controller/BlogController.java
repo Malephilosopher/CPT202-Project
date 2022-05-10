@@ -117,7 +117,7 @@ public class BlogController {
     }
     
     /**
-     * searching function
+     * edit function
      * @param information
      * @return code + message + data : new_blog
      */
