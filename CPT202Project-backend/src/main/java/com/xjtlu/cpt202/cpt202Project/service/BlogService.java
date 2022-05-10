@@ -14,6 +14,9 @@ public interface BlogService {
     //add blog info into database
     int addBlog(Blog blog);
 
+    //update blog info into database
+    int editBlog(Blog blog);
+    
     //find blog by blog_id
     Blog findBlogById(int user_id, int id);
 
