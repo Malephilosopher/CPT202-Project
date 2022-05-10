@@ -51,10 +51,10 @@ public class BlogController {
         blog.setNum_like(0);
         blog.setNum_fav(0);
         blog.setNum_view(0);
-        blogService.addBlog(blog);
         if(blog.getTitle() == null || blog.getDescription() == null || blog.getContent() == null){
             return JSON.toJSONString(Result.create(300,"Please complete title,description and content"));
         }
+        blogService.addBlog(blog);
         // publish success
         return JSON.toJSONString(Result.create(200,"create blog successfully"));
     }
