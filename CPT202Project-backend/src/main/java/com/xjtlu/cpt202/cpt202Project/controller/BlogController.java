@@ -115,6 +115,29 @@ public class BlogController {
         }
         return JSON.toJSONString(Result.create(200,"Get Blog_list information success", blog_list));
     }
-
+    
+    /**
+     * searching function
+     * @param information
+     * @return code + message + data : new_blog
+     */
+    @PostMapping("/editBlog")
+    public String editBlog(@RequestBody String information){
+        //unpack and get keyword
+        Blog info = JSON.parseObject(information, Blog.class);
+        //Update blog to the database
+        Blog blog = new Blog();
+        blog.setId(info.getId());
+        blog.setTitle(info.getTitle());
+        blog.setDescription(info.getDescription());
+        blog.setContent(info.getContent());
+        blog.setEdit_time(new Timestamp(Calendar.getInstance().getTimeInMillis()));
+        if(blog.getTitle()==null||blog.getDescription()==null||blog.getContent()==null){
+            return JSON.toJSONString(Result.create(300,"Please complete title,description and content"));
+        }
+        blogService.editBlog(blog);
+        // edit success
+        return blogService.editBlog(blog)==1?JSON.toJSONString(Result.create(200,"edit blog successfully")):JSON.toJSONString(Result.create(300,"edit blog failed"));
+    }
 }
 
