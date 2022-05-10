@@ -43,6 +43,14 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    public int editBlog(Blog blog) {
+        if (blog == null) {
+            throw new IllegalArgumentException("参数不能为空!");
+        }
+        return blogMapper.updateBlog(blog);
+    }
+    
+    @Override
     public Blog findBlogById(int user_id, int id) {
         Blog blog =  blogMapper.selectBlogById(id);
         isBlogLiked(user_id, blog);
