@@ -22,6 +22,13 @@ public interface BlogMapper {
     int insertBlog(Blog blog);
 
     /**
+     * 更新帖子
+     * @param blog
+     * @return
+     */
+    int updateBlog(Blog blog);
+    
+    /**
      * 根据帖子id查找帖子
      * @param blog_id
      * @return
